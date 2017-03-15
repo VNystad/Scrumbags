@@ -1,0 +1,2 @@
+midlertidlig fil, for å pushe til bitbucket. 
+Kan slettes når repository er laget på bitbucket.
