@@ -2,17 +2,20 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using CategoryModels;
 
-namespace Gameblasts.Models
+
+using Gameblasts.Models;
+
+namespace Gameblast.Models
 {
     public class Post
     {
-        public Post(ApplicationUser user, string title, string body, SubCategoryModel subcat)
+        public Post(ApplicationUser user, string title, string body/*, SubCategory subcat*/)
         {
             this.Title = title;
             this.User = user;
             this.Body = body;
             this.Date = DateTime.Now;
-            this.SubCat = subcat;
+            /*this.SubCat = subcat */
         }
 
         [Required]
@@ -31,7 +34,7 @@ namespace Gameblasts.Models
         [Required]
         public string Body{get; set;}
 
-        [Required]
-        public SubCategoryModel SubCat{get; set;}
+        //[Required]
+        //public SubCategory SubCat{get; set;}
     }
 }
