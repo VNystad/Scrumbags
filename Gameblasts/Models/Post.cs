@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Gameblasts.Models
 {
     public class Post
