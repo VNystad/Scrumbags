@@ -1,8 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Gameblasts.Models;
 
-namespace Gameblast.Models
+namespace Gameblasts.Models
 {
     public class Post
     {
