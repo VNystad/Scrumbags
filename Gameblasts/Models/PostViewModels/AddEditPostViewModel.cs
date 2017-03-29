@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Gameblasts.Models.PostViewModels
 {
-    public class AddEditPostViewModel
+    public class PostViewModel
     {
         [Required]
         [Display(Name = "New Title")]
