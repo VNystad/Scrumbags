@@ -30,8 +30,8 @@ namespace Gameblasts.Controllers
             ApplicationDbContext.SaveChanges();
 
             return View("../Home/About");
-        }
 
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -45,4 +45,3 @@ namespace Gameblasts.Controllers
         }
     }
 }
-
