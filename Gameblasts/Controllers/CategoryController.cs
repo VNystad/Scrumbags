@@ -20,6 +20,7 @@ namespace Gameblasts.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult ForumCategoryDemo(string topCatName)
         {
