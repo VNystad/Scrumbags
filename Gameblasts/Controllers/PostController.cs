@@ -28,7 +28,8 @@ namespace Gameblasts.Controllers
             
             ApplicationDbContext.Posts.Add(newpost);
             ApplicationDbContext.SaveChanges();
-            return View("../Home/Contact");
+
+            return View("../Home/About");
         }
 
         public IActionResult About()
@@ -44,3 +45,4 @@ namespace Gameblasts.Controllers
         }
     }
 }
+
