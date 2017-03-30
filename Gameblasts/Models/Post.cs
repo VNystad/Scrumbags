@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using CategoryModels;
 
-
 namespace Gameblasts.Models
 {
     public class Post
