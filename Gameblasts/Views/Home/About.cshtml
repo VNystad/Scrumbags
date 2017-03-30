@@ -1,3 +1,5 @@
+@model IEnumerable<GameBlasts.Models.Post>
+
 @{
     ViewData["Title"] = "About";
 }
@@ -5,3 +7,8 @@
 <h3>@ViewData["Message"]</h3>
 
 <p>Use this area to provide additional information.</p>
+
+
+<div class="form-group">
+    @(await Component.InvokeAsync<ViewComponents.Post>(10))
+</div>
