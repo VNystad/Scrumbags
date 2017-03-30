@@ -8,7 +8,8 @@ namespace Gameblasts.Models
     {
 
         public Post(){}
-        public Post(ApplicationUser user, string title, string body/*, SubCategory subcat*/)
+        public Post(ApplicationUser user, string title, string body, SubCategoryModel subcat)
+
         {
             this.Title = title;
             this.User = user;
