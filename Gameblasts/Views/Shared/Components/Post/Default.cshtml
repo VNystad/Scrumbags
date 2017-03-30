@@ -1,0 +1,9 @@
+@model IEnumerable<GameBlasts.Models.BlogPost>
+
+<div class="content">
+    <div class ="row"><br></div>
+    @foreach(var p in Model.Reverse())
+    {
+        Html.RenderPartial("_Post", p);
+    }
+</div>
