@@ -30,7 +30,6 @@ namespace Gameblasts.Controllers
             ApplicationDbContext.SaveChanges();
 
             return View("../Home/About");
-
         }
         public IActionResult About()
         {
@@ -45,3 +44,4 @@ namespace Gameblasts.Controllers
         }
     }
 }
+
