@@ -23,7 +23,6 @@ namespace CategoryModels
         [Required]
         public TopCategoryModel parent {get; set;}
         
-        
         public List<Post> threads {get; set;}
     }
 }
