@@ -21,7 +21,6 @@ namespace Gameblasts.Controllers
             this.UserManager = userManager;
             this.SignInManager = signInManager;
         }
-
         public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body/*, SubCategory subcat*/)
         {   
             Post newpost = new Post(await GetCurrentUserAsync(), title, body);
