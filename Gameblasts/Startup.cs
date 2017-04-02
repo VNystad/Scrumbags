@@ -52,6 +52,7 @@ namespace Gameblasts
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
+<<<<<<< HEAD
         // This method gets called by the runtime when in Development Mode. Use this method to add services to the container.
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
@@ -71,6 +72,8 @@ namespace Gameblasts
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
+=======
+>>>>>>> SB-13 In startup.cs added code for creating regular user, moderator user and admin user with appropriate rights. To do: add a way of changing existing users rights using admin user
         // Called by Configure(). This needs an async function because
         // all the userManager and roleManager functions are async.
         public async Task CreateUsersAndRoles(IServiceScope serviceScope)
@@ -80,17 +83,33 @@ namespace Gameblasts
 
             // First create the admin role
             await roleManager.CreateAsync(new IdentityRole("Admin"));
+<<<<<<< HEAD
+=======
+>>>>>>> SB-13 In startup.cs added code for creating regular user, moderator user and admin user with appropriate rights. To do: add a way of changing existing users rights using admin user
 
             // Then add one admin user
             var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
             await userManager.CreateAsync(adminUser, "Password1.");
             await userManager.AddToRoleAsync(adminUser, "Admin");
 
+<<<<<<< HEAD
+=======
+            // Add one moderator user
+            var moderatorUser = new ApplicationUser {UserName = "moderator@uia.no", Email = "moderator@uia.no"};
+            await userManager.CreateAsync(moderatorUser, "Password1.");
+            await userManager.AddToRoleAsync(moderatorUser, "Moderator");
+
+>>>>>>> SB-13 In startup.cs added code for creating regular user, moderator user and admin user with appropriate rights. To do: add a way of changing existing users rights using admin user
             // Add one regular user
             var userUser = new ApplicationUser { UserName = "user@uia.no", Email = "user@uia.no" };
             await userManager.CreateAsync(userUser, "Password1.");
         }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> SB-13 In startup.cs added code for creating regular user, moderator user and admin user with appropriate rights. To do: add a way of changing existing users rights using admin user
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -104,7 +123,10 @@ namespace Gameblasts
                 // Browser Link is not compatible with Kestrel 1.1.0
                 // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
                 // app.UseBrowserLink()
+<<<<<<< HEAD
                 
+=======
+>>>>>>> SB-13 In startup.cs added code for creating regular user, moderator user and admin user with appropriate rights. To do: add a way of changing existing users rights using admin user
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
