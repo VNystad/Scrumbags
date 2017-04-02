@@ -1,0 +1,7 @@
+@model IEnumerable<CategoryModels.SubCategory>
+
+
+@foreach(var s in Model)
+{
+    Html.RenderPartial("_DisplayCategory", s);
+}
