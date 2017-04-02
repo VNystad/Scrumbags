@@ -32,7 +32,6 @@ namespace Gameblasts.Controllers
 
             return View("../Home/Contact");
         }
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
