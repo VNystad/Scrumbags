@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Gameblasts.Data;
 using Gameblasts.Models;
 using Gameblasts.Services;
-using System.Data.SqlClient;
+using Microsoft.AspNetCore.Identity;
 
 namespace Gameblasts
 {
@@ -38,15 +35,21 @@ namespace Gameblasts
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IHostingEnvironment env)
         {
-            // Add framework services.
-            //services.AddDbContext<ApplicationDbContext>(options =>
-                //options.UseSqlite(Configuration.GetConnectionString("gameblasts")));
+            if (env.IsDevelopment())
+            {
+                // Add framework services.
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("DataSource=.\\Gameblasts.db")));
+            }
 
-            // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            else 
+            {
+                // Add framework services.
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            }
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -59,6 +62,26 @@ namespace Gameblasts
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
+        // Called by Configure(). This needs an async function because
+        // all the userManager and roleManager functions are async.
+        public async Task CreateUsersAndRoles(IServiceScope serviceScope)
+        {
+            var userManager = serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+            var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+
+            // First create the admin role
+            await roleManager.CreateAsync(new IdentityRole("Admin"));
+
+            // Then add one admin user
+            var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
+            await userManager.CreateAsync(adminUser, "Password1.");
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+
+            // Add one regular user
+            var userUser = new ApplicationUser { UserName = "user@uia.no", Email = "user@uia.no" };
+            await userManager.CreateAsync(userUser, "Password1.");
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -69,6 +92,19 @@ namespace Gameblasts
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+                    
+                    db.Database.EnsureDeleted();
+                    db.Database.EnsureCreated();
+
+                    // Add regular data here
+
+                    // Then create the standard users and roles
+                    CreateUsersAndRoles(serviceScope).Wait();
+                }
                 
                 
                 // Browser Link is not compatible with Kestrel 1.1.0
