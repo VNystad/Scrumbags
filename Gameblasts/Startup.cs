@@ -34,22 +34,31 @@ namespace Gameblasts
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime when in default mode. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //if (env.IsDevelopment())
-            //{
-                // Add framework services.
-                //services.AddDbContext<ApplicationDbContext>(options =>
-                    //options.UseSqlite(Configuration.GetConnectionString("DevelopmentConnection")));
-            //}
+            // Add framework services.
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //else 
-            //{
-                // Add framework services.
-                services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //}
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddMvc();
+
+            // Add application services.
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+        }
+
+        // This method gets called by the runtime when in Development Mode. Use this method to add services to the container.
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            // Add framework services.
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DevelopmentConnection")));
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -96,7 +105,7 @@ namespace Gameblasts
                 // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
                 // app.UseBrowserLink()
                 
-                /*using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
                     
@@ -107,7 +116,7 @@ namespace Gameblasts
 
                     // Then create the standard users and roles
                     CreateUsersAndRoles(serviceScope).Wait();
-                }*/
+                }
             }
             else
             {
