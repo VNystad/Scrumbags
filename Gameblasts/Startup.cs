@@ -35,21 +35,21 @@ namespace Gameblasts
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IHostingEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 // Add framework services.
-                services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("DataSource=.\\Gameblasts.db")));
-            }
+                //services.AddDbContext<ApplicationDbContext>(options =>
+                    //options.UseSqlite(Configuration.GetConnectionString("DataSource=.\\Gameblasts.db")));
+            //}
 
-            else 
-            {
+            //else 
+            //{
                 // Add framework services.
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            }
+            //}
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -92,8 +92,11 @@ namespace Gameblasts
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                // Browser Link is not compatible with Kestrel 1.1.0
+                // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
+                // app.UseBrowserLink()
                 
-                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                /*using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
                     
@@ -104,13 +107,7 @@ namespace Gameblasts
 
                     // Then create the standard users and roles
                     CreateUsersAndRoles(serviceScope).Wait();
-                }
-                
-                
-                // Browser Link is not compatible with Kestrel 1.1.0
-                // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
-                // app.UseBrowserLink()
-                
+                }*/
             }
             else
             {
