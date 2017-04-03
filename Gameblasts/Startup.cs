@@ -41,7 +41,7 @@ namespace Gameblasts
             //{
                 // Add framework services.
                 //services.AddDbContext<ApplicationDbContext>(options =>
-                    //options.UseSqlite(Configuration.GetConnectionString("DataSource=.\\Gameblasts.db")));
+                    //options.UseSqlite(Configuration.GetConnectionString("DevelopmentConnection")));
             //}
 
             //else 
