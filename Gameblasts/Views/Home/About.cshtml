@@ -1,4 +1,4 @@
-@model IEnumerable<GameBlasts.Models.Post>
+@model IEnumerable<Gameblasts.Models.Post>
 
 @{
     ViewData["Title"] = "About";
@@ -10,5 +10,5 @@
 
 
 <div class="form-group">
-    @(await Component.InvokeAsync<ViewComponents.Post>(10))
+   @(await Component.InvokeAsync<ViewComponents.Post>(10))
 </div>
