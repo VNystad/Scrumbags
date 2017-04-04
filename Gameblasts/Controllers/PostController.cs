@@ -22,13 +22,13 @@ namespace Gameblasts.Controllers
             this.SignInManager = signInManager;
         }
 
-        public async Task<IActionResult> AddPost(AddEditPostViewModel vm/*, SubCategory subcat*/)
+        public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body/*, SubCategory subcat*/)
         {   
-            Post newpost = new Post(await GetCurrentUserAsync(), vm.Title, vm.Body);
+            Post newpost = new Post(await GetCurrentUserAsync(), title, body);
             
             ApplicationDbContext.Posts.Add(newpost);
             ApplicationDbContext.SaveChanges();
-            return View("../Home/About");
+            return View("../Home/Contact");
         }
 
         public IActionResult About()
