@@ -1,7 +1,7 @@
 @model Gameblasts.Models.Post
 
 
-<!--<form asp-controller="Post" asp-action="ShowPost" method="Get" class="form-horizontal" role="form">-->
+<form asp-controller="Post" asp-action="ShowPost" method="Get" class="form-horizontal" role="form">
     <div class="row">
         <div class ="col-sm-4" style="background-color: #808080"> 
             <h2>@Model.Title</h2>
@@ -14,15 +14,15 @@
             </p>
         </div>
         
-        <!--@if(User.Identity.Name == @Model.User.UserName)
+        @*@if(User.Identity.Name == @Model.User.UserName)
         {
             #<a asp-controller="Post" asp-action="EditBlogPost" asp-route-id="@Model.Id">Edit</a>
             <a asp-controller="Post" asp-action="DeleteBlogPost" asp-route-id="@Model.Id">Delete</a>
-        }-->
+        }*@
         
     </div>
     <div class ="row"><br></div>
-<!--</form>-->
+</form>
 
 
     
