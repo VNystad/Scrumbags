@@ -5,6 +5,7 @@ namespace Gameblasts.Models
 {
     public class Post
     {
+        public Post(){}
         public Post(ApplicationUser user, string title, string body/*, SubCategory subcat*/)
         {
             this.Title = title;
