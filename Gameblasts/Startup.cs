@@ -81,6 +81,9 @@ namespace Gameblasts
             // First create the admin role
             await roleManager.CreateAsync(new IdentityRole("Admin"));
 
+            // Then create moderator role
+            await roleManager.CreateAsync(new IdentityRole("Moderator"));
+
             // Then add one admin user
             var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
             await userManager.CreateAsync(adminUser, "Password1.");
