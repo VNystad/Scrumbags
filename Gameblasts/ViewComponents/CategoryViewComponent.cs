@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CategoryModels;
 using Gameblasts.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,6 @@ namespace ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string topCatName)
         {
-
             TopCategoryModel topCat = await db.topCategories.FindAsync(topCatName);
             return View(topCat.children);
         }

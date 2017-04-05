@@ -17,6 +17,7 @@ namespace CategoryModels{
         [Required]
         public string name { get; set;}
         
+        [Required]
         public List<SubCategoryModel> children {get; set;}
     }
 }
