@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace Gameblasts.Models.PstViewModels
+namespace Gameblasts.Models.PostViewModels
 {
-    public class PostViewModel
+    public class AddEditPostViewModel
     {
         [Required]
         [Display(Name = "New Title")]

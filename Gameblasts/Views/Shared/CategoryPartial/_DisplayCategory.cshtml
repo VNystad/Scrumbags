@@ -1,8 +1,9 @@
-@model CategoryModels.SubCategory
+@model CategoryModels.SubCategoryModel
 
 <div class="row">
     <div class="col-md-6">
         <br><br>
+        <br><p>@Model.parent.name</p>
         <p>@Model.name</p>
     </div>
 </div>

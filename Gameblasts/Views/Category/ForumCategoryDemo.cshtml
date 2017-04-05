@@ -5,22 +5,23 @@
                 </tr>
                 <tr>
                     <td class="ikonRamme">Ikon</td>
-                    <td>Category-1</td>
-                    <td><button onclick="@(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(Category1))">Expand</button>
+                    <td>Category1</td>
+                    <td><button onclick="">Expand</button>
                 </tr>
                 <tr>
                     <td class="ikonRamme">Ikon</td>
-                    <td>Category-2</td>
+                    <td>Category2</td>
                 </tr>
                 <tr>
                     <td class="ikonRamme">Ikon</td>
-                    <td>Category-3</td>
+                    <td>Category3</td>
                 </tr>
                 <tr>
                     <td class="ikonRamme">Ikon</td>
-                    <td>Category-4</td>
+                    <td>Category4</td>
                 </tr>
             </table>
         </div>
     </div>
+                @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>("Category1"))
 </html>

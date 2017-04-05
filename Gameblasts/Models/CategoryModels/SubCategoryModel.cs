@@ -12,6 +12,8 @@ namespace CategoryModels
             this.parent = parent;
             this.threads = threads;
         }
+
+        public SubCategoryModel(){}
         
         [KeyAttribute]
         [Required]
@@ -20,6 +22,7 @@ namespace CategoryModels
         [KeyAttribute]
         [Required]
         public TopCategoryModel parent {get; set;}
+        
         
         public List<Post> threads {get; set;}
     }
