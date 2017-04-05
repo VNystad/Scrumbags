@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>@ViewData["Title"] - Gameblasts</title>
+    
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -17,24 +19,43 @@
     </environment>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+
+
+
+    <div class ="navbar navbar-inverse navbar-fixed-top" id="TopNavbar">
         <div class="container">
             <div class="navbar-header">
+                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    
                     <span class="sr-only">Toggle navigation</span>
+                    
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Gameblasts</a>
+
+                
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="http://i.imgur.com/mZUAZwB.png"style="width:200px;height:200ppx;"></a>
             </div>
+ @await Html.PartialAsync("_LoginPartial")
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="http://i.imgur.com/BcyIDYN.png"style="width:150px;height:200ppx;" id="Home"></a></li>
+                    <li><a asp-area="" asp-controller="Forums" asp-action="Forums"><img src="http://i.imgur.com/sg6BWRc.png"style="width:150px;height:200ppx;" id="Forums"></a></li>
+                    <li><a asp-area="" asp-controller="News" asp-action="News"><img src="http://i.imgur.com/u1ZG8Rg.png"style="width:150px;height:200ppx;"id ="News"></a></li>
+                    <li><a asp-area="" asp-controller="Events" asp-action="Contact"><img src="http://i.imgur.com/5afQr4s.png"style="width:150px;height:200ppx;" id="Events"></a></li>
+                    
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
+               <
+               
+                
+                <div>
+                    
+                @* light bar under tha navigation bar, not currently in use. Css problems. TODO <img src="http://i.imgur.com/rZEdP0X.png" id="LightBar"> *@
+                 </div>
             </div>
         </div>
     </div>
@@ -45,6 +66,8 @@
             <p>&copy; 2017 - Gameblasts</p>
         </footer>
     </div>
+
+    
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -64,5 +87,3 @@
     </environment>
 
     @RenderSection("scripts", required: false)
-</body>
-</html>

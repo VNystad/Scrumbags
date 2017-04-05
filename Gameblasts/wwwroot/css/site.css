@@ -1,6 +1,7 @@
 body {
-    padding-top: 50px;
+    padding-top: 150px;
     padding-bottom: 20px;
+    background-image: url("http://i.imgur.com/N71e6M0.png");
 }
 
 /* Wrapping element */
@@ -17,10 +18,13 @@ textarea {
     max-width: 280px;
 }
 
+
+
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
     line-height: 1.4;
+    color: white;
 }
 
 /* buttons and links extension to use brackets: [ click me ] */
@@ -47,4 +51,95 @@ textarea {
     .carousel-caption {
         display: none;
     }
+}
+
+.sidenav {
+    margin-top: 135px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #222222;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 120px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding-top: 40px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#TopNavbar
+{
+    
+    height: 140px;
+}
+
+#Welcome
+{
+    position: fixed;
+    color: darkgray;
+}
+.h {
+    color: white
+}
+.p1{
+    color: white;
+}
+
+
+#LightBar
+{
+    margin-top: -90px;
+    margin-left: -50px;
+}
+
+#Home
+{
+    margin-top: -50px;
+    margin-left:200px;
+
+}
+
+#Forums
+{
+    margin-top: -50px;
+    margin-left: -50px;
+}
+ 
+ #News
+ {
+    margin-top: -50px;
+    margin-left: -10px;
+ }
+
+#Events
+{
+    margin-top: -50px; 
+    margin-left: -50px; 
 }

@@ -13,9 +13,25 @@
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; open</span>
             </li>
         </ul>
     </form>
+
+
+@* Sidebar navigation (placed to the right) Only to appear when user is signed in *@
+
+
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+
+
 }
 else
 {
