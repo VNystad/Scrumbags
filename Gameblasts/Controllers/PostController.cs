@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Gameblasts.Data;
 using Microsoft.AspNetCore.Identity;
 using Gameblasts.Models;
+using CategoryModels;
 
 namespace Gameblasts.Controllers
 {
@@ -22,9 +23,9 @@ namespace Gameblasts.Controllers
             this.SignInManager = signInManager;
         }
 
-        public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body/*, SubCategory subcat*/)
+        public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body, SubCategoryModel subcat)
         {   
-            Post newpost = new Post(await GetCurrentUserAsync(), title, body);
+            Post newpost = new Post(await GetCurrentUserAsync(), title, body, subcat);
             
             ApplicationDbContext.Posts.Add(newpost);
             ApplicationDbContext.SaveChanges();
