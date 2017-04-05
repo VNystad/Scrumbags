@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CategoryModels;
 using Gameblasts.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,12 @@ namespace Gameblasts.Controllers
             this.db = db;
         }
         
+        [HttpGet]
+        public IActionResult ForumCategoryDemo()
+
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult ForumCategoryDemo(string topCatName)
         {
