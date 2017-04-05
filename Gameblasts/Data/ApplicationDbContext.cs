@@ -26,6 +26,12 @@ namespace Gameblasts.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<ApplicationUser>()
                     .HasMany<Post>(b => b.Posts);
+            
+            builder.Entity<CategoryModels.TopCategoryModel>()
+                .HasMany<CategoryModels.SubCategoryModel>(b => b.children);
+
+            builder.Entity<CategoryModels.SubCategoryModel>()
+                .HasOne<CategoryModels.TopCategoryModel>(b => b.parent);
         }
     }
 }
