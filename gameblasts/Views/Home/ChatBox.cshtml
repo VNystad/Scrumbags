@@ -1,0 +1,30 @@
+@model Gameblasts.Models.PostViewModels.AddEditPostViewModel
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Chatbox";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<head>
+    <link rel="stylesheet" href="~/css/Chatbox.css" asp-append-version="true" />
+    <!--<script src="~/js/Chatbox.js" asp-append-version="true"></script>-->
+</head>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div id="wrapper">
+        <div id="menu">
+            <p class="welcome">Hello <a href="#">@User.Identity.Name</a> !</p>
+            <div style="clear:both"></div>
+        </div>
+    <div id="chatbox"></div>
+    <form name="message" action="">
+        <input name="message" type="text" id="chatmessage" size="63" />
+        <input name="submit" type="submit" id="submitmessage" value="Send" />
+    </form>
+</div>
+
+}
