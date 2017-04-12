@@ -117,24 +117,15 @@ namespace Gameblasts
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
                 
-                    var subCatList = new List<CategoryModels.SubCategoryModel>();
-                    var topCat1 = new CategoryModels.TopCategoryModel("Category1", subCatList);
-                    
-                    var SubCat1 = new CategoryModels.SubCategoryModel("SubCat1", topCat1, null);
-                    subCatList.Add(SubCat1);
-                    db.subCategories.Add(SubCat1);
+                    var TopCat1 = new CategoryModels.TopCategoryModel("topCat1", new List<CategoryModels.SubCategoryModel>());
 
-                    var SubCat2 = new CategoryModels.SubCategoryModel("SubCat2", topCat1, null);
-                    subCatList.Add(SubCat2);
-                    db.subCategories.Add(SubCat2);
-                    
-                    var SubCat3 = new CategoryModels.SubCategoryModel("SubCat3", topCat1, null);
-                    subCatList.Add(SubCat3);
-                    db.subCategories.Add(SubCat3);
-
-                    topCat1.children = subCatList;
-                    db.topCategories.Add(topCat1);
-                    
+                    var SubCat1 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
+                    var SubCat2 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
+                    var SubCat3 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
+                    TopCat1.children.Add(SubCat1);
+                    TopCat1.children.Add(SubCat2);
+                    TopCat1.children.Add(SubCat3);
+                    //db.topCategories.Add(TopCat1);
                     db.SaveChanges();
 
                 }

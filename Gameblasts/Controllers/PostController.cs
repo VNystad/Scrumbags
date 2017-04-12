@@ -24,6 +24,7 @@ namespace Gameblasts.Controllers
         }
 
         public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body, SubCategoryModel subcat)
+
         {   
             Post newpost = new Post(await GetCurrentUserAsync(), title, body, subcat);
             

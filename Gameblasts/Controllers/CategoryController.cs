@@ -22,6 +22,7 @@ namespace Gameblasts.Controllers
         }
 
         [HttpPost]
+        
         public IActionResult ForumCategoryDemo(string topCatName)
         {
             TopCategoryModel topCat = db.topCategories.Find(topCatName);

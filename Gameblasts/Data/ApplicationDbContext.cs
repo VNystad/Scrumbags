@@ -30,8 +30,7 @@ namespace Gameblasts.Data
             builder.Entity<CategoryModels.TopCategoryModel>()
                 .HasMany<CategoryModels.SubCategoryModel>(b => b.children);
 
-            builder.Entity<CategoryModels.SubCategoryModel>()
-                .HasOne<CategoryModels.TopCategoryModel>(b => b.parent);
+           
         }
     }
 }
