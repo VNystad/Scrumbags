@@ -1,0 +1,9 @@
+@model IEnumerable<Gameblasts.Models.ChatMessage>
+
+<div class="content">
+    <div class ="row"><br></div>
+    @foreach(var p in Model.Reverse())
+    {
+        Html.RenderPartial("_ChatBox", p);
+    }
+</div>

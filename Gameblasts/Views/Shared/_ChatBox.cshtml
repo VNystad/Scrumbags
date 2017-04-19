@@ -1,0 +1,15 @@
+@model Gameblasts.Models.ChatMessage
+
+<form asp-controller="ChatBox" asp-action="ShowChat" method="Get" class="form-horizontal" role="form">
+    <div class="row">
+        <div class ="col-sm-4" style="background-color: #808080"> 
+            <p>
+            @Model.User.UserName, @Model.Date
+            <br>
+            <br>
+            @Model.Message
+            </p>
+        </div> 
+    </div>
+    <div class ="row"><br></div>
+</form>

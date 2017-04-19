@@ -1,4 +1,4 @@
-@model Gameblasts.Models.PostViewModels.AddEditPostViewModel
+@model Gameblasts.Models.ChatBoxViewModels.AddEditChatBoxViewModel
 
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -10,7 +10,6 @@
 
 <head>
     <link rel="stylesheet" href="~/css/Chatbox.css" asp-append-version="true" />
-    <!--<script src="~/js/Chatbox.js" asp-append-version="true"></script>-->
 </head>
 
 @if (SignInManager.IsSignedIn(User))
@@ -20,11 +19,18 @@
             <p class="welcome">Hello <a href="#">@User.Identity.Name</a> !</p>
             <div style="clear:both"></div>
         </div>
-    <div id="chatbox"></div>
-    <form name="message" action="">
-        <input name="message" type="text" id="chatmessage" size="63" />
+    <div id="chatbox">
+    <!--Her skal meldinger brukerne skriver komme.-->
+    </div>
+        <form asp-controller="Chatbox" asp-action="AddChat" name="message">
+        <input asp-for="Message" name="message" type="text" id="chatmessage" size="63" />
         <input name="submit" type="submit" id="submitmessage" value="Send" />
     </form>
 </div>
-
+}
+else
+{
+    <div class="row">
+        <p2>Hello Guest, Please login to view the chatbox!</p2>
+    </div>
 }

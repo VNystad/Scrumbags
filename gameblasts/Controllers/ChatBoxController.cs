@@ -1,4 +1,4 @@
-using Gameblasts.Models.PostViewModels;
+using Gameblasts.Models.ChatBoxViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Gameblasts.Data;
@@ -30,7 +30,7 @@ namespace Gameblasts.Controllers
 
         public IActionResult ChatBox()
         {
-            return View();
+            return View("../Home/ChatBox");
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
