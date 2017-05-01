@@ -25,8 +25,13 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult ChatBox(string message)
         {
+            // Sjekke om modellen er valid. 
             if(ModelState.IsValid)
             {
+                // Lage en ny melding, deretter finne den nåværende brukeren som er logget inn.
+                // Deretter legge inn meldingen som ble sendt inn i viewet.
+                // Finne dato og tid meldingen ble skrevet.
+                // Legge meldingen inn i databasen deretter returnere til "ChatBox" action.
                 ChatMessage newMessage = new ChatMessage();
                 newMessage.User = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
                 newMessage.Message = message;
@@ -42,6 +47,8 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult ChatBox()
         {
+            // Vise alle meldingene som er i databasen når siden lastes.
+            // TODO: Bare vise 20-30 meldinger om gangen.
             var messages = ApplicationDbContext.ChatMessages;
             return View("ChatBox", messages.ToList());
         }
