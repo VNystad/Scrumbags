@@ -22,12 +22,7 @@ namespace Gameblasts.Controllers
 
             return View();
         }
-
-        public IActionResult ChatBox()
-        {
-            return View();
-        }
-
+        
         public IActionResult Error()
         {
             return View();

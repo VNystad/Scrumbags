@@ -1,9 +1,10 @@
-using Gameblasts.Models.ChatBoxViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Gameblasts.Data;
 using Microsoft.AspNetCore.Identity;
 using Gameblasts.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace Gameblasts.Controllers
 {
@@ -20,22 +21,29 @@ namespace Gameblasts.Controllers
             this.SignInManager = signInManager;
         }
 
-        public async Task<IActionResult> AddChat(AddEditChatBoxViewModel vm, string message)
-        {   
-            ChatMessage newmessage = new ChatMessage(await GetCurrentUserAsync(),message);
-            ApplicationDbContext.ChatMessages.Add(newmessage);
-            ApplicationDbContext.SaveChanges();
-            return View("../Home/ChatBox");
+        [HttpPost]
+        [Authorize]
+        public IActionResult ChatBox(string message)
+        {
+            if(ModelState.IsValid)
+            {
+                ChatMessage newMessage = new ChatMessage();
+                newMessage.User = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
+                newMessage.Message = message;
+                newMessage.Date = System.DateTime.Now;
+                ApplicationDbContext.ChatMessages.Add(newMessage);
+                ApplicationDbContext.SaveChanges();
+                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.ToList());
+            }
+            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.ToList());
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult ChatBox()
         {
-            return View("../Home/ChatBox");
-        }
-
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return UserManager.GetUserAsync(HttpContext.User);
+            var messages = ApplicationDbContext.ChatMessages;
+            return View("ChatBox", messages.ToList());
         }
     }
 }

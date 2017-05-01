@@ -6,7 +6,7 @@ namespace Gameblasts.Models
     public class ChatMessage
     {
         public ChatMessage(){}
-        public ChatMessage(ApplicationUser user, string message)
+        public ChatMessage(string user, string message)
         {
             this.User = user;
             this.Message = message;
@@ -18,7 +18,7 @@ namespace Gameblasts.Models
         public int Id{get; set;}
 
         [Required]
-        public ApplicationUser User{get; set;}
+        public string User{get; set;}
 
         [Required]
         public DateTime Date{get; set;}
