@@ -12,15 +12,22 @@
     <link rel="stylesheet" href="~/css/Chatbox.css" asp-append-version="true" />
 </head>
 
+<!--ChatBox skal bare vises hvis brukeren er logget inn.-->
 @if (SignInManager.IsSignedIn(User))
 {
     <div id="wrapper">
         <div id="menu">
+            <!--Gi en velkommen melding til brukeren som er logget inn.-->
             <p class="welcome">Hello <a href="#">@User.Identity.Name</a> !</p>
             <div style="clear:both"></div>
         </div>
         <div id="chatbox">
-        <!--Her skal meldinger brukerne skriver komme.-->
+            <!--Her skal meldinger brukerne skriver komme.-->
+            @foreach(var s in Model)
+            {
+                Html.RenderPartial("_ChatBox", s);
+            }
+            <!-- ________________________________________ -->
         </div>
         <form method="POST">
             <input name="message" type="text" id="chatmessage" size="63" />
@@ -32,8 +39,3 @@ else
 {
     <p2>Hello Guest, Please login to view the chatbox!</p2>
 }
-
- @foreach(var s in Model)
-    {
-        Html.RenderPartial("_ChatBox", s);
-    }
