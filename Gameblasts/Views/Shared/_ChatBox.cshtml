@@ -1,8 +1,7 @@
 @model Gameblasts.Models.ChatMessage
-<p>
-    @Model.Date 
-    <br> 
-    @Model.User 
-    <br> 
-    @Model.Message
-</p>
+<i><CMDate>@Model.Date</CMDate></i>
+<a href="#"><CMUser>@Model.User</CMUser></a>
+<br>
+<CMMessage>@Model.Message</CMMessage>
+<br>
+<br>

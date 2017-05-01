@@ -53,3 +53,14 @@ a {
 h2 { color: white; }
 
 p2 { color: white; text-align: center;}
+
+CMDate { text-align: start;}
+
+CMMessage { 
+    position: relative;
+    left: 20px;
+    max-width: 70px;}
+
+CMUser { 
+    position: relative;
+    left: 10px;}
