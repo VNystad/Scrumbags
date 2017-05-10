@@ -25,15 +25,15 @@ namespace Gameblasts.Controllers
         
         public IActionResult ForumCategoryDemo(string topCatName)
         {
-            CategoryModel topCat = db.topCategories.Find(topCatName);
+            CategoryModel topCat = db.Categories.Find(topCatName);
             return View(topCat.children);
         }
 
         [HttpPost]
         public IActionResult ForumCategoryDemo(string SubCatName, string parentName)
         {
-            CategoryModel topCat = db.topCategories.Find(parentName);
-            CategoryModel SubCat = db.subCategories.Find(SubCatName, parentName);
+            CategoryModel topCat = db.Categories.Find(parentName);
+            CategoryModel SubCat = db.Categories.Find(SubCatName, parentName);
             return View(SubCat.threads);
         }
     }

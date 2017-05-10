@@ -22,6 +22,8 @@ namespace Gameblasts.Data
         public DbSet<CategoryModel> topCategories {get; set; }
         public DbSet<CategoryModel> subCategories { get; set;}
 
+        public DbSet<CategoryModel> Categories {get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -112,26 +112,6 @@ namespace Gameblasts
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-  
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                {
-                var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-                    
-                    db.Database.EnsureDeleted();
-                    db.Database.EnsureCreated();
-                
-                    var TopCat1 = new CategoryModels.TopCategoryModel("topCat1", new List<CategoryModels.SubCategoryModel>());
-
-                    var SubCat1 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
-                    var SubCat2 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
-                    var SubCat3 = new CategoryModels.SubCategoryModel("SubCat1", TopCat1, null);
-                    TopCat1.children.Add(SubCat1);
-                    TopCat1.children.Add(SubCat2);
-                    TopCat1.children.Add(SubCat3);
-                    //db.topCategories.Add(TopCat1);
-                    db.SaveChanges();
-
-                }
 
                 // Browser Link is not compatible with Kestrel 1.1.0
                 // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
@@ -156,12 +136,12 @@ namespace Gameblasts
                     var SubCat3 = new CategoryModel("SubCat3", TopCat1, null, null);
                     TopCat1.children.Add(SubCat3);
                     
-                    db.topCategories.Add(TopCat1);
-                    db.topCategories.Include("CategoryModel");
+                    db.Categories.Add(TopCat1);
+                    db.Categories.Include("CategoryModel");
 
-                    db.subCategories.Add(SubCat1);
-                    db.subCategories.Add(SubCat2);
-                    db.subCategories.Add(SubCat3);
+                    db.Categories.Add(SubCat1);
+                    db.Categories.Add(SubCat2);
+                    db.Categories.Add(SubCat3);
 
 
 
