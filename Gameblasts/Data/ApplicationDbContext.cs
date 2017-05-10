@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Gameblasts.Models;
+using Gameblasts.Models.CategoryModels;
 
 namespace Gameblasts.Data
 {
@@ -14,7 +15,6 @@ namespace Gameblasts.Data
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<ChatMessage> ChatMessages { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -23,6 +23,11 @@ namespace Gameblasts.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<ApplicationUser>()
                     .HasMany<Post>(b => b.Posts);
+            
+            builder.Entity<CategoryModel>()
+                .HasMany<CategoryModel>(b => b.children);
+
+            builder.Entity<CategoryModel>().HasOne<CategoryModel>(b => b.parent);        
         }
     }
 }
