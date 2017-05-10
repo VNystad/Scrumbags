@@ -1,13 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using CategoryModels;
-
+using Gameblasts.Models.CategoryModels;
 
 namespace Gameblasts.Models
 {
     public class Post
     {
-        public Post(ApplicationUser user, string title, string body, SubCategoryModel subcat)
+        public Post(ApplicationUser user, string title, string body, CategoryModel subcat)
         {
             this.Title = title;
             this.User = user;
@@ -33,6 +32,6 @@ namespace Gameblasts.Models
         public string Body{get; set;}
 
         [Required]
-        public SubCategoryModel SubCat{get; set;}
+        public CategoryModel SubCat{get; set;}
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Gameblasts.Models;
+using Gameblasts.Models.CategoryModels;
 
 namespace Gameblasts.Data
 {
@@ -18,6 +19,9 @@ namespace Gameblasts.Data
         public DbSet<CategoryModels.TopCategoryModel> topCategories {get; set; }
         public DbSet<CategoryModels.SubCategoryModel> subCategories { get; set;}
 
+        public DbSet<CategoryModel> topCategories {get; set; }
+        public DbSet<CategoryModel> subCategories { get; set;}
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -27,8 +31,10 @@ namespace Gameblasts.Data
             builder.Entity<ApplicationUser>()
                     .HasMany<Post>(b => b.Posts);
             
-            builder.Entity<CategoryModels.TopCategoryModel>()
-                .HasMany<CategoryModels.SubCategoryModel>(b => b.children);
+            builder.Entity<CategoryModel>()
+                .HasMany<CategoryModel>(b => b.children);
+
+            builder.Entity<CategoryModel>().HasOne<CategoryModel>(b => b.parent);
 
            
         }
