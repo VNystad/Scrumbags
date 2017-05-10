@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Gameblasts.Data;
 using Gameblasts.Models.CategoryModels;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,12 @@ namespace Gameblasts.Controllers
             this.db = db;
         }
         
-        [HttpGet]
-        public IActionResult ForumCategoryDemo()
-
-        {
-            return View();
-        }
 
         [HttpPost]
-        
-        public IActionResult ForumCategoryDemo(string topCatName)
+        public IActionResult ForumCategoryDemo()
         {
-            CategoryModel topCat = db.Categories.Find(topCatName);
-            return View(topCat.children);
+            var cats = db.Categories.Where(s =>  s.parent == null).ToList();
+            return View(cats);
         }
 
         [HttpPost]

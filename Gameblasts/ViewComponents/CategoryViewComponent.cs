@@ -19,8 +19,9 @@ namespace ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string topCatID)
         {
-            CategoryModel topCat = await db.Categories.FindAsync(topCatID);
-            return View(topCat.children);
+            var topCatList = await db.Categories.Where(s => s.name.Contains(topCatID)).Include("children").Distinct().ToListAsync();
+            var topCat = topCatList.First();
+            return View(topCat);
         }
     }
 }

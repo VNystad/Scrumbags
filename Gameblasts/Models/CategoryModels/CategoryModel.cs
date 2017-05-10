@@ -25,8 +25,8 @@ namespace Gameblasts.Models.CategoryModels
 
         public CategoryModel parent {get; set;}
                 
-        public virtual List<CategoryModel> children {get; set;}
+        public List<CategoryModel> children {get; set;}
 
-        public virtual List<Post> threads {get; set;}
+        public List<Post> threads {get; set;}
     }
 }
