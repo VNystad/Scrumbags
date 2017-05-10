@@ -136,12 +136,12 @@ namespace Gameblasts
                     var SubCat3 = new CategoryModel("SubCat3", TopCat1, null, null);
                     TopCat1.children.Add(SubCat3);
                     
-                    db.topCategories.Add(TopCat1);
-                    db.topCategories.Include("CategoryModel");
+                    db.Categories.Add(TopCat1);
+                    db.Categories.Include("CategoryModel");
 
-                    db.subCategories.Add(SubCat1);
-                    db.subCategories.Add(SubCat2);
-                    db.subCategories.Add(SubCat3);
+                    db.Categories.Add(SubCat1);
+                    db.Categories.Add(SubCat2);
+                    db.Categories.Add(SubCat3);
 
 
 

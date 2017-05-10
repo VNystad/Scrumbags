@@ -15,10 +15,11 @@ namespace Gameblasts.Models.CategoryModels
 
         public CategoryModel(){}
         
-        [KeyAttribute]
+        //[KeyAttribute]
         [Required]
         public int id { get; set;}
 
+        [KeyAttribute]
         [Required]
         public string name {get; set;}
 

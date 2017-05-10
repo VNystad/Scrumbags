@@ -17,9 +17,9 @@ namespace ViewComponents
             this.db = db;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(string topCatName)
+        public async Task<IViewComponentResult> InvokeAsync(string topCatID)
         {
-            CategoryModel topCat = await db.topCategories.FindAsync(topCatName);
+            CategoryModel topCat = await db.Categories.FindAsync(topCatID);
             return View(topCat.children);
         }
     }

@@ -15,6 +15,8 @@ namespace Gameblasts.Data
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<ChatMessage> ChatMessages { get; set; }
+        
+        public DbSet<CategoryModel> Categories {get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
