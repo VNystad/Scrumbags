@@ -1,6 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+/* Modellen for chatmessage nå ha en id som bli auto-inkrementert.
+   Den må også ha hvilken bruker som lagde meldingen, datoen til når den var sendt,
+   og innholdet til meldingen. 
+
+   Alle feltene MÅ være med når en skal lage nye meldinger. 
+*/
+
 namespace Gameblasts.Models
 {
     public class ChatMessage

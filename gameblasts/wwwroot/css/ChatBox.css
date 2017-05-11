@@ -54,6 +54,11 @@ h2 { color: white; }
 
 p2 { color: white; text-align: center;}
 
+/*Disse feltene endrer tekst stilen til meldingene i chatbox. 
+  For å få avstand mellom dato/bruker/melding blir det brukt relativ posisjon.
+  Dette kan bli endra når utseende til chatboxen skal bli endra til en fullstendig versjon.
+*/
+/* --------------------------------------------------------------------------------- */
 CMDate { text-align: start;}
 
 CMMessage { 
@@ -64,3 +69,4 @@ CMMessage {
 CMUser { 
     position: relative;
     left: 10px;}
+/* --------------------------------------------------------------------------------- */
