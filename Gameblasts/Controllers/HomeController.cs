@@ -22,6 +22,11 @@ namespace Gameblasts.Controllers
 
             return View();
         }
+
+        public IActionResult Discord()
+        {
+            return View();
+        }
         
         public IActionResult Error()
         {
