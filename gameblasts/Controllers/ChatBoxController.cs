@@ -55,14 +55,17 @@ namespace Gameblasts.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Edit(int id)
+        public IActionResult Edit()
         {
-            var messsageToUpdate = ApplicationDbContext.ChatMessages.Find(id);
+            // Finner ut hvilken bruker som er logget inn nå
+            // Sjekker om den har rollen Admin. TODO: Legge til Moderator. 
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
-            if(user == messsageToUpdate.User || User.IsInRole("Admin"))
+            if(User.IsInRole("Admin"))
             {
-                return View("Edit", messsageToUpdate);
+                // Hvis brukeren har rollen admin, sende til edit siden. 
+                return View("Edit");
             }
+            // Ellers sende brukeren tilbake til chatbox siden.
             else
             {
                 return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
@@ -71,20 +74,22 @@ namespace Gameblasts.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(int? id, ChatMessage message)
+        public IActionResult Edit(int? id, string message)
         {
-            var messsageToUpdate = ApplicationDbContext.ChatMessages.Find(id);
+            //Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
+            //Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
             if(ModelState.IsValid){
-
+                // Hvis id'en ikke finnes returner NotFound() funksjonen.
                 if (id == null)
                 {
                     return NotFound();
                 }
-                if (user == messsageToUpdate.User || User.IsInRole("Admin"))
+                if (User.IsInRole("Admin"))
                 {
-                    messsageToUpdate.Message = message.Message;
-                    messsageToUpdate.Date = message.Date;
+                    //Endre meldingen deretter lagre endringen til databasen.
+                    //Sende brukeren tilbake til chatbox siden.
+                    ApplicationDbContext.ChatMessages.Find(id).Message = message;
                     ApplicationDbContext.SaveChanges();
                     return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
                 }
