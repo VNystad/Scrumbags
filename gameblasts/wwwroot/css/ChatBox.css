@@ -59,7 +59,9 @@ p2 { color: white; text-align: center;}
   Dette kan bli endra når utseende til chatboxen skal bli endra til en fullstendig versjon.
 */
 /* --------------------------------------------------------------------------------- */
-CMDate { text-align: start;}
+CMDate {
+     text-align: start;
+     color: grey;}
 
 CMMessage { 
     position: relative;
@@ -68,5 +70,14 @@ CMMessage {
 
 CMUser { 
     position: relative;
-    left: 10px;}
+    left: 180px;}
+
+EditButton{
+    position: relative;
+    left: 200px;}
+
+editText{
+    color: black;
+    font: 20px Arial;
+}
 /* --------------------------------------------------------------------------------- */

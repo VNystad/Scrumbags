@@ -52,5 +52,44 @@ namespace Gameblasts.Controllers
             var messages = ApplicationDbContext.ChatMessages;
             return View("ChatBox", messages.ToList());
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var messsageToUpdate = ApplicationDbContext.ChatMessages.Find(id);
+            var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
+            if(user == messsageToUpdate.User || User.IsInRole("Admin"))
+            {
+                return View("Edit", messsageToUpdate);
+            }
+            else
+            {
+                return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(int? id, ChatMessage message)
+        {
+            var messsageToUpdate = ApplicationDbContext.ChatMessages.Find(id);
+            var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
+            if(ModelState.IsValid){
+
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                if (user == messsageToUpdate.User || User.IsInRole("Admin"))
+                {
+                    messsageToUpdate.Message = message.Message;
+                    messsageToUpdate.Date = message.Date;
+                    ApplicationDbContext.SaveChanges();
+                    return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
+                }
+            }
+            return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
+        }
     }
 }
