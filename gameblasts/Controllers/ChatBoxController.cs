@@ -79,17 +79,41 @@ namespace Gameblasts.Controllers
             //Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             //Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
-            if(ModelState.IsValid){
+            if(ModelState.IsValid)
+            {
                 // Hvis id'en ikke finnes returner NotFound() funksjonen.
                 if (id == null)
-                {
                     return NotFound();
-                }
+
                 if (User.IsInRole("Admin"))
                 {
                     //Endre meldingen deretter lagre endringen til databasen.
                     //Sende brukeren tilbake til chatbox siden.
                     ApplicationDbContext.ChatMessages.Find(id).Message = message;
+                    ApplicationDbContext.SaveChanges();
+                    return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
+                }
+            }
+            return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
+        }
+
+        [Authorize]
+        public IActionResult Delete(int? id)
+        {
+            //Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
+            var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
+            //Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
+            if(ModelState.IsValid)
+            {
+                // Hvis id'en ikke finnes returner NotFound() funksjonen.
+                if (id == null)
+                    return NotFound();
+                
+                if (User.IsInRole("Admin"))
+                {
+                    // Finne meldingen i databasen som skal slettes. Deretter fjerne den fra databasen. 
+                    // Så må endringene i databasen lagres, og videresende viewet til ChatBox.
+                    ApplicationDbContext.ChatMessages.Remove(ApplicationDbContext.ChatMessages.Find(id));
                     ApplicationDbContext.SaveChanges();
                     return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
                 }

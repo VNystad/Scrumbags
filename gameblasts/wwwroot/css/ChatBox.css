@@ -70,11 +70,11 @@ CMMessage {
 
 CMUser { 
     position: relative;
-    left: 180px;}
+    left: 170px;}
 
 EditButton{
     position: relative;
-    left: 200px;}
+    left: 185px;}
 
 editText{
     color: black;
