@@ -112,8 +112,8 @@ namespace Gameblasts.Controllers
                     ApplicationDbContext.ChatMessages.Find(id).Message = message;
 
                     // Sjekk om nye meldingen følger reglene for ChatMessage melding attributten.
-                    var context = new ValidationContext(ApplicationDbContext.ChatMessages.Find(id).Message, null, null);
-                    Validator.ValidateObject(ApplicationDbContext.ChatMessages.Find(id).Message, context, true);
+                    var context = new ValidationContext(ApplicationDbContext.ChatMessages.Find(id), null, null);
+                    Validator.ValidateObject(ApplicationDbContext.ChatMessages.Find(id), context, true);
 
                     ApplicationDbContext.SaveChanges();
                     return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
