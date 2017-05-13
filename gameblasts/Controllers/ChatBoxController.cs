@@ -23,8 +23,14 @@ namespace Gameblasts.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult ChatBox(string message)
+        public IActionResult ChatBox(string message, int count)
         {
+            // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
+            // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
+            if (ApplicationDbContext.ChatMessages.Count() < 20)
+                count = ApplicationDbContext.ChatMessages.Count();
+            else
+                count = 20;
             // Sjekke om modellen er valid. 
             if(ModelState.IsValid)
             {
@@ -38,19 +44,25 @@ namespace Gameblasts.Controllers
                 newMessage.Date = System.DateTime.Now;
                 ApplicationDbContext.ChatMessages.Add(newMessage);
                 ApplicationDbContext.SaveChanges();
-                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.ToList());
+                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList());
             }
-            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.ToList());
+            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList());
         }
 
         [HttpGet]
         [Authorize]
-        public IActionResult ChatBox()
+        public IActionResult ChatBox(int count)
         {
+            // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
+            // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
+            if (ApplicationDbContext.ChatMessages.Count() < 20)
+                count = ApplicationDbContext.ChatMessages.Count();
+            else
+                count = 20;
             // Vise alle meldingene som er i databasen når siden lastes.
             // TODO: Bare vise 20-30 meldinger om gangen.
             var messages = ApplicationDbContext.ChatMessages;
-            return View("ChatBox", messages.ToList());
+            return View("ChatBox", messages.Take(count).ToList());
         }
 
         [HttpGet]
