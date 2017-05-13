@@ -11,7 +11,7 @@
 
 <!--Bare brukere som har administrator rollen kan se edit knappen.
     TODO: Brukere kan se edit knapp på sine egne meldinger. -->
-@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
 {
     <EditButton><td>
         <a asp-controller="ChatBox" asp-action="Edit" asp-route-id="@Model.Id" class ="glyphicon glyphicon-pencil"></a>

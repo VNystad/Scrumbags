@@ -11,7 +11,7 @@
 </head>
 
 <!--Edit ChatBox skal bare vises hvis brukeren er logget inn og har riktig rolle.-->
-@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
 {
     <div id="wrapper">
         <div id="menu">

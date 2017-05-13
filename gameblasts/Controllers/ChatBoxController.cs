@@ -60,7 +60,7 @@ namespace Gameblasts.Controllers
             // Finner ut hvilken bruker som er logget inn nå
             // Sjekker om den har rollen Admin. TODO: Legge til Moderator. 
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
-            if(User.IsInRole("Admin"))
+            if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
             {
                 // Hvis brukeren har rollen admin, sende til edit siden. 
                 return View("Edit");
@@ -85,7 +85,7 @@ namespace Gameblasts.Controllers
                 if (id == null)
                     return NotFound();
 
-                if (User.IsInRole("Admin"))
+                if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     //Endre meldingen deretter lagre endringen til databasen.
                     //Sende brukeren tilbake til chatbox siden.
@@ -109,7 +109,7 @@ namespace Gameblasts.Controllers
                 if (id == null)
                     return NotFound();
                 
-                if (User.IsInRole("Admin"))
+                if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     // Finne meldingen i databasen som skal slettes. Deretter fjerne den fra databasen. 
                     // Så må endringene i databasen lagres, og videresende viewet til ChatBox.
