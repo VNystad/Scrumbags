@@ -27,10 +27,10 @@ namespace Gameblasts.Controllers
         {
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
-            if (ApplicationDbContext.ChatMessages.Count() < 5)
+            if (ApplicationDbContext.ChatMessages.Count() < 20)
                 count = ApplicationDbContext.ChatMessages.Count();
             else
-                count = 5;
+                count = 20;
             // Sjekke om modellen er valid. 
             if(ModelState.IsValid)
             {
@@ -44,9 +44,10 @@ namespace Gameblasts.Controllers
                 newMessage.Date = System.DateTime.Now;
                 ApplicationDbContext.ChatMessages.Add(newMessage);
                 ApplicationDbContext.SaveChanges();
-                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList().OrderByDescending(x => ApplicationDbContext.ChatMessages));
+                // Returner i descending order med hensyn på id. Sånn at de nyeste meldingene kommer på toppen av chatboxen.
+                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
             }
-            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList().OrderByDescending(x => ApplicationDbContext.ChatMessages));
+            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
         }
 
         [HttpGet]
@@ -55,14 +56,15 @@ namespace Gameblasts.Controllers
         {
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
-            if (ApplicationDbContext.ChatMessages.Count() < 5)
+            if (ApplicationDbContext.ChatMessages.Count() < 20)
                 count = ApplicationDbContext.ChatMessages.Count();
             else
-                count = 5;
+                count = 20;
             // Vise alle meldingene som er i databasen når siden lastes.
             // TODO: Bare vise 20-30 meldinger om gangen.
             var messages = ApplicationDbContext.ChatMessages;
-            return View("ChatBox", messages.Take(count).ToList().OrderByDescending(x => x.Id));
+            // Returner i descending order med hensyn på id. Sånn at de nyeste meldingene kommer på toppen av chatboxen.
+            return View("ChatBox", messages.OrderByDescending(x => x.Id).Take(count).ToList());
         }
 
         [HttpGet]
@@ -88,9 +90,9 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult Edit(int? id, string message)
         {
-            //Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
+            // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
-            //Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
+            // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
             if(ModelState.IsValid)
             {
                 // Hvis id'en ikke finnes returner NotFound() funksjonen.
@@ -99,8 +101,8 @@ namespace Gameblasts.Controllers
 
                 if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
-                    //Endre meldingen deretter lagre endringen til databasen.
-                    //Sende brukeren tilbake til chatbox siden.
+                    // Endre meldingen deretter lagre endringen til databasen.
+                    // Sende brukeren tilbake til chatbox siden.
                     ApplicationDbContext.ChatMessages.Find(id).Message = message;
                     ApplicationDbContext.SaveChanges();
                     return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
@@ -112,9 +114,9 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult Delete(int? id)
         {
-            //Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
+            // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
-            //Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
+            // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
             if(ModelState.IsValid)
             {
                 // Hvis id'en ikke finnes returner NotFound() funksjonen.
