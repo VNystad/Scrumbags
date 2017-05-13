@@ -27,10 +27,10 @@ namespace Gameblasts.Controllers
         {
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
-            if (ApplicationDbContext.ChatMessages.Count() < 20)
+            if (ApplicationDbContext.ChatMessages.Count() < 5)
                 count = ApplicationDbContext.ChatMessages.Count();
             else
-                count = 20;
+                count = 5;
             // Sjekke om modellen er valid. 
             if(ModelState.IsValid)
             {
@@ -44,9 +44,9 @@ namespace Gameblasts.Controllers
                 newMessage.Date = System.DateTime.Now;
                 ApplicationDbContext.ChatMessages.Add(newMessage);
                 ApplicationDbContext.SaveChanges();
-                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList());
+                return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList().OrderByDescending(x => ApplicationDbContext.ChatMessages));
             }
-            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList());
+            return RedirectToAction("ChatBox",ApplicationDbContext.ChatMessages.Take(count).ToList().OrderByDescending(x => ApplicationDbContext.ChatMessages));
         }
 
         [HttpGet]
@@ -55,14 +55,14 @@ namespace Gameblasts.Controllers
         {
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
-            if (ApplicationDbContext.ChatMessages.Count() < 20)
+            if (ApplicationDbContext.ChatMessages.Count() < 5)
                 count = ApplicationDbContext.ChatMessages.Count();
             else
-                count = 20;
+                count = 5;
             // Vise alle meldingene som er i databasen når siden lastes.
             // TODO: Bare vise 20-30 meldinger om gangen.
             var messages = ApplicationDbContext.ChatMessages;
-            return View("ChatBox", messages.Take(count).ToList());
+            return View("ChatBox", messages.Take(count).ToList().OrderByDescending(x => x.Id));
         }
 
         [HttpGet]
