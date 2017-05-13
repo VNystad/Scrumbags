@@ -30,7 +30,8 @@ namespace Gameblasts.Models
         [Required]
         public DateTime Date{get; set;}
 
-        [Required]
+        [Required(ErrorMessage="* A message is required")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "* Message must be between 3 and 30 characters in length.")]
         public string Message{get; set;}
     }
 }

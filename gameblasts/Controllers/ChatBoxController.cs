@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Gameblasts.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace Gameblasts.Controllers
 {
@@ -42,6 +43,10 @@ namespace Gameblasts.Controllers
                 newMessage.User = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
                 newMessage.Message = message;
                 newMessage.Date = System.DateTime.Now;
+
+                var context = new ValidationContext(newMessage, null, null);
+                Validator.ValidateObject(newMessage, context, true);
+
                 ApplicationDbContext.ChatMessages.Add(newMessage);
                 ApplicationDbContext.SaveChanges();
                 // Returner i descending order med hensyn på id. Sånn at de nyeste meldingene kommer på toppen av chatboxen.
