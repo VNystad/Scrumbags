@@ -44,6 +44,7 @@ namespace Gameblasts.Controllers
                 newMessage.Message = message;
                 newMessage.Date = System.DateTime.Now;
 
+                // Sjekk om nye meldingen følger reglene for ChatMessage melding attributten.
                 var context = new ValidationContext(newMessage, null, null);
                 Validator.ValidateObject(newMessage, context, true);
 
@@ -109,6 +110,11 @@ namespace Gameblasts.Controllers
                     // Endre meldingen deretter lagre endringen til databasen.
                     // Sende brukeren tilbake til chatbox siden.
                     ApplicationDbContext.ChatMessages.Find(id).Message = message;
+
+                    // Sjekk om nye meldingen følger reglene for ChatMessage melding attributten.
+                    var context = new ValidationContext(ApplicationDbContext.ChatMessages.Find(id).Message, null, null);
+                    Validator.ValidateObject(ApplicationDbContext.ChatMessages.Find(id).Message, context, true);
+
                     ApplicationDbContext.SaveChanges();
                     return RedirectToAction("ChatBox", ApplicationDbContext.ChatMessages.ToList());
                 }
