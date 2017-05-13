@@ -58,11 +58,11 @@ namespace Gameblasts.Controllers
         public IActionResult Edit()
         {
             // Finner ut hvilken bruker som er logget inn nå
-            // Sjekker om den har rollen Admin. TODO: Legge til Moderator. 
+            // Sjekker om den har rollen Admin. 
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
             {
-                // Hvis brukeren har rollen admin, sende til edit siden. 
+                // Hvis brukeren har rollen admin eller moderator, sende til edit siden. 
                 return View("Edit");
             }
             // Ellers sende brukeren tilbake til chatbox siden.

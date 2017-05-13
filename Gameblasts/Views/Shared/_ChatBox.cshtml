@@ -7,9 +7,9 @@
 <!--Formatet til hvordan chat meldingene skal se ut kan bli endret senere. 
     Så lenge de ser OK ut. -->
 <i><CMDate>@Model.Date</CMDate></i>
-<a href="#"><CMUser>@Model.User</CMUser></a>
+<a href="/Manage"><CMUser>@Model.User</CMUser></a>
 
-<!--Bare brukere som har administrator rollen kan se edit knappen.
+<!--Bare brukere som har administrator eller moderator rollen kan se edit knappen.
     TODO: Brukere kan se edit knapp på sine egne meldinger. -->
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
 {
