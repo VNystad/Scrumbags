@@ -3,6 +3,7 @@ using System.Linq;
 using Gameblasts.Data;
 using Gameblasts.Models.CategoryModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gameblasts.Controllers
 {
@@ -16,19 +17,35 @@ namespace Gameblasts.Controllers
         }
         
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult ForumCategoryDemo()
         {
-            var cats = db.Categories.Where(s =>  s.parent == null).ToList();
+            var cats = db.Categories.Where(s =>  s.parent == null).Include("children").ToList();
             return View(cats);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public IActionResult ForumCategoryDemo(string SubCatName, string parentName)
         {
-            CategoryModel topCat = db.Categories.Find(parentName);
-            CategoryModel SubCat = db.Categories.Find(SubCatName, parentName);
+            var parent = db.Categories.Where(s => s.parent.name.Equals(parentName)).First();
+            var SubCat = new CategoryModel(SubCatName, parent, null, null);
+            db.Categories.Add(SubCat);
+            parent.children.Add(SubCat);
             return View(SubCat.threads);
+        }*/
+
+        [HttpPost]
+        public IActionResult AddCategoryDemo(CategoryModel newCat)
+        {
+            db.Categories.Add(newCat);
+            db.SaveChanges();
+            return View("ForumCategoryDemo", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
+        }
+
+         [HttpGet]
+        public IActionResult AddCategoryDemo()
+        {
+            return View();
         }
     }
 }
