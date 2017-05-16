@@ -66,6 +66,13 @@ namespace Gameblasts.Controllers
                 count = ApplicationDbContext.ChatMessages.Count();
             else
                 count = 20;
+            
+            // Hvis databasen inneholder mer enn 250 chatbox meldinger, fjern 50 stykk av de eldste meldingene i databasen.
+            if (ApplicationDbContext.ChatMessages.Count() > 250)
+                while (ApplicationDbContext.ChatMessages.Count() > 200)
+                ApplicationDbContext.ChatMessages.Remove(ApplicationDbContext.ChatMessages.First());
+                ApplicationDbContext.SaveChanges();
+
             // Vise alle meldingene som er i databasen når siden lastes.
             // TODO: Bare vise 20-30 meldinger om gangen.
             var messages = ApplicationDbContext.ChatMessages;
