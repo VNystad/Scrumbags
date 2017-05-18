@@ -43,7 +43,9 @@ namespace Gameblasts.Controllers
         public IActionResult Forum()
         {
             ViewData["Message"] = "Your contact page.";
-
+            return View();
+        }
+        
         public IActionResult Adminpage()
         {
             return View();
