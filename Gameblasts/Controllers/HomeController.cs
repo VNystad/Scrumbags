@@ -33,8 +33,6 @@ namespace Gameblasts.Controllers
             return View();
         }
 
-
-
 /* Here are the IActionResults for The forum itself with subcategories. */
          public IActionResult CsGo()
         {
@@ -46,6 +44,8 @@ namespace Gameblasts.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
+        public IActionResult Adminpage()
+        {
             return View();
         }
     }
