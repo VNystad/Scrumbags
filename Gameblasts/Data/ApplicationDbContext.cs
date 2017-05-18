@@ -16,12 +16,6 @@ namespace Gameblasts.Data
 
         public DbSet<ChatMessage> ChatMessages { get; set; }
 
-        public DbSet<CategoryModels.TopCategoryModel> topCategories {get; set; }
-        public DbSet<CategoryModels.SubCategoryModel> subCategories { get; set;}
-
-        public DbSet<CategoryModel> topCategories {get; set; }
-        public DbSet<CategoryModel> subCategories { get; set;}
-
         public DbSet<CategoryModel> Categories {get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
