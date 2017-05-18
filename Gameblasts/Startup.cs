@@ -8,10 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Gameblasts.Data;
 using Gameblasts.Models;
-using Gameblasts.Models.CategoryModels;
 using Gameblasts.Services;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
 
 namespace Gameblasts
 {
@@ -101,7 +99,6 @@ namespace Gameblasts
             await userManager.CreateAsync(userUser, "Password1.");
         }
 
-                
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -112,7 +109,6 @@ namespace Gameblasts
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-
                 // Browser Link is not compatible with Kestrel 1.1.0
                 // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
                 // app.UseBrowserLink()
@@ -125,27 +121,9 @@ namespace Gameblasts
                     db.Database.EnsureCreated();
 
                     // Add regular data here
-                   
-                   
-                    var TopCat1 = new CategoryModel("topCat1", null);
-
-                    var SubCat1 = new CategoryModel("SubCat1", TopCat1);
-                    TopCat1.children.Add(SubCat1);
-                    var SubCat2 = new CategoryModel("SubCat2", TopCat1);
-                    TopCat1.children.Add(SubCat2);
-                    var SubCat3 = new CategoryModel("SubCat3", TopCat1);
-                    TopCat1.children.Add(SubCat3);
-                    
-                    db.Categories.Add(TopCat1);
-                    db.Categories.Add(SubCat1);
-                    db.Categories.Add(SubCat2);
-                    db.Categories.Add(SubCat3);
-
-
 
                     // Then create the standard users and roles
                     CreateUsersAndRoles(serviceScope).Wait();
-                    db.SaveChanges();
                 }
             }
             else
