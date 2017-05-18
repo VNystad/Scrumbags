@@ -1,0 +1,13 @@
+@model IEnumerable<Gameblasts.Models.Post>
+
+@{
+    ViewData["Title"] = "Dota 2";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+<div class="form-group">
+    
+   @(await Component.InvokeAsync<ViewComponents.Post>(10))
+</div>

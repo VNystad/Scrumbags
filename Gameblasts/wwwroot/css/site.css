@@ -106,10 +106,10 @@ textarea {
     color: darkgray;
 }
 .h {
-    color: white
+    color: white !important;
 }
 .p1{
-    color: white;
+    color: white !important;
 }
 
 
@@ -144,5 +144,54 @@ textarea {
     margin-left: -50px; 
 }
 
+<<<<<<< HEAD
 h2 { color: white; }
 p { color: white; }
+=======
+#row{
+    outline-color: black;
+    border: solid;
+    background-color: white;
+}
+
+
+/* Adjustments for the size of images used in the forums */
+
+#CsGo {
+    max-height: 200px;
+    max-width: 200px;
+}
+#LoL {
+    max-height: 200px;
+    max-width: 200px;
+}
+#SuperSmash {
+    max-height: 200px;
+    max-width: 200px;
+}
+#Dota2 {
+    max-height: 200px;
+    max-width: 200px;
+}
+#Overwatch {
+    max-height: 200px;
+    max-width: 200px;
+}
+#HearthStone {
+    max-height: 200px;
+    max-width: 200px;
+}
+#Starcraft2 {
+    max-height: 200px;
+    max-width: 200px;
+}
+#UnrealTournament {
+    max-height: 200px;
+    max-width: 200px;
+}
+#QuakeChampions {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+>>>>>>> Created forum View

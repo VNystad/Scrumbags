@@ -1,0 +1,133 @@
+@model IEnumerable<Gameblasts.Models.Post>
+
+@{
+    ViewData["Title"] = "Forum";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+
+            <h1 id="games"> Games </h1>
+            
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGo"><id="CsGo"> <b> <img src ="http://www.esports.je/media/com_jticketing/images/7a8f4596ae3d9971dbc0c620675d1958-Counter-Strike-Global-Offensive-Logo.jpg" id="CsGo"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row">
+                @(await Component.InvokeAsync<ViewComponents.Post>(1)) </div>
+
+           <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegends"><id="LeaugeOfLegends"> <b> <img src ="http://support.lol.garena.com/img/league-logo.png" id="LoL"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> 
+                @(await Component.InvokeAsync<ViewComponents.Post>(1)) </div> 
+            
+  <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBros"><id="Super Smash Bros."> <b> <img src="http://www.zeldainformer.com/supersmashbrostitle.jpg" id="SuperSmash"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> 
+                @(await Component.InvokeAsync<ViewComponents.Post>(1)) </div> @* @p.Subcat *@
+            
+
+            <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="Dota2"><id="Dota2"> <b> <img src ="http://i.imgur.com/soaxrw9.png" id="Dota2"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+             
+
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="Overwatch"><id="Overwatch"> <b> <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg"id="Overwatch"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+
+             
+
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="Hearthstone"><id="Hearthstone"> <b><img src ="http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240" id="HearthStone"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="StarCraftII"><id="StarCraftII"> <b> <img src="http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png"id="Starcraft2"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+      <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="UnrealTournament"><id="UnrealTournament"> <b> <img src="http://2.bp.blogspot.com/-1rPuditcrUw/U2yYnZryA7I/AAAAAAAASpw/64DzBwpZoog/s1600/unreal-tournament.png"id="UnrealTournament"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+
+                   <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampions"><id="QuakeChampions"> <b> <img src ="https://cdn.mmos.com/wp-content/uploads/2016/06/quake-champions-logo.jpg"id="QuakeChampions"></b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> @(await Component.InvokeAsync<ViewComponents.Post>(1)) @* @p.Subcat *@
+             </div>
+
+             <h1> Ongoing Tournaments </h1>
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <h1> Ended Torunaments </h1>
+              <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+         
+
+
+            <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+             <h1> Discussions </h1>
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+
+                <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Leauge of Legends</b> </a></li> 
+         </div>
+          <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
+             </div>
+
+       </div>  InvokeAsync  <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Title:</b> </a></li> 
+         
+         </div>
+         <div class="col-6 col-md-4" id="row">
+             </div>
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+
