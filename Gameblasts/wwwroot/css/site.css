@@ -18,8 +18,6 @@ textarea {
     max-width: 280px;
 }
 
-
-
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -94,24 +92,15 @@ textarea {
   .sidenav a {font-size: 18px;}
 }
 
-#TopNavbar
-{
-    
-    height: 140px;
-}
+#TopNavbar { height: 140px; }
 
 #Welcome
 {
     position: fixed;
     color: darkgray;
 }
-.h {
-    color: white !important;
-}
-.p1{
-    color: white !important;
-}
-
+.h { color: white !important; }
+.p1 { color: white !important; }
 
 #LightBar
 {
@@ -123,7 +112,6 @@ textarea {
 {
     margin-top: -50px;
     margin-left:200px;
-
 }
 
 #Forums
@@ -144,16 +132,14 @@ textarea {
     margin-left: -50px; 
 }
 
-<<<<<<< HEAD
 h2 { color: white; }
 p { color: white; }
-=======
+
 #row{
     outline-color: black;
     border: solid;
     background-color: white;
 }
-
 
 /* Adjustments for the size of images used in the forums */
 
@@ -193,5 +179,3 @@ p { color: white; }
     max-height: 200px;
     max-width: 200px;
 }
-
->>>>>>> Created forum View
