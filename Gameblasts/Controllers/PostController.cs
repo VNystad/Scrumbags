@@ -26,7 +26,7 @@ namespace Gameblasts.Controllers
         public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body, CategoryModel subcat)
 
         {   
-            Post newpost = new Post(await GetCurrentUserAsync(), title, body);
+            Post newpost = new Post(await GetCurrentUserAsync(), title, body, subcat);
             
             ApplicationDbContext.Posts.Add(newpost);
             ApplicationDbContext.SaveChanges();

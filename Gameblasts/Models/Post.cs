@@ -13,7 +13,7 @@ namespace Gameblasts.Models
             this.User = user;
             this.Body = body;
             this.Date = DateTime.Now;
-            this.SubCat = subcat
+            this.SubCat = subcat;
         }
 
         [Required]
