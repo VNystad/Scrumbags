@@ -110,7 +110,7 @@ namespace Gameblasts.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser (model.UserName, model.Email);
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -212,7 +212,7 @@ namespace Gameblasts.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser (model.Email, model.Email );
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
