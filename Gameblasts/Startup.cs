@@ -87,17 +87,20 @@ namespace Gameblasts
             await roleManager.CreateAsync(new IdentityRole("Moderator"));
 
             // Then add one admin user
-            var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
+            var adminUser = new ApplicationUser( "admin@uia.no", "admin@uia.no" );
+            //var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
             await userManager.CreateAsync(adminUser, "Password1.");
             await userManager.AddToRoleAsync(adminUser, "Admin");
 
             // Add one moderator user
-            var moderatorUser = new ApplicationUser {UserName = "moderator@uia.no", Email = "moderator@uia.no"};
+            var moderatorUser = new ApplicationUser ("moderator@uia.no", "moderator@uia.no");
+            //var moderatorUser = new ApplicationUser {UserName = "moderator@uia.no", Email = "moderator@uia.no"};
             await userManager.CreateAsync(moderatorUser, "Password1.");
             await userManager.AddToRoleAsync(moderatorUser, "Moderator");
 
             // Add one regular user
-            var userUser = new ApplicationUser { UserName = "user@uia.no", Email = "user@uia.no" };
+            var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
+            //var userUser = new ApplicationUser { UserName = "user@uia.no", Email = "user@uia.no" };
             await userManager.CreateAsync(userUser, "Password1.");
         }
 
