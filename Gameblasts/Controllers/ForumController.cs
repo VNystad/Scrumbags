@@ -59,5 +59,11 @@ namespace Gameblasts.Controllers
 
             return View();
         }
+              public IActionResult ForumPost()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
     }
 }
