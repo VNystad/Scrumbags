@@ -1,18 +1,32 @@
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model Gameblasts.Models.ProfileViewModel.ProfileViewModel
 
 @{
-    ViewData["Title"] = "Your profile";
+    ViewData["Title"] = @UserManager.GetUserName(User);
 }
-<h2>@ViewData["Title"].</h2>
+<h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-
-<div>
-    
+<div class="container">
+    <div class="row">
+        <div class="col" id="profileimg">
+            <img src="https://museum.wales/media/40374/thumb_480/empty-profile-grey.jpg" alt="some_text" style="width:200px;height:220px;">
+        </div>
+        <div class="col" id="userInfo">
+            Username: @Model.AboutInfo
+        </div>
+        <div class="col" id="AboutInfo">
+            sometext
+        </div>
+    </div>
 </div>
-<a id="privMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
-<br>
 <a id="changeProfileImage">Change Picture</a>
+<br>
+@* Her må det kobles til en controller og action for å sende privmld *@
+<a id="privMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
+
+
 
 <address>
     One Microsoft Way<br />
