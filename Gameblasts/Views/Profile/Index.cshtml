@@ -1,9 +1,9 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@model Gameblasts.Models.ProfileViewModel.ProfileViewModel
+@model Gameblasts.Models.ProfileViewModels.ProfileViewModel
 
 @{
-    ViewData["Title"] = @UserManager.GetUserName(User);
+    ViewData["Title"] = "something";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>

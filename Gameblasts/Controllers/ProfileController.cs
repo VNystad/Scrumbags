@@ -21,25 +21,37 @@ namespace Gameblasts.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> IndexAsync(string UserName)
+        public async Task<IActionResult> Index(string UserName)
         {
-            ApplicationUser temp = await _userManager.FindByNameAsync(UserName);
-            ProfileViewModel tempmodel = new ProfileViewModel();
-            tempmodel.Username = temp.UserName;
-            return View("../Profile/Index",tempmodel);
+            ApplicationUser user = await _userManager.FindByNameAsync(UserName);
+            ProfileViewModel model = new ProfileViewModel();
+
+            model.Username = user.UserName;
+            model.PostCount = user.PostCount;
+            model.MemberTitle = user.MemberTitle;
+            model.SocialMediaNames = user.SocialMediaNames;
+            model.Age = user.Age;
+            model.Gender = user.Gender;
+            model.Location = user.Location;
+            model.AboutInfo = user.AboutInfo;
+            model.RegisterDate = user.RegisterDate;
+
+            return View("Index", model);
         }
 
-        public async Task<IActionResult> YourProfileAsync()
+        public async Task<IActionResult> YourProfile()
         {
             ProfileViewModel tempmodel = new ProfileViewModel();
             ApplicationUser temp = await GetCurrentUserAsync();
-            tempmodel.Username = temp.UserName;
-            return View(tempmodel);
+            //tempmodel.Username = temp.UserName;
+            return View("YourProfile", temp);
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }
+
+        
     }
 }
