@@ -12,5 +12,9 @@ namespace Gameblasts.Models.PstViewModels
         [Required]
         [Display(Name = "New Body")]
         public string Body{get; set;}
+
+        [Required]
+        [Display(Name = "New Category")]
+        public string SubCategory{get; set;}
     }
 }

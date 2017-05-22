@@ -6,64 +6,93 @@ namespace Gameblasts.Controllers
     {
            public IActionResult CsGo()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("CsGo/CsGo");
         }
+           public IActionResult CsGoForumPost(string id)
+        {
+            
+            return View("CsGo/CsGoForumPost");
+        }
+
+
            public IActionResult LeaugeOfLegends()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("LeaugeOfLegends/LeaugeOfLegends");
         }
-             public IActionResult SuperSmashBros()
+          public IActionResult LeaugeOfLegendsForumPost()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("LeaugeOfLegends/LeaugeOfLegendsForumPost");
         }
+
+
+             public IActionResult SuperSmashBros()
+        {   
+            return View("SuperSmashBros/SuperSmashBros");
+        }
+             public IActionResult SuperSmashBrosForumPost()
+        {   
+            return View("SuperSmashBros/SuperSmashBrosForumPost");
+        }
+
+
            public IActionResult Dota2()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("Dota2/Dota2");
         }
+             public IActionResult Dota2ForumPost()
+        {
+            return View("Dota2/Dota2ForumPost");
+        }
+
+
            public IActionResult Overwatch()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("Overwatch/Overwatch");
         }
+             public IActionResult OverwatchForumPost()
+        {
+            return View("Overwatch/OverwatchForumPost");
+        }
+
+
            public IActionResult Hearthstone()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("Hearthstone/Hearthstone");
         }
-        
+          public IActionResult HearthstoneForumPost()
+        {
+            return View("Hearthstone/HearthstoneForumPost");
+        }
+
+
             public IActionResult StarCraftII()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("StarCraftII/StarCraftII");
         }
+             public IActionResult StarCraftIIForumPost()
+        {
+            return View("StarCraftII/StarCraftIIForumPost");
+        }
+
+
               public IActionResult QuakeChampions()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("QuakeChampions/QuakeChampions");
         }
+                public IActionResult QuakeChampionsForumPost()
+        {
+            return View("QuakeChampions/QuakeChampionsForumPost");
+        }
+
+
               public IActionResult UnrealTournament()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("UnrealTournament/UnrealTournament");
         }
-              public IActionResult ForumPost()
+                 public IActionResult UnrealTournamentForumPost()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View("UnrealTournament/UnrealTournamentForumPost");
         }
+    
     }
 }

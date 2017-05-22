@@ -7,11 +7,12 @@
 <h2>@ViewData["Title"].</h2> 
 <h3>@ViewData["Message"]</h3>
 
-<a href="ForumPost" class="btn btn-info" role="button">Create a new thread</a>
+<a asp-controller="Forum" asp-action="CsGoForumPost" class="btn btn-info" role="button" asp-route-id="csgo">Create a new thread</a>
 
 <div class="form-group">
-    
+ 
    @(await Component.InvokeAsync<ViewComponents.Post>(10))
+    
 </div>
 
  
