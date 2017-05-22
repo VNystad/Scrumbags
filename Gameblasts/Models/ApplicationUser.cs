@@ -28,8 +28,13 @@ namespace Gameblasts.Models
         {
             this.UserName = UserName;
             this.Email = Email;
-            this.AboutInfo = "fillinForTest";
-            this.MemberTitle = "TestTitle";
+            this.AboutInfo = "Not set";
+            this.MemberTitle = "Not set";
+            this.Gender = "Not set";
+            this.Location = "Not set";
+            this.SocialMediaNames = "Not set";
+            this.PostCount = 0;
+            this.Age = 0;
             this.RegisterDate = DateTime.Now.Date;
         }
 
