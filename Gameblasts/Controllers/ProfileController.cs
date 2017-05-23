@@ -21,9 +21,12 @@ namespace Gameblasts.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Index(string UserName)
+        public async Task<IActionResult> UserProfile(string id)
         {
-            ApplicationUser user = await _userManager.FindByNameAsync(UserName);
+            if(id == null) return Content("Something went horribly wrong! Report issue to jiraMaster and blame him");
+            ApplicationUser user = await _userManager.FindByNameAsync(id);
+            if(user == null) return Content("Something went horribly wrong! Report issue to jiraMaster and blame him");
+
             ProfileViewModel model = new ProfileViewModel();
 
             model.Username = user.UserName;
@@ -37,14 +40,6 @@ namespace Gameblasts.Controllers
             model.RegisterDate = user.RegisterDate;
 
             return View("Index", model);
-        }
-
-        public async Task<IActionResult> YourProfile()
-        {
-            ProfileViewModel tempmodel = new ProfileViewModel();
-            ApplicationUser temp = await GetCurrentUserAsync();
-            //tempmodel.Username = temp.UserName;
-            return View("YourProfile", temp);
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
