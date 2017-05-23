@@ -80,31 +80,66 @@ namespace Gameblasts
             var userManager = serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
             var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
-            // First create the admin role
-            await roleManager.CreateAsync(new IdentityRole("Admin"));
+            if(!await roleManager.RoleExistsAsync("Admin"))
+            {
+                // First create the admin role if it doesn't already exists.
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
 
-            // Then create moderator role
-            await roleManager.CreateAsync(new IdentityRole("Moderator"));
+            if(!await roleManager.RoleExistsAsync("Moderator"))
+            {
+                // Then create moderator role if it doesn't already exists.
+                await roleManager.CreateAsync(new IdentityRole("Moderator"));
+            }
 
-            // Then add one admin user
-            var adminUser = new ApplicationUser( "admin@uia.no", "admin@uia.no" );
-            //var adminUser = new ApplicationUser { UserName = "admin@uia.no", Email = "admin@uia.no" };
-            await userManager.CreateAsync(adminUser, "Password1.");
-            await userManager.AddToRoleAsync(adminUser, "Admin");
+            if(!await roleManager.RoleExistsAsync("Member"))
+            {
+                // Then create member role if it doesn't already exists.
+                await roleManager.CreateAsync(new IdentityRole("Member"));
+            }
 
-            // Add one moderator user
-            var moderatorUser = new ApplicationUser ("moderator@uia.no", "moderator@uia.no");
-            //var moderatorUser = new ApplicationUser {UserName = "moderator@uia.no", Email = "moderator@uia.no"};
-            await userManager.CreateAsync(moderatorUser, "Password1.");
-            await userManager.AddToRoleAsync(moderatorUser, "Moderator");
+            if(!await roleManager.RoleExistsAsync("Banned"))
+            {
+                // Then create banned role if it doesn't already exists.
+                await roleManager.CreateAsync(new IdentityRole("Banned"));
+            }
 
-            // Add one regular user
-            var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
-            //var userUser = new ApplicationUser { UserName = "user@uia.no", Email = "user@uia.no" };
-            await userManager.CreateAsync(userUser, "Password1.");
+            if(!await roleManager.RoleExistsAsync("Writer"))
+            {
+                // Then create writer role if it doesn't already exists.
+                await roleManager.CreateAsync(new IdentityRole("Writer"));
+            }
+
+            var user = await userManager.FindByNameAsync("admin@uia.no");
+            if(user != null)
+            {
+                // Then add one admin user if it doesn't already exists.
+                var adminUser = new ApplicationUser( "admin@uia.no", "admin@uia.no" );
+                await userManager.CreateAsync(adminUser, "Password1.");
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+
+            user = await userManager.FindByNameAsync("moderator@uia.no");
+            if(user != null)
+            {
+                // Add one moderator user if it doesn't already exists.
+                var moderatorUser = new ApplicationUser ("moderator@uia.no", "moderator@uia.no");
+                await userManager.CreateAsync(moderatorUser, "Password1.");
+                await userManager.AddToRoleAsync(moderatorUser, "Moderator");
+            }
+
+            user = await userManager.FindByNameAsync("user@uia.no");
+            if(user != null)
+            {
+                // Add one regular user if it doesn't already exists.
+                var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
+                await userManager.CreateAsync(userUser, "Password1.");
+                await userManager.AddToRoleAsync(userManager, "Member");
+            }            
+
         }
 
-                
+            
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -145,7 +180,6 @@ namespace Gameblasts
                     db.Categories.Add(SubCat1);
                     db.Categories.Add(SubCat2);
                     db.Categories.Add(SubCat3);
-
 
 
                     // Then create the standard users and roles
