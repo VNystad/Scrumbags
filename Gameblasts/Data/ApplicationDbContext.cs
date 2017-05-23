@@ -9,6 +9,9 @@ namespace Gameblasts.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        // Skal egentlig helst se slik ut, for å få Azure databasen til å bruke denne DbContexten.
+        //public ApplicationDbContext() : base("DefaultConnection") { }
+
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<ChatMessage> ChatMessages { get; set; }
