@@ -134,7 +134,7 @@ namespace Gameblasts
                 // Add one regular user if it doesn't already exists.
                 var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
                 await userManager.CreateAsync(userUser, "Password1.");
-                await userManager.AddToRoleAsync(userManager, "Member");
+                await userManager.AddToRoleAsync(userUser, "Member");
             }            
 
         }
