@@ -5,6 +5,7 @@ using Gameblasts.Models.CategoryModels;
 using Gameblasts.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ViewComponents
 {
@@ -16,7 +17,7 @@ namespace ViewComponents
         {
             this.db = db;
         }
-
+/*
         public async Task<IViewComponentResult> InvokeAsync(string topCatID)
         {
             var topCatList = await db.Categories.Where(s => s.name.Contains(topCatID)).
@@ -24,13 +25,22 @@ namespace ViewComponents
 
             var topCat = topCatList.First();
             return View(topCat);
-        }
+        }*/
 
-        public async Task<IViewComponentResult> InvokeAsync(string parentID, string subCatName)
+        public async Task<IViewComponentResult> InvokeAsync(CategoryFormModel model)
         {
-            var topCatList = await db.Categories.Where(s => s.name.Contains(subCatName)).
-            Where(s => s.parent.Equals(parentID)).Include("children").Include("threads").Distinct().ToListAsync();
-            
+            List<CategoryModel> topCatList;
+            Console.WriteLine("Please");
+            if (model.parentID != -1){
+                topCatList = await db.Categories.Where(s => s.name.Equals(model.name)).
+                Where(s => s.parent.id == model.parentID).Include("children").Include("threads").Distinct().ToListAsync();
+            } else
+            {
+                Console.Write("null");
+                topCatList = await db.Categories.Where(s => s.name.Equals(model.name)).
+                Where(s => s.parent == null).Include("children").Include("threads").Distinct().ToListAsync();
+            }
+
             var topCat = topCatList.First();
             return View(topCat);
         }

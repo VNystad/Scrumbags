@@ -19,7 +19,6 @@ namespace Gameblasts.Models.CategoryModels
         [Required]
         public int id { get; set;}
 
-        [Required]
         public string name {get; set;}
 
         public CategoryModel parent {get; set;}

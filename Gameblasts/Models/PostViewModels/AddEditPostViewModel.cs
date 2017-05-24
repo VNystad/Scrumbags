@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using Gameblasts.Models.CategoryModels;
 
 
 namespace Gameblasts.Models.PostViewModels
@@ -18,6 +19,6 @@ namespace Gameblasts.Models.PostViewModels
         
         [Required]
         [Display(Name = "Category")]
-        public string SubCategory{get; set;}
+        public CategoryModel SubCategory{get; set;}
     }
 }

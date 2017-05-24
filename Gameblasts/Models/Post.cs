@@ -8,7 +8,7 @@ namespace Gameblasts.Models
     {
 
         public Post(){}
-        public Post(ApplicationUser user, string title, string body, CategoryModel subcategory)
+        public Post(ApplicationUser user, string title, string body, int subcategory)
         {
             this.Title = title;
             this.User = user;
@@ -34,6 +34,6 @@ namespace Gameblasts.Models
         public string Body{get; set;}
 
         [Required]
-        public CategoryModel SubCategory{get; set;}
+        public int SubCategory{get; set;}
     }
 }

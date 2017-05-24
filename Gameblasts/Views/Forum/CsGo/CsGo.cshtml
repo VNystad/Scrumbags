@@ -9,7 +9,7 @@
 
 <div class="form-group">
  
-   @(await Component.InvokeAsync<ViewComponents.Category>(CsGO))
+   @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(new Gameblasts.Models.CategoryModels.CategoryFormModel("CsGO", -1)))
     
 </div>
 

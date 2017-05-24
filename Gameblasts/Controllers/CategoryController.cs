@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Gameblasts.Data;
+using Gameblasts.Models;
 using Gameblasts.Models.CategoryModels;
+using Gameblasts.Models.PostViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +60,16 @@ namespace Gameblasts.Controllers
             db.Categories.Add(newCat);
             db.SaveChanges();
             return View("ForumCategoryDemo", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
+        }
+
+        [HttpPost]
+        public IActionResult ForumPost(CategoryModel category)
+        {
+            if (category == null)
+                return View("../Home/Forum");
+
+            var model = new Post(null, null, null, category.id);
+            return View(model);
         }
     }
 }
