@@ -111,7 +111,7 @@ namespace Gameblasts
             }
 
             var user = await userManager.FindByNameAsync("admin@uia.no");
-            if(user != null)
+            if(user == null)
             {
                 // Then add one admin user if it doesn't already exists.
                 var adminUser = new ApplicationUser( "admin@uia.no", "admin@uia.no" );
@@ -120,7 +120,7 @@ namespace Gameblasts
             }
 
             user = await userManager.FindByNameAsync("moderator@uia.no");
-            if(user != null)
+            if(user == null)
             {
                 // Add one moderator user if it doesn't already exists.
                 var moderatorUser = new ApplicationUser ("moderator@uia.no", "moderator@uia.no");
@@ -129,7 +129,7 @@ namespace Gameblasts
             }
 
             user = await userManager.FindByNameAsync("user@uia.no");
-            if(user != null)
+            if(user == null)
             {
                 // Add one regular user if it doesn't already exists.
                 var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
