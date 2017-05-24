@@ -21,11 +21,13 @@ namespace Gameblasts.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> UserProfile(string id)
+        public async Task<IActionResult> Index(string id)
         {
-            if(id == null) return Content("Something went horribly wrong! Report issue to jiraMaster and blame him");
-            ApplicationUser user = await _userManager.FindByNameAsync(id);
-            if(user == null) return Content("Something went horribly wrong! Report issue to jiraMaster and blame him");
+            if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
+            ApplicationUser user = /*HttpContext.Current.GetOwinContext()
+            .GetUserManager<ApplicationUserManager>().FindById(ID).UserName;*/
+            await _userManager.FindByNameAsync(id);
+            if(user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
 
             ProfileViewModel model = new ProfileViewModel();
 
