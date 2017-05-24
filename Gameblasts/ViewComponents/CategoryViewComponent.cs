@@ -19,7 +19,18 @@ namespace ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string topCatID)
         {
-            var topCatList = await db.Categories.Where(s => s.name.Contains(topCatID)).Include("children").Distinct().ToListAsync();
+            var topCatList = await db.Categories.Where(s => s.name.Contains(topCatID)).
+            Where(s => s.parent == null).Include("children").Include("threads").Distinct().ToListAsync();
+
+            var topCat = topCatList.First();
+            return View(topCat);
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync(string parentID, string subCatName)
+        {
+            var topCatList = await db.Categories.Where(s => s.name.Contains(subCatName)).
+            Where(s => s.parent.Equals(parentID)).Include("children").Include("threads").Distinct().ToListAsync();
+            
             var topCat = topCatList.First();
             return View(topCat);
         }

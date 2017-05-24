@@ -184,7 +184,7 @@ namespace Gameblasts
                     // Add regular data here
                    
                    
-                    var TopCat1 = new CategoryModel("topCat1", null);
+                    var TopCat1 = new CategoryModel("CsGO", null);
 
                     var SubCat1 = new CategoryModel("SubCat1", TopCat1);
                     TopCat1.children.Add(SubCat1);
