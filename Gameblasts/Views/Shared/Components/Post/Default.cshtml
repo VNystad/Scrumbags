@@ -6,20 +6,12 @@
     {
 
         @* Creates and displays individual rows for each post in a grid system. *@
-         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Home" asp-action="Index"><id="Home"> <b>Title:</b> @p.Title </a></li>
-             <div class="row"> </div> 
+       
                 <b> Created by: </b> @p.User 
                     <div class="row"> </div> 
                         <b> Created: </b>@p.Date
                         <div class="row"> </div> 
                             <b> Subcategory: </b>@p.SubCategory 
-                            
-                    </div>
-         <div class="col-6 col-md-4" id="row"> Currently Empty @* @p.Subcat *@
-         <div class="row">.</div> @* Currently just "." to fill up the space so that the Forum grid looks nice *@
-         <div class="row">.</div> 
-         </div>
-
+                        }
         
-    }
 </div>

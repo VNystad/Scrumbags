@@ -19,6 +19,8 @@ namespace ViewComponents
         {
             /*This takes "count" of posts from database */
             return View(db.Posts.Include(p => p.User).Take(count).ToList());
+            
         }
+        
     }
 }
