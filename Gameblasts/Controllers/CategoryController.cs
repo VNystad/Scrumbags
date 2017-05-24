@@ -16,22 +16,24 @@ namespace Gameblasts.Controllers
             this.db = db;
         }
         
-        [HttpPost]
-        public IActionResult Forum(string topCatName)
+
+        [HttpGet]
+        public IActionResult ForumCategoryDemo()
         {
-            CategoryModel topCat = db.Categories.Find(topCatName);
-            return View(topCat.children);
+            var cats = db.Categories.Where(s =>  s.parent == null).Include("children").ToList();
+            return View(cats);
         }
 
-        [HttpPost]
-        public IActionResult Forum(string SubCatName, string parentName)
+        /*[HttpPost]
+        public IActionResult ForumCategoryDemo(string SubCatName, string parentName)
         {
-            CategoryModel topCat = db.Categories.Find(parentName);
-            CategoryModel SubCat = db.Categories.Find(SubCatName, parentName);
+            var parent = db.Categories.Where(s => s.parent.name.Equals(parentName)).First();
+            var SubCat = new CategoryModel(SubCatName, parent, null, null);
+            db.Categories.Add(SubCat);
+            parent.children.Add(SubCat);
             return View(SubCat.threads);
-        }
+        }*/
 
-        
         [HttpPost]
         public IActionResult AddCategoryDemo(CategoryModel newCat)
         {
@@ -40,7 +42,7 @@ namespace Gameblasts.Controllers
             return View("ForumCategoryDemo", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
         }
 
-         [HttpGet]
+        [HttpGet]
         public IActionResult AddCategoryDemo()
         {
             return View();

@@ -14,7 +14,7 @@ namespace Gameblasts.Models.CategoryModels
         }
 
         public CategoryModel(){}
-
+        
         [KeyAttribute]
         [Required]
         public int id { get; set;}

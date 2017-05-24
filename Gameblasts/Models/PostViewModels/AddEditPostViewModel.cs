@@ -1,6 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Gameblasts.Models.PostViewModels
 {
     public class AddEditPostViewModel

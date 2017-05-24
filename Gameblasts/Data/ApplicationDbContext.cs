@@ -12,8 +12,9 @@ namespace Gameblasts.Data
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<ChatMessage> ChatMessages { get; set; }
-        
+
         public DbSet<CategoryModel> Categories {get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -26,7 +27,9 @@ namespace Gameblasts.Data
             builder.Entity<CategoryModel>()
                 .HasMany<CategoryModel>(b => b.children);
 
-            builder.Entity<CategoryModel>().HasOne<CategoryModel>(b => b.parent);        
+            builder.Entity<CategoryModel>().HasOne<CategoryModel>(b => b.parent);
+
+           
         }
     }
 }

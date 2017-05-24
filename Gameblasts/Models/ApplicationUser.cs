@@ -49,8 +49,6 @@ namespace Gameblasts.Models
         public int PostCount { get; set; }
         [Required]
         public DateTime RegisterDate { get; set; }
-
         public virtual ICollection<Post> Posts { get; set; }
-        
     }
 }

@@ -27,6 +27,7 @@ namespace Gameblasts.Controllers
         {
             return View();
         }
+
         
         public IActionResult Error()
         {
@@ -46,9 +47,7 @@ namespace Gameblasts.Controllers
 
         public IActionResult RulesAndGuidelinesForum()
         {
-
             return View();
         }
-
     }
 }
