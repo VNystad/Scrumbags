@@ -5,28 +5,27 @@ namespace Gameblasts.Models.CategoryModels
 {
     public class CategoryModel
     {
-        public CategoryModel(string name, CategoryModel parent, List<CategoryModel> children, List<Post> threads)
+        public CategoryModel(string name, CategoryModel parent)
         {
             this.name = name;
             this.parent = parent;
-            this.children = children;
-            this.threads = threads;
+            this.children = new List<CategoryModel>();
+            this.threads = new List<Post>();
         }
 
         public CategoryModel(){}
-        
-        //[KeyAttribute]
+
+        [KeyAttribute]
         [Required]
         public int id { get; set;}
 
-        [KeyAttribute]
         [Required]
         public string name {get; set;}
 
         public CategoryModel parent {get; set;}
                 
-        public virtual List<CategoryModel> children {get; set;}
+        public List<CategoryModel> children {get; set;}
 
-        public virtual List<Post> threads {get; set;}
+        public List<Post> threads {get; set;}
     }
-}
+}   

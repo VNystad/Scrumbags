@@ -165,13 +165,13 @@ namespace Gameblasts
                     // Add regular data here
                    
                    
-                    var TopCat1 = new CategoryModel("topCat1", null, new List<CategoryModel>(), null);
+                    var TopCat1 = new CategoryModel("topCat1", null);
 
-                    var SubCat1 = new CategoryModel("SubCat1", TopCat1, null, null);
+                    var SubCat1 = new CategoryModel("SubCat1", TopCat1);
                     TopCat1.children.Add(SubCat1);
-                    var SubCat2 = new CategoryModel("SubCat2", TopCat1, null, null);
+                    var SubCat2 = new CategoryModel("SubCat2", TopCat1);
                     TopCat1.children.Add(SubCat2);
-                    var SubCat3 = new CategoryModel("SubCat3", TopCat1, null, null);
+                    var SubCat3 = new CategoryModel("SubCat3", TopCat1);
                     TopCat1.children.Add(SubCat3);
                     
                     db.Categories.Add(TopCat1);
