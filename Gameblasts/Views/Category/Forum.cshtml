@@ -20,7 +20,7 @@
 
 @foreach (var e in Model)
 {
-         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Category" asp-action="OpenCategory" id="CsGo"> <b> <img src =@e.imageURL id="CsGo"></b></a></li> 
+         <div class="col col-md-8" id="row"> <li><button asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id=@e.name> <b> <img src =@e.imageURL id="CsGo"></b></button></li> 
          </div>
          <div id="@(e.name + 'scroll')"><a href="@(e.name + 'scroll')"></a></div>
                 <div class="col col-md-8" id="row1" style="background-image: url(https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg)"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBros"><id="SuperSmashBros"> <b> <img src ="https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg" id="LoL"></b> </a>     
@@ -45,7 +45,7 @@
                 </div>
             </div>
              <div class="col-6 col-md-4" id="row">
-                @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, 1) )) @* Missing onClick functionality*@
+                @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, e.id, true) )) @* Missing onClick functionality*@
              </div>
                 @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(new Gameblasts.Models.CategoryModels.CategoryFormModel(e.name, -1)))
 

@@ -30,13 +30,11 @@ namespace ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(CategoryFormModel model)
         {
             List<CategoryModel> topCatList;
-            Console.WriteLine("Please");
             if (model.parentID != -1){
                 topCatList = await db.Categories.Where(s => s.name.Equals(model.name)).
                 Where(s => s.parent.id == model.parentID).Include("children").Include("threads").Distinct().ToListAsync();
             } else
             {
-                Console.Write("null");
                 topCatList = await db.Categories.Where(s => s.name.Equals(model.name)).
                 Where(s => s.parent == null).Include("children").Include("threads").Distinct().ToListAsync();
             }

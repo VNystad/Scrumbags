@@ -40,7 +40,8 @@ namespace Gameblasts.Controllers
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
-            return View("../Home/Forum");
+            var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).ToList();
+            return View("../Category/Forum", catList);
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
