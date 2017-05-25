@@ -6,12 +6,24 @@
 <h3>@ViewData["Message"]</h3>
 
 <a asp-controller="Forum" asp-action="CsGoForumPost" class="btn btn-info" role="button" asp-route-id="csgo">Create a new thread</a>
-
-<div class="form-group">
  
    @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(new Gameblasts.Models.CategoryModels.CategoryFormModel("CsGO", -1)))
     
 </div>
+         <b><div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGoGeneral" id="CsGoGeneral">General Discussion</a></li>  </div>
+            </b>
+         <b><div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGoNews" id="CsGoNews">News</a></li>  </div>
+            </b>
+         <b><div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGoMedia" id="CsGoMedia">Media</a></li>  </div>
+            </b>
+         <b><div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGoLTP" id="CsGoLTP">Looking to play</a></li>  </div>
+            </b>
+         <b><div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="CsGoSupport" id="CsGoSupport">Support</a></li>  </div>
+            </b>
+   </div>
 
+
+ 
+        
  
         

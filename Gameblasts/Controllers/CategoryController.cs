@@ -18,23 +18,12 @@ namespace Gameblasts.Controllers
             this.db = db;
         }
         
-
         [HttpGet]
-        public IActionResult ForumCategoryDemo()
+        public IActionResult Forum()
         {
-            var cats = db.Categories.Where(s =>  s.parent == null).Include("children").ToList();
-            return View(cats);
+            var catList = db.Categories.Where(s => s.parent == null).ToList();
+            return View(catList);
         }
-
-        /*[HttpPost]
-        public IActionResult ForumCategoryDemo(string SubCatName, string parentName)
-        {
-            var parent = db.Categories.Where(s => s.parent.name.Equals(parentName)).First();
-            var SubCat = new CategoryModel(SubCatName, parent, null, null);
-            db.Categories.Add(SubCat);
-            parent.children.Add(SubCat);
-            return View(SubCat.threads);
-        }*/
 
         [HttpPost]
         public IActionResult AddCategoryDemo(CategoryModel newCat)
@@ -70,6 +59,12 @@ namespace Gameblasts.Controllers
 
             var model = new Post(null, null, null, category.id);
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult OpenCategory(string name)
+        {
+            return ViewComponent("Category", new Gameblasts.Models.CategoryModels.CategoryFormModel(name, -1));
         }
     }
 }

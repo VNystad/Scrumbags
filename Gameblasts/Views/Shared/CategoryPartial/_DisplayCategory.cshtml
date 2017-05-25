@@ -4,15 +4,12 @@
     <div class="col-md-6">
         <br><br>
         <p>@Model.name</p>
-        <p>@Model.parent.name</p>
-        <p>@Model.parent.id</p>
-      @using (Html.BeginForm("AddSubCategoryDemo", "Category", "CategoryFormModel"))
+   
+   @* @using (Html.BeginForm("AddSubCategoryDemo", "Category", "CategoryFormModel"))
     {
         @Html.Hidden("parentID", @Model.parent.id)
         @Html.TextArea("name")
         <button type="submit" class="btn btn-default">Add Category</button>
-    }
-
-    <p>@Model.threads.[0]</p>
+    }*@
     </div>
 </div>

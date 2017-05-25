@@ -163,7 +163,6 @@ namespace Gameblasts.Controllers
 
         public IActionResult Forum()
         {
-
             return View();
         }
         

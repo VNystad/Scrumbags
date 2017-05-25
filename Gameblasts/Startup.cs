@@ -158,6 +158,31 @@ namespace Gameblasts
 
         }
 
+        public void CreateCategories(ApplicationDbContext db, string topCatName, string imageURL = null)
+        {
+            var TopCat1 = new CategoryModel(topCatName, null, imageURL);
+
+            var SubCat1 = new CategoryModel("General Discussion", TopCat1);
+            TopCat1.children.Add(SubCat1);
+            var SubCat2 = new CategoryModel("News", TopCat1);
+            TopCat1.children.Add(SubCat2);
+            var SubCat3 = new CategoryModel("Media", TopCat1);
+            TopCat1.children.Add(SubCat3);
+            var SubCat4 = new CategoryModel("Looking to play", TopCat1);
+            TopCat1.children.Add(SubCat4);
+            var SubCat5 = new CategoryModel("Support", TopCat1);
+            TopCat1.children.Add(SubCat5);
+            
+            db.Categories.Add(TopCat1);
+            db.Categories.Include("CategoryModel");
+
+            db.Categories.Add(SubCat1);
+            db.Categories.Add(SubCat2);
+            db.Categories.Add(SubCat3);
+            db.Categories.Add(SubCat4);
+            db.Categories.Add(SubCat5);
+        }
+
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -183,21 +208,15 @@ namespace Gameblasts
 
                     // Add regular data here
                    
-                   
-                    var TopCat1 = new CategoryModel("CsGO", null);
-
-                    var SubCat1 = new CategoryModel("SubCat1", TopCat1);
-                    TopCat1.children.Add(SubCat1);
-                    var SubCat2 = new CategoryModel("SubCat2", TopCat1);
-                    TopCat1.children.Add(SubCat2);
-                    var SubCat3 = new CategoryModel("SubCat3", TopCat1);
-                    TopCat1.children.Add(SubCat3);
-                    
-                    db.Categories.Add(TopCat1);
-                    db.Categories.Add(SubCat1);
-                    db.Categories.Add(SubCat2);
-                    db.Categories.Add(SubCat3);
-
+                   CreateCategories(db, "CsGO", "http://www.esports.je/media/com_jticketing/images/7a8f4596ae3d9971dbc0c620675d1958-Counter-Strike-Global-Offensive-Logo.jpg");
+                   CreateCategories(db, "Dota2", "http://i.imgur.com/soaxrw9.png");
+                   CreateCategories(db, "Hearthstone", "http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240");
+                   CreateCategories(db, "LoL", "http://support.lol.garena.com/img/league-logo.png");
+                   CreateCategories(db, "Overwatch", "https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg");
+                   CreateCategories(db, "QuakeChampions", "https://cdn.mmos.com/wp-content/uploads/2016/06/quake-champions-logo.jpg");
+                   CreateCategories(db, "StarCraft2", "http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png");
+                   CreateCategories(db, "SuperSmash", "http://www.zeldainformer.com/supersmashbrostitle.jpg");
+                   CreateCategories(db, "UnrealTournament", "http://2.bp.blogspot.com/-1rPuditcrUw/U2yYnZryA7I/AAAAAAAASpw/64DzBwpZoog/s1600/unreal-tournament.png");
 
                     // Then create the standard users and roles
                     CreateUsersAndRoles(serviceScope).Wait();
