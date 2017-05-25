@@ -1,14 +1,17 @@
-@model IEnumerable<Gameblasts.Models.Post>
-
-@{
-    ViewData["Title"] = "Leauge Of Legends";
-}
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-
-<a href="LeaugeOfLegendsForumPost" class="btn btn-info" role="button">Create a new thread</a>
-
-<div class="form-group">
+ Component.InvokeAsync<ViewComponents.Post>(10))
     
-   @(await Component.InvokeAsync<ViewComponents.Post>(10))
 </div>
+
+
+            
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsGeneral" id="LeaugeOfLegendsGeneral">General Discussion</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsNews" id="LeaugeOfLegendsNews">News</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsMedia" id="LeaugeOfLegendsMedia">Media</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsLTP" id="LeaugeOfLegendsLTP">Looking to play</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsSupport" id="LeaugeOfLegendsSupport">Support</a></li>  </div>
+
+   

@@ -179,3 +179,23 @@ p { color: white; }
     max-height: 200px;
     max-width: 200px;
 }
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  #equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-height: 300px) {
+  #equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

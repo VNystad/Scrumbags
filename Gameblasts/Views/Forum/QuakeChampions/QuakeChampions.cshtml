@@ -1,14 +1,17 @@
-@model IEnumerable<Gameblasts.Models.Post>
-
-@{
-    ViewData["Title"] = "Quacke champions.";
-}
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-
-<a href="QuakeChampionsForumPost" class="btn btn-info" role="button">Create a new thread</a>
-
-<div class="form-group">
+ Component.InvokeAsync<ViewComponents.Post>(10))
     
-   @(await Component.InvokeAsync<ViewComponents.Post>(10))
 </div>
+
+
+            
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsGeneral" id="QuakeChampionsGeneral">General Discussion</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsNews" id="QuakeChampionsNews">News</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsMedia" id="QuakeChampionsMedia">Media</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsLTP" id="QuakeChampionsLTP">Looking to play</a></li>  </div>
+        
+         <div class="col col-md-8" id="row"> <li><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsSupport" id="QuakeChampionsSupport">Support</a></li>  </div>
+
+   

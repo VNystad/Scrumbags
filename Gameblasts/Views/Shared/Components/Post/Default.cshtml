@@ -1,17 +1,21 @@
 @model IEnumerable<Gameblasts.Models.Post>
 
-<div class="content">
-    <div class ="row"><br></div>
+ <div class="container-fluid">
+    <div class="row equal" id="equal">
+        
     @foreach(var p in Model.Reverse())
     {
 
         @* Creates and displays individual rows for each post in a grid system. *@
-       
+       <div class="col col-md-8" id="row">
                 <b> Created by: </b> @p.User 
-                    <div class="row"> </div> 
+                    <div class="row"> 
+                    </div> 
                         <b> Created: </b>@p.Date
-                        <div class="row"> </div> 
-                            <b> Subcategory: </b>@p.SubCategory 
+                        <div class="row"> 
+                            </div> 
+                    </div>
                         }
         
+    </div>
 </div>
