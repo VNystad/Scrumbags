@@ -3,6 +3,7 @@
 <a asp-controller="Category" asp-action="ForumPost" class="btn btn-info" role="button" asp-route-id="@Model">Create a new thread</a>
 @using (Html.BeginForm("ForumPost", "Category"))
     {
+        @Html.Hidden("id", @Model.id)
         @Html.Hidden("name", @Model.name)
         @Html.Hidden("parent", @Model.parent)
         @Html.Hidden("children", @Model.children)
@@ -12,10 +13,7 @@
 
 <div class="form-group">
 
-@for (int i = 0; i < Model.threads.Count; i++)
-{
-            Html.RenderPartial("_Post", Model.threads[i]);
-}
+@(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(10, @Model.id) )) 
 
 @for (int i = 0; i < Model.children.Count; i++)
 {

@@ -10,10 +10,10 @@
 <h3>@ViewData["Message"]</h3>
 
 
+    <p> @Model.SubCategory</p>
 @if (SignInManager.IsSignedIn(User))
 {
     <h1> Submit a Post!</h1>
-
     <form asp-controller="Post" asp-action="AddPost" class="form-horizontal" role="form">
         <div class="form-group" style="background-color: #808080">
             <br>

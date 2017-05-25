@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Gameblasts.Data;
+using Gameblasts.Models.CategoryModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,11 @@ namespace ViewComponents
             this.db = db;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int count = 0)
+        public async Task<IViewComponentResult> InvokeAsync(PostComponentFormModel model)
         {
             /*This takes "count" of posts from database */
-            return View(db.Posts.Include(p => p.User).Take(count).ToList());
+            var subCat = await db.Categories.Where(s => s.id == model.parentID).Include("threads").FirstAsync();
+            return View(subCat.threads.Take(model.count).ToList());
             
         }
         
