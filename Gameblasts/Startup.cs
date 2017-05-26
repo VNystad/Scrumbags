@@ -208,6 +208,7 @@ namespace Gameblasts
 
                     // Add regular data here
                    
+                   CreateCategories(db, "SuperSmash", "http://www.zeldainformer.com/supersmashbrostitle.jpg");
                    CreateCategories(db, "CsGO", "http://www.esports.je/media/com_jticketing/images/7a8f4596ae3d9971dbc0c620675d1958-Counter-Strike-Global-Offensive-Logo.jpg");
                    CreateCategories(db, "Dota2", "http://i.imgur.com/soaxrw9.png");
                    CreateCategories(db, "Hearthstone", "http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240");
@@ -215,7 +216,6 @@ namespace Gameblasts
                    CreateCategories(db, "Overwatch", "https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg");
                    CreateCategories(db, "QuakeChampions", "https://cdn.mmos.com/wp-content/uploads/2016/06/quake-champions-logo.jpg");
                    CreateCategories(db, "StarCraft2", "http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png");
-                   CreateCategories(db, "SuperSmash", "http://www.zeldainformer.com/supersmashbrostitle.jpg");
                    CreateCategories(db, "UnrealTournament", "http://2.bp.blogspot.com/-1rPuditcrUw/U2yYnZryA7I/AAAAAAAASpw/64DzBwpZoog/s1600/unreal-tournament.png");
 
                     // Then create the standard users and roles

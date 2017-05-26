@@ -61,7 +61,6 @@ namespace Gameblasts.Controllers
             return View(model);
         }
 
-        [HttpGet]
         public IActionResult OpenCategory(string name)
         {
             return ViewComponent("Category", new Gameblasts.Models.CategoryModels.CategoryFormModel(name, -1));
