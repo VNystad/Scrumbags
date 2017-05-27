@@ -43,5 +43,12 @@ namespace Gameblasts.Controllers
         {
             return View();
         }
+
+        public IActionResult RulesAndGuidelinesForum()
+        {
+
+            return View();
+        }
+
     }
 }

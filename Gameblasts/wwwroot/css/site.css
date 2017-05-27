@@ -1,7 +1,9 @@
 body {
-    padding-top: 150px;
+    padding-top: 170px;
     padding-bottom: 20px;
     background-image: url("http://i.imgur.com/N71e6M0.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 /* Wrapping element */
@@ -99,46 +101,73 @@ textarea {
     position: fixed;
     color: darkgray;
 }
-.h { color: white !important; }
-.p1 { color: white !important; }
 
-#LightBar
-{
-    margin-top: -90px;
-    margin-left: -50px;
-}
 
 #Home
 {
-    margin-top: -50px;
-    margin-left:200px;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    z-index: 1;
+    height: 150px;
+    max-width: 150px;
+
 }
 
 #Forums
 {
-    margin-top: -50px;
-    margin-left: -50px;
+    position: absolute;
+    top: -10px;
+    left: 100px;
+    z-index: 1;
+    height: 150px;
+    max-width: 150px;
 }
  
  #News
  {
-    margin-top: -50px;
-    margin-left: -10px;
+    position: absolute;
+    top: -10px;
+    left: 220px;
+    z-index: 1;
+    height: 150px;
+    max-width: 150px;
  }
 
 #Events
 {
-    margin-top: -50px; 
-    margin-left: -50px; 
+    position: absolute;
+    top: -10px;
+    left: 300px; 
+    z-index: 1;
+    height: 150px;
+    max-width: 150px;
 }
 
-h2 { color: white; }
-p { color: white; }
+/* Adjustments for the main forum view*/
 
-#row{
+#row
+{
     outline-color: black;
-    border: solid;
+    
     background-color: white;
+}
+
+#row1
+{
+    outline-color: black;
+    
+    border-color: lightgray;
+    background-color: #f1f1f1;
+}
+
+
+#row2
+{
+    outline-color: grey;
+    
+    border-color: lightgray;
+    background-color: #f1f1f1;
 }
 
 /* Adjustments for the size of images used in the forums */
@@ -186,16 +215,21 @@ p { color: white; }
   flex-wrap: wrap;
 }
 
-@media (min-width: 768px) {
-  #equal {
-    display: flex;
-    flex-wrap: wrap;
-  }
+
+#Subforum {
+    color: black;
 }
 
-@media (min-height: 300px) {
-  #equal {
-    display: flex;
-    flex-wrap: wrap;
-  }
+#buttons {
+    background-color: #222222;
+    width: 1500px;
+    top: 140px;
+    left: -10px;
+    position: fixed;
+    z-index: 1;
+    height: 40px;
+    padding-left: 75px;
+    
 }
+
+ 
