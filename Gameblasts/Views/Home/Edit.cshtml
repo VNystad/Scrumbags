@@ -1,5 +1,3 @@
-@model IEnumerable<Gameblasts.Models.ChatMessage>
-
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
@@ -63,32 +61,23 @@ else
     <div class="col-sm-2"></div>
     <div class="col-sm-2"></div>
     <div class="col-sm-6">
-        <!--ChatBox skal bare vises hvis brukeren er logget inn.-->
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <div id="wrapper">
-                <div id="menu">
-                    <!--Gi en velkommen melding til brukeren som er logget inn.-->
-                    <p1 class="welcome">Hello <a href="/Profile/Index/@User.Identity.Name">@User.Identity.Name</a> !</p1>
-                    <div style="clear:both"></div>
+        <!--Edit ChatBox skal bare vises hvis brukeren er logget inn og har riktig rolle.-->
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
+            {
+                <div id="wrapper">
+                    <div id="menu">
+                        <!--Gi en velkommen melding til brukeren som er logget inn.-->
+                        <p1 class="welcome">Hello <a href="/Profile/Index/@User.Identity.Name">@User.Identity.Name</a> !</p1>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div id="chatbox">
+                        <b><editText>Write your new message in the input box.</editText></b>
+                    </div>
+                    <form method="POST">
+                        <input name="message" type="text" id="chatmessage" size="63" placeholder="Write the new message" />
+                        <input name="submit" type="submit" id="submitmessage" value="Send" />
+                    </form>
                 </div>
-                <div id="chatbox">
-                    <!--Her skal meldinger brukerne skriver komme.-->
-                    @foreach(var s in Model)
-                    {
-                        Html.RenderPartial("_ChatBox", s);
-                    }                    
-                    <!-- ________________________________________ -->
-                </div>
-                <form method="POST">
-                    <input name="message" type="text" id="chatmessage" size="63" placeholder="Write the message" />
-                    <input name="submit" type="submit" id="submitmessage" value="Send" />
-                </form>
-            </div>
-        }
-        else
-        {
-            <p2>Hello Guest, Please login to view the chatbox!</p2>
-        }
+            }
     </div>
 </div>

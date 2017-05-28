@@ -57,7 +57,16 @@ a {
 
 h2 { color: white; }
 
-p2 { color: white; text-align: center;}
+h1 { color: white; }
+
+p1 { 
+    color: white;
+    text-align: center;}
+
+p2 { 
+    color: white;
+    text-align: center;
+    font: 24px arial;}
 
 /*Disse feltene endrer tekst stilen til meldingene i chatbox. 
   For å få avstand mellom dato/bruker/melding blir det brukt relativ posisjon.

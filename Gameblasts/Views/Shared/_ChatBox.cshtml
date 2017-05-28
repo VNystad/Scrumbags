@@ -7,15 +7,15 @@
 <!--Formatet til hvordan chat meldingene skal se ut kan bli endret senere. 
     Så lenge de ser OK ut. -->
 <i><CMDate>@Model.Date</CMDate></i>
-<a href="/Manage"><CMUser>@Model.User</CMUser></a>
+<a href="/Profile/Index/@User.Identity.Name"><CMUser>@Model.User</CMUser></a>
 
 <!--Bare brukere som har administrator eller moderator rollen kan se edit knappen.
     TODO: Brukere kan se edit knapp på sine egne meldinger. -->
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
 {
     <EditButton><td>
-        <a asp-controller="ChatBox" asp-action="Edit" asp-route-id="@Model.Id" class ="glyphicon glyphicon-pencil"></a>
-        <a asp-controller="ChatBox" asp-action="Delete" asp-route-id="@Model.Id" class ="glyphicon glyphicon-remove"></a>
+        <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id" class ="glyphicon glyphicon-pencil"></a>
+        <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id" class ="glyphicon glyphicon-remove"></a>
     </td></EditButton>
 }
 <br>
