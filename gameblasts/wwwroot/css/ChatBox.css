@@ -15,9 +15,9 @@ a {
 #wrapper{
     margin:0 auto;
     padding-bottom:25px;
-    background:#EBF4FB;
+    background:#31909b;
     width:504px;
-    border:1px solid #ACD8F0; }
+    border:1px solid #0f8d9b; }
   
 #loginform { padding-top:18px; }
   
@@ -28,17 +28,22 @@ a {
     margin:0 auto;
     margin-bottom:25px;
     padding:10px;
-    background:#fff;
+    background:#17d5ea;
     height:270px;
     width:430px;
-    border:1px solid #ACD8F0;
+    border:1px solid #0f8d9b;
     overflow:auto; }
   
 #chatmessage {
     width:395px;
-    border:1px solid #ACD8F0; }
+    background:#17d5ea;
+    border:1px solid #0f8d9b;
+    color: white; }
   
-#submitmessage { width: 60px; }
+#submitmessage {
+     width: 60px;
+     background: #17d5ea;
+     border: #0f8d9b; }
   
 .error { color: #ff0000; }
   
