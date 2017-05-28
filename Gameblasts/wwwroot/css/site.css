@@ -173,8 +173,9 @@ textarea {
 /* Adjustments for the size of images used in the forums */
 
 #CsGo {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 300px;
+    max-width: 300px;
+    
 }
 #LoL {
     max-height: 200px;

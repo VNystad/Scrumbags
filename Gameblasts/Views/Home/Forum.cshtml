@@ -29,7 +29,7 @@
             <div class="row equal" id="equal">  
 
                 <div id="CsGoScroll"><a href="CsGoScroll"></a></div>
-                <div class="col col-md-8" id="row1"><a asp-area="" asp-controller="Forum" asp-action="CsGo" id="CsGo"> <b> <img src ="https://upload.wikimedia.org/wikipedia/en/8/8a/Counter-Strike_Global_Offensive_logo.png" id="CsGo"></b></a>       
+                <div class="col col-md-8" id="row1" style="background-image: url(https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F571714210_1280x720.jpg&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png)"><a asp-area="" asp-controller="Forum" asp-action="CsGo" id="CsGo"> <b> <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Counter-Strike_Global_Offensive.svg/2000px-Counter-Strike_Global_Offensive.svg.png" id="CsGo"></b></a>       
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1))         
                 </div>
@@ -38,11 +38,14 @@
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
                             <dt id="Subforum"> 
+                                <div class="row equal" id="equal"> 
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="CsGoGeneral" id="CsGoGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="CsGoNews" id="CsGoNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="CsGoMedia" id="CsGoMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="CsGoLTP" id="CsGoLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="CsGoSupport" id="CsGoSupport">Support</a></div>  
+                                
+                                </div>
                             </dt>       
                         </div>
                     </div>
@@ -51,7 +54,7 @@
             
 
                 <div id="LeaugeOfLegendsScroll"><a href="LeaugeOfLegendsScroll"></a></div>
-                <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegends"><id="LeaugeOfLegends"> <b> <img src ="http://vignette1.wikia.nocookie.net/leagueoflegends/images/8/86/League_of_legends_logo_transparent.png/revision/latest?cb=20131023175853" id="LoL"></b> </a>     
+                <div class="col col-md-8" id="row"style="background-image: url(https://c1.staticflickr.com/8/7569/16316063786_0bf585b54b_b.jpg)"><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegends"><id="LeaugeOfLegends"> <b> <img src ="https://upload.wikimedia.org/wikipedia/commons/d/d3/LoL_New_Logo.png" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -60,11 +63,13 @@
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
                             <dt id="Subforum"> 
+                                <div class="row equal" id="equal"> 
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsGeneral" id="LeaugeOfLegendsGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsNews" id="LeaugeOfLegendsNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsMedia" id="LeaugeOfLegendsMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsLTP" id="LeaugeOfLegendsLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="LeaugeOfLegendsSupport" id="LeaugeOfLegendsSupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
@@ -72,7 +77,7 @@
             </div>
 
                 <div id="SuperSmashBrosScroll"><a href="SuperSmashBrosScroll"></a></div>
-                <div class="col col-md-8" id="row1"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBros"><id="SuperSmashBros"> <b> <img src ="https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg" id="LoL"></b> </a>     
+                <div class="col col-md-8" id="row1" style="background-image: url(https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg)"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBros"><id="SuperSmashBros"> <b> <img src ="https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -81,18 +86,20 @@
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
                             <dt id="Subforum"> 
+                                <div class="row equal" id="equal"> 
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosGeneral" id="SuperSmashBrosGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosNews" id="SuperSmashBrosNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosMedia" id="SuperSmashBrosMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosLTP" id="SuperSmashBrosLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosSupport" id="SuperSmashBrosSupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                 </div>
             </div>
                  <div id="Dota2Scroll"><a href="Dota2Scroll"></a></div>
-                 <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="Dota2"><id="Dota2"> <b> <img src ="http://i.imgur.com/soaxrw9.png" id="LoL"></b> </a>     
+                 <div class="col col-md-8" id="row" style=" background-image: url(https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/dota_2_official_9.jpg)"><a asp-area="" asp-controller="Forum" asp-action="Dota2"><id="Dota2"> <b> <img src ="http://i.imgur.com/soaxrw9.png" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -100,19 +107,21 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="Dota2General" id="Dota2General">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="Dota2News" id="Dota2News">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="Dota2Media" id="Dota2Media">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="Dota2LTP" id="Dota2LTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="Dota2Support" id="Dota2Support">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                 </div>
             </div>
                  <div id="OverwatchScroll"><a href="OverwatchScroll"></a></div>
-                 <div class="col col-md-8" id="row1"><a asp-area="" asp-controller="Forum" asp-action="Overwatch"><id="Overwatch"> <b> <img src ="https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg" id="LoL"></b> </a>     
+                 <div class="col col-md-8" id="row1" style=" background-image: url(https://bnetcmsus-a.akamaihd.net/cms/blog_header/v3/V3GMDVG8LC5U1472588787764.jpg)"><a asp-area="" asp-controller="Forum" asp-action="Overwatch"><id="Overwatch"> <b> <img src ="https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -120,19 +129,21 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="OverwatchGeneral" id="OverwatchGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="OverwatchNews" id="OverwatchNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="OverwatchMedia" id="OverwatchMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="OverwatchLTP" id="OverwatchLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="OverwatchSupport" id="OverwatchSupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                </div>
             </div>
                 <div id="HearthstoneScroll"><a href="HearthstoneScroll"></a></div>
-                <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="Hearthstone"><id="Hearthstone"> <b> <img src ="http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240" id="LoL"></b> </a>     
+                <div class="col col-md-8" id="row" style="background-image: url(https://i.ytimg.com/vi/CjLvnY_uPbI/maxresdefault.jpg)"><a asp-area="" asp-controller="Forum" asp-action="Hearthstone"><id="Hearthstone"> <b> <img src ="http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -140,19 +151,21 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="HearthstoneGeneral" id="HearthstoneGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="HearthstoneNews" id="HearthstoneNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="HearthstoneMedia" id="HearthstoneMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="HearthstoneLTP" id="HearthstoneLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="HearthstoneSupport" id="HearthstoneSupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                 </div>
             </div>
                  <div id="StarCraftIIScroll"><a href="StarCraftIIScroll"></a></div>
-                 <div class="col col-md-8" id="row1"><a asp-area="" asp-controller="Forum" asp-action="StarCraftII"><id="StarCraftII"> <b> <img src ="http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png" id="LoL"></b> </a>     
+                 <div class="col col-md-8" id="row1" style =" background-image: url(http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg)"><a asp-area="" asp-controller="Forum" asp-action="StarCraftII"><id="StarCraftII"> <b> <img src ="http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -160,19 +173,21 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="StarCraftIIGeneral" id="StarCraftIIGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="StarCraftIINews" id="StarCraftIINews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="StarCraftIIMedia" id="StarCraftIIMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="StarCraftIILTP" id="StarCraftIILTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="StarCraftIISupport" id="StarCraftIISupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                 </div>
             </div>
                  <div id="UnrealTournamentScroll"><a href="UnrealTournamentScroll"></a></div>
-                 <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="UnrealTournament"><id="UnrealTournament"> <b> <img src ="http://2.bp.blogspot.com/-1rPuditcrUw/U2yYnZryA7I/AAAAAAAASpw/64DzBwpZoog/s1600/unreal-tournament.png" id="LoL"></b> </a>     
+                 <div class="col col-md-8" id="row" style =" background-image: url(https://de45xmedrsdbp.cloudfront.net/UnrealTournament/malcolmFlak04-1024x576-1024x576-581966620.png)"><a asp-area="" asp-controller="Forum" asp-action="UnrealTournament"><id="UnrealTournament"> <b> <img src ="https://s-media-cache-ak0.pinimg.com/originals/2d/2d/1c/2d2d1c56c8a856cb23dfb70fd111e34a.png" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -180,19 +195,21 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="UnrealTournamentGeneral" id="UnrealTournamentGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="UnrealTournamentNews" id="UnrealTournamentNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="UnrealTournamentMedia" id="UnrealTournamentMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="UnrealTournamentLTP" id="UnrealTournamentLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="UnrealTournamentSupport" id="UnrealTournamentSupport">Support</a></div>  
+                                </div>
                             </dt>       
                         </div>
                     </div>
                 </div>
             </div>
                  <div id="QuakeChampionsScroll"><a href="QuakeChampions2Scroll"></a></div>
-                 <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="QuakeChampions"><id="QuakeChampions"> <b> <img src ="https://quake.bethesda.net/assets/images/quake-logo--colored-a277cd4f9b.png"id="QuakeChampions" id="LoL"></b> </a>     
+                 <div class="col col-md-8" id="row" style="background-image: url(https://static.gamespot.com/uploads/original/536/5360430/3104922-quake_champions_quakecon_2016_4_1470331175.png)"><a asp-area="" asp-controller="Forum" asp-action="QuakeChampions"><id="QuakeChampions"> <b> <img src ="https://quake.bethesda.net/assets/images/quake-logo--colored-a277cd4f9b.png"id="QuakeChampions" id="LoL"></b> </a>     
                         <h4> Lastest Post: </h4>
                         @(await Component.InvokeAsync<ViewComponents.Post>(1)) 
                 </div> 
@@ -200,12 +217,14 @@
                 <div class ="conatiner">
                     <div class="container-fluid">
                         <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
+                            <dt id="Subforum">
+                                <div class="row equal" id="equal">  
                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsGeneral" id="QuakeChampionsGeneral">General Discussion</a></div>
                                     <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsNews" id="QuakeChampionsNews">News</a></div>
                                         <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsMedia" id="QuakeChampionsMedia">Media</a></div>
                                             <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsLTP" id="QuakeChampionsLTP">Looking to play</a></div> 
                                                 <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="QuakeChampionsSupport" id="QuakeChampionsSupport">Support</a></div>  
+                            </div>
                             </dt>       
                         </div>
                     </div>
