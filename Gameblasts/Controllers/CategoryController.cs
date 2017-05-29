@@ -4,6 +4,7 @@ using Gameblasts.Data;
 using Gameblasts.Models;
 using Gameblasts.Models.CategoryModels;
 using Gameblasts.Models.PostViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,18 +26,34 @@ namespace Gameblasts.Controllers
             return View(catList);
         }
 
+<<<<<<< 1daee231d288137c37d26704bfb3dcc93d3e5417
+=======
+        
+        [Authorize(Roles = "admin")]
+>>>>>>> Added view for adding categories
         [HttpPost]
-        public IActionResult AddCategoryDemo(CategoryModel newCat)
+        public IActionResult CreateCategory(CategoryFormModel model)
         {
+            CategoryModel newCat;
+            if (db.Categories.Find(model.parentID) != null)
+            {
+            var parentCatList = db.Categories.Where(s => s.id == model.parentID).Include("children").Distinct().ToList();
+            var parentCat = parentCatList.First();           
+                newCat = new CategoryModel(model.name, parentCat, model.imageURL);
+                parentCat.children.Add(newCat);
+            } else
+                newCat = new CategoryModel(model.name, null, model.imageURL);
+
             db.Categories.Add(newCat);
             db.SaveChanges();
-            return View("ForumCategoryDemo", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
+            return View("Forum", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
         }
 
-        [HttpGet]
-        public IActionResult AddCategoryDemo()
+        [Authorize(Roles = "admin")]
+        public IActionResult AddCategory(CategoryFormModel formModel)
         {
-            return View();
+            var model = new CategoryModel(null, db.Categories.Find(formModel.parentID), null);
+            return View(model);
         }
 
         [HttpPost]

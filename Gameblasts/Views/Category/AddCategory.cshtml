@@ -1,0 +1,16 @@
+@model Gameblasts.Models.CategoryModels.CategoryModel
+
+@using (Html.BeginForm("CreateCategory", "Category", "CategoryFormModel"))
+    {
+        @Html.Hidden("parentID", @Model.parent)
+        <label asp-for="name" class="col-md-2 control-label"></label>
+        <div class="col-md-2">
+            <input asp-for="name">
+        </div>
+        <label asp-for="imageURL" class="col-md-2 control-label"></label>
+        <div class="col-md-2">
+            <input asp-for="imageURL">
+        </div>
+        <button type="submit" class="btn btn-default">Create a new thread</button>
+    }
+
