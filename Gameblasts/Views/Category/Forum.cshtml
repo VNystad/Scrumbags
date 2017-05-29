@@ -46,7 +46,7 @@
                 <div id="@(e.name + "scroll")"><a href="@(e.name + "scroll")"></a></div>
                 <div class="col col-md-8" id="row1" style="background-image: url(@e.logoURL)"><a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@e.id"> <b> <img src ="@e.imageURL" id="LoL"></b> </a>     
                     <h4> Lastest Post: </h4>
-                    @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, 1) )) 
+                    @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, @e.id, true) )) 
                 </div> 
                 <div class="col-6 col-md-4" id="row2"> 
                     <div class ="conatiner">

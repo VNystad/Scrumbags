@@ -40,7 +40,7 @@ namespace Gameblasts.Controllers
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
-            var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).ToList();
+            var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).Include("children").Include("threads").ToList();
             return View("../Category/Forum", catList);
         }
 

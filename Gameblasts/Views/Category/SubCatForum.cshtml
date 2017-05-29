@@ -1,4 +1,6 @@
 @model Gameblasts.Models.CategoryModels.CategoryModel
+<link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css"/>
+
 
 @if (@Model.parent != null)
 {
@@ -6,17 +8,45 @@
 }
 <h2> @Model.name</h2>
 
-@for (int i = 0; i < Model.children.Count; i++)
+@if (@Model.children.Count != 0)
 {
-    Html.RenderPartial("CategoryPartial/_DisplayCategory", Model.children[i]);
-    @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(new Gameblasts.Models.CategoryModels.CategoryFormModel(Model.children[i].name, Model.id)))
+    <div class="col-6 col-md-4" id="row2"> 
+                    <div class ="conatiner">
+                         <div class="container-fluid">
+                            <div class="row equal" id="equal">  
+                                <dt id="Subforum"> 
+                                    <div class="row equal" id="equal"> 
+                                        @foreach (var c in @Model.children)
+                                            {
+                                              <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@c.id">@c.name</a></div>
+                                            }
+                                    </div>
+                                </dt>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
 }
+<div class="row"></div>
 
 @if (Model.threads.Count != 0)
 {
     @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(10, @Model.id) ))
 }
 
+<br><br>
+@using (Html.BeginForm("ForumPost", "Category"))
+    {
+        @Html.Hidden("id", @Model.id)
+        @Html.Hidden("name", @Model.name)
+        @Html.Hidden("parent", @Model.parent)
+        @Html.Hidden("children", @Model.children)
+        @Html.Hidden("threads", @Model.threads)
+        <button type="submit" class="btn btn-default">Create a new thread</button>
+    }
+
+
+<br><br><br><br>
    @using (Html.BeginForm("AddCategory", "Category", "CategoryFormModel"))
     {
         @Html.Hidden("parentID", @Model.id)

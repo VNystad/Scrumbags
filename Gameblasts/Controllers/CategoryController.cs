@@ -26,7 +26,7 @@ namespace Gameblasts.Controllers
             return View(catList);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles="Admin")]
         [HttpPost]
         public IActionResult CreateCategory(CategoryFormModel model)
         {
@@ -45,7 +45,7 @@ namespace Gameblasts.Controllers
             return View("Forum", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles="Admin")]
         public IActionResult AddCategory(CategoryFormModel formModel)
         {
             var model = new CategoryModel(null, db.Categories.Find(formModel.parentID), null);
