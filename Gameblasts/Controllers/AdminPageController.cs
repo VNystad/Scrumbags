@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gameblasts.Controllers
 {
-    public class SideNavController : Controller
+    public class AdminPageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public SideNavController(UserManager<ApplicationUser> um) 
+        public AdminPageController(UserManager<ApplicationUser> um) 
         {
             _userManager = um;
         }
@@ -46,7 +46,7 @@ namespace Gameblasts.Controllers
         [ValidateAntiForgeryToken] */
 
         [Authorize(Roles="Admin")]
-        public IActionResult Adminpage()
+        public IActionResult AdminPage()
         {
             return View();
         }

@@ -1,4 +1,24 @@
 <h1>Hello Admin</h1>
+@*
+         @{
+List<SelectListItem> listItems = new List<SelectListItem>();
+listItems.Add(new SelectListItem
+  {
+      Text = "User",
+      Value = "User",
+      Selected = true
+  });
+listItems.Add(new SelectListItem
+ {
+     Text = "Moderator",
+     Value = "Moderator"
+ });
+listItems.Add(new SelectListItem
+ {
+     Text = "Admin",
+     Value = "Admin"
+ });
+        }
 
 @model Gameblasts.Models.SideNavViewModels.AdminPageChangeRoleViewModel
 @{
@@ -40,7 +60,9 @@
 
 <p>Permission group</p>
 
-@model Gameblasts.Models.SideNavViewModels.AdminPageChangeRoleViewModel
+@Html.DropDownList("Role", listItems, new { @class = "form-control" })
+    </div>
+@model Gameblasts.Models.AdminPageViewModels.AdminPageChangeRoleViewModel
 @{
     ViewData["Title"] = "Change role of user";
 }
@@ -48,17 +70,18 @@
 <h2>@ViewData["Title"]</h2>
 
 
-<form asp-controller="SideNavController" asp-action="AddUserToRole" method="post" class="form-horizontal">
+<form asp-controller="AdminPageController" asp-action="AddUserToRole" method="post" class="form-horizontal">
     <br>
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
             <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email"></span>
             <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="Role" class="col-md-2 control-label"></label>
+        <label asp-for="Role" class="col-md-2 control-label"> Role: (Member, Moderator, Admin)</label>
         <div class="col-md-10">
             <input asp-for="Role" class="form-control" />
             <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->

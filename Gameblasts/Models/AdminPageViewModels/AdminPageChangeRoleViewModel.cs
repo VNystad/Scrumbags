@@ -1,6 +1,6 @@
 using System;
 
-namespace Gameblasts.Models.SideNavViewModels
+namespace Gameblasts.Models.AdminPageViewModels
 {
     public class AdminPageChangeRoleViewModel
     {
