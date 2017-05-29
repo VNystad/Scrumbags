@@ -12,7 +12,6 @@ namespace Gameblasts.Controllers
         private ApplicationDbContext db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly string _externalCookieScheme;
 
         public ProfileController(ApplicationDbContext applicationdbcontext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
@@ -21,27 +20,64 @@ namespace Gameblasts.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Profile(string id)
         {
             if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
-            ApplicationUser user = /*HttpContext.Current.GetOwinContext()
-            .GetUserManager<ApplicationUserManager>().FindById(ID).UserName;*/
-            await _userManager.FindByNameAsync(id);
+            ApplicationUser user = await _userManager.FindByNameAsync(id);
             if(user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
 
             ProfileViewModel model = new ProfileViewModel();
 
             model.Username = user.UserName;
+            model.ImgAdress = user.ImgAdress;
             model.PostCount = user.PostCount;
             model.MemberTitle = user.MemberTitle;
             model.SocialMediaNames = user.SocialMediaNames;
             model.Age = user.Age;
             model.Gender = user.Gender;
             model.Location = user.Location;
-            model.AboutInfo = user.AboutInfo;
+            model.About = user.About;
             model.RegisterDate = user.RegisterDate;
 
-            return View("Index", model);
+            return View("Profile", model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProfile(string id)
+        {
+            if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
+            var user = await _userManager.FindByNameAsync(id);
+            if (user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
+
+            EditProfileViewModel model = new EditProfileViewModel();
+
+            model.Username = id;
+            model.ImgAdress = user.ImgAdress;
+            model.SocialMediaNames = user.SocialMediaNames;
+            model.Age = user.Age;
+            model.Gender = user.Gender;
+            model.Location = user.Location;
+            model.About = user.About;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(EditProfileViewModel m)
+        {
+            var user = await _userManager.FindByNameAsync(m.Username);
+            if (user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
+
+            user.SocialMediaNames = m.SocialMediaNames;
+            user.ImgAdress = m.ImgAdress;
+            user.Age = m.Age;
+            user.Gender = m.Gender;
+            user.Location = m.Location;
+            user.About = m.About;
+
+            db.SaveChanges();
+
+            return RedirectToAction(m.Username, "Profile");
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()

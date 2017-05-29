@@ -40,7 +40,7 @@
                 
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="http://i.imgur.com/mZUAZwB.png"style="width:200px;height:200ppx;"></a>
             </div>
- @await Html.PartialAsync("_LoginPartial")
+            @await Html.PartialAsync("_LoginPartial")
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="http://i.imgur.com/BcyIDYN.png" id="Home"></a></li>
@@ -48,7 +48,7 @@
                     <li><a asp-area="" asp-controller="News" asp-action="News"><img src="http://i.imgur.com/u1ZG8Rg.png"id ="News"></a></li>
                     <li><a asp-area="" asp-controller="Events" asp-action="Contact"><img src="http://i.imgur.com/5afQr4s.png" id="Events"></a></li>                                  
                 </ul>
-               <
+               
                
                 
                 <div>
@@ -56,6 +56,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -1,0 +1,53 @@
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model Gameblasts.Models.ProfileViewModels.ProfileViewModel
+
+<div class="Profile">
+    <!-- EDIT PROFILE LINK NEEDS FIX! ONLY SHOW IF STATEMENT IS TRUE -->
+    @if (User.Identity.Name == Model.Username)
+    {   
+        <a asp-controller="Profile" asp-action="EditProfile" 
+        asp-route-id="@User.Identity.Name">Edit Profile</a>
+        <br>
+    }
+
+    <div class="col-md-3" id="profileImg">
+        @* Her må det kobles til en controller og action for å sende privmld *@
+        <a id="privMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
+        <br>
+        <img src="@Model.ImgAdress" 
+        alt="Image" id="imgpath" style="width:200px;height:240px;">
+        <br>
+        Image not showing? Press button below or edit imgpath.
+        <button type="button" onclick="fixImgPath(@Model.ImgAdress)">fixImgPath</button>
+        <h4>PostCount:</h4> @Model.PostCount
+        <br>
+    </div>
+    <div class="col-md-3" id="userInfo">
+        <h3>@Model.Username</h3>
+        <br>
+        <h4>MemberTitle:</h4> @Model.MemberTitle
+        <br>
+        <h4>Age:</h4> @Model.Age
+        <br>
+        <h4>Location:</h4> @Model.Location
+        <br>
+        <h4>SocialMediaNames:</h4> @Model.SocialMediaNames
+        <br>
+        <h4>Registered:</h4> @Model.RegisterDate
+    </div>
+    <div class="col-md-6" id="about" style="border: 2px black">
+        <h4>About:</h4> @Model.About
+        <br>
+    </div>
+</div>
+
+<script>
+    function fixImgPath(path) 
+    {
+        var img = document.getElementById("imgpath");
+        img.src = path;
+    }
+</script>
+
+<link rel="stylesheet" href="~/css/Profile.css" />

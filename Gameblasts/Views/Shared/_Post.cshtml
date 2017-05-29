@@ -5,7 +5,8 @@
         <div class ="col-sm-4" style="background-color: #808080"> 
             <h2>@Model.Title</h2>
             <p>
-            @Model.User.UserName, @Model.Date, 
+            <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@Model.User.UserName">
+                @Model.User.UserName </a>, @Model.Date, 
             <br>
             <br>
             @Model.SubCategory,

@@ -135,7 +135,26 @@ namespace Gameblasts
                 var userUser = new ApplicationUser ("user@uia.no", "user@uia.no" );
                 await userManager.CreateAsync(userUser, "Password1.");
                 await userManager.AddToRoleAsync(userUser, "Member");
+            }
+
+            user = await userManager.FindByNameAsync("vebis");
+            if(user == null)
+            {
+                // Add one regular user if it doesn't already exists.
+                var userUser = new ApplicationUser ("vebis", "vebis@uia.no" );
+                await userManager.CreateAsync(userUser, "Password1.");
+                await userManager.AddToRoleAsync(userUser, "Member");
+            }
+
+            user = await userManager.FindByNameAsync("marty");
+            if(user == null)
+            {
+                // Add one regular user if it doesn't already exists.
+                var userUser = new ApplicationUser ("marty", "marty@uia.no" );
+                await userManager.CreateAsync(userUser, "Password1.");
+                await userManager.AddToRoleAsync(userUser, "Member");
             }            
+
 
         }
 
@@ -201,6 +220,12 @@ namespace Gameblasts
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                "ProfilePage",
+                "Profile/{id}",
+                new { controller = "Profile", action = "Profile" , }
+                );
             });
         }
     }

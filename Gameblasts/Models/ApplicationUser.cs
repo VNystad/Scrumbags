@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Gameblasts.Extensions;
 using Microsoft.AspNetCore.Authentication;
 
 namespace Gameblasts.Models
@@ -28,7 +27,7 @@ namespace Gameblasts.Models
         {
             this.UserName = UserName;
             this.Email = Email;
-            this.AboutInfo = "Not set";
+            this.About = "Not set";
             this.MemberTitle = "Not set";
             this.Gender = "Not set";
             this.Location = "Not set";
@@ -39,7 +38,8 @@ namespace Gameblasts.Models
         }
 
         [Required]
-        public string AboutInfo { get; set; }
+        public string About { get; set; }
+        public string ImgAdress { get; set;}
         [Required]
         public string MemberTitle { get; set; }
         public string Location { get; set; }
@@ -50,5 +50,8 @@ namespace Gameblasts.Models
         [Required]
         public DateTime RegisterDate { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<Message> Messages { get; set; }
+        
     }
 }

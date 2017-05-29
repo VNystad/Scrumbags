@@ -28,9 +28,10 @@ namespace Gameblasts.Controllers
 
         public async Task<IActionResult> AddPost(AddEditPostViewModel vm, string title, string body, string SubCategory)
         {   
-            
-            Post newpost = new Post(await GetCurrentUserAsync(), title, body, SubCategory);
+            var user = await GetCurrentUserAsync();
+            Post newpost = new Post(user, title, body, SubCategory);
             ApplicationDbContext.Posts.Add(newpost);
+            user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
             return View("../Home/Forum");

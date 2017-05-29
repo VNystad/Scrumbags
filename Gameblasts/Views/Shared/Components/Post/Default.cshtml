@@ -7,15 +7,15 @@
     {
 
         @* Creates and displays individual rows for each post in a grid system. *@
-       <div class="col col-md-8" id="row">
-                <b> Created by: </b> @p.User 
-                    <div class="row"> 
-                    </div> 
-                        <b> Created: </b>@p.Date
-                        <div class="row"> 
-                            </div> 
-                    </div>
-                        }
+        <div class="col col-md-8" id="row">
+            <b> Created by: </b> <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">
+                @p.User </a>
+            <div class="row"> </div> 
+                <b> Created: </b>@p.Date
+                <div class="row"> 
+            </div> 
+        </div>
+    }
         
     </div>
 </div>

@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "New Msg";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<form asp-controller="Profile" asp-action="Msg" method="post" class="form-horizontal">
+    <br>
+    <div class="form-group">
+        <label asp-for="Subject" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Subject" class="form-control" />
+            <!--<span asp-validation-for="ImgAdress" class="text-danger"></span>-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Msg" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Msg" class="form-control" />
+            <!--<span asp-validation-for="Password" class="text-danger"></span>-->
+        </div>
+    </div>
+</form>
