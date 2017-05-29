@@ -54,7 +54,8 @@ namespace Gameblasts.Controllers
         //Burde vært bool check, men får ike dette til per nå.
         public async void AddUserToRole(string email, string rolename)
         {
-            var user = await _userManager.FindByNameAsync(email);
+            //var userManager = serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+            var user = await _userManager.FindByEmailAsync(email);
             if(user == null)
             {
                 return;
