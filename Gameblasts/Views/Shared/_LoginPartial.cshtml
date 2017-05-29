@@ -27,18 +27,12 @@
          <a href="#">About</a>
         <a href="#">Services</a>
         <a asp-controller="Manage" asp-action="Index" title="Manage">Manage Account</a>
-         @if(User.IsInRole("Admin"))
+        @if(User.IsInRole("Admin"))
         {
-            <a asp-area="" asp-controller="AdminPage" asp-action="AdminPage">Admin Page</a>
+            <a asp-area="" asp-controller="SideNav" asp-action="AdminPage" id="AdminPage">AdminPage</a>
         }
         <a href="#">Contact</a>
-     </div>
-  @if(User.IsInRole("Admin"))
-  {
-      <a asp-area="" asp-controller="SideNav" asp-action="AdminPage" id="AdminPage">AdminPage</a>
-  }
-  <a href="#">Contact</a>
-</div>
+    </div>
         }
         else
         {
