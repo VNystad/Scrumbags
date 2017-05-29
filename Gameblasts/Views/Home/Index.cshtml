@@ -13,7 +13,7 @@
 <img src="http://i.imgur.com/9N9Eg2K.png"style="width:700px;height:700ppx;position:relative;">
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1>Hello <a href="/Profile/Index/@User.Identity.Name">@User.Identity.Name</a> and welcome to Gameblasts!</h1>
+    <h1>Hello <a href="/Profile/Profile/@User.Identity.Name">@User.Identity.Name</a> and welcome to Gameblasts!</h1>
 }
 else
 {
@@ -69,7 +69,7 @@ else
             <div id="wrapper">
                 <div id="menu">
                     <!--Gi en velkommen melding til brukeren som er logget inn.-->
-                    <p1 class="welcome">Hello <a href="/Profile/Index/@User.Identity.Name">@User.Identity.Name</a> !</p1>
+                    <p1 class="welcome">Hello <a href="/Profile/Profile/@User.Identity.Name">@User.Identity.Name</a> !</p1>
                     <div style="clear:both"></div>
                 </div>
                 <div id="chatbox">
