@@ -5,12 +5,13 @@ namespace Gameblasts.Models.CategoryModels
 {
     public class CategoryModel
     {
-        public CategoryModel(string name, CategoryModel parent, string imageURL = null)
+        public CategoryModel(string name, CategoryModel parent, string logoURL = null, string imageURL = null)
         {
             this.name = name;
             this.parent = parent;
             this.children = new List<CategoryModel>();
             this.threads = new List<Post>();
+            this.logoURL = logoURL;
             this.imageURL = imageURL;
         }
 
@@ -23,6 +24,8 @@ namespace Gameblasts.Models.CategoryModels
         public string name {get; set;}
 
         public string imageURL {get; set;}
+
+        public string logoURL {get; set;}
 
         public CategoryModel parent {get; set;}
                 

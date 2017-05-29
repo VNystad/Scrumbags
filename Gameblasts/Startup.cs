@@ -158,9 +158,9 @@ namespace Gameblasts
 
         }
 
-        public void CreateCategories(ApplicationDbContext db, string topCatName, string imageURL = null)
+        public void CreateCategories(ApplicationDbContext db, string topCatName, string logoURL = null, string imageURL = null)
         {
-            var TopCat1 = new CategoryModel(topCatName, null, imageURL);
+            var TopCat1 = new CategoryModel(topCatName, null, logoURL, imageURL);
 
             var SubCat1 = new CategoryModel("General Discussion", TopCat1);
             TopCat1.children.Add(SubCat1);
@@ -208,15 +208,15 @@ namespace Gameblasts
 
                     // Add regular data here
                    
-                   CreateCategories(db, "SuperSmash", "http://www.zeldainformer.com/supersmashbrostitle.jpg");
-                   CreateCategories(db, "CsGO", "http://www.esports.je/media/com_jticketing/images/7a8f4596ae3d9971dbc0c620675d1958-Counter-Strike-Global-Offensive-Logo.jpg");
-                   CreateCategories(db, "Dota2", "http://i.imgur.com/soaxrw9.png");
-                   CreateCategories(db, "Hearthstone", "http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240");
-                   CreateCategories(db, "LoL", "http://support.lol.garena.com/img/league-logo.png");
-                   CreateCategories(db, "Overwatch", "https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg");
-                   CreateCategories(db, "QuakeChampions", "https://cdn.mmos.com/wp-content/uploads/2016/06/quake-champions-logo.jpg");
-                   CreateCategories(db, "StarCraft2", "http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png");
-                   CreateCategories(db, "UnrealTournament", "http://2.bp.blogspot.com/-1rPuditcrUw/U2yYnZryA7I/AAAAAAAASpw/64DzBwpZoog/s1600/unreal-tournament.png");
+                   CreateCategories(db, "SuperSmash", "https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg", "https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg");
+                   CreateCategories(db, "CsGO", "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F571714210_1280x720.jpg&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Counter-Strike_Global_Offensive.svg/2000px-Counter-Strike_Global_Offensive.svg.png");
+                   CreateCategories(db, "Dota2", "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/dota_2_official_9.jpg", "http://i.imgur.com/soaxrw9.png");
+                   CreateCategories(db, "Hearthstone", "https://i.ytimg.com/vi/CjLvnY_uPbI/maxresdefault.jpg", "http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240");
+                   CreateCategories(db, "LoL", "https://c1.staticflickr.com/8/7569/16316063786_0bf585b54b_b.jpg", "https://upload.wikimedia.org/wikipedia/commons/d/d3/LoL_New_Logo.png");
+                   CreateCategories(db, "Overwatch", "https://bnetcmsus-a.akamaihd.net/cms/blog_header/v3/V3GMDVG8LC5U1472588787764.jpg", "https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg");
+                   CreateCategories(db, "QuakeChampions", "https://static.gamespot.com/uploads/original/536/5360430/3104922-quake_champions_quakecon_2016_4_1470331175.png", "https://quake.bethesda.net/assets/images/quake-logo--colored-a277cd4f9b.png");
+                   CreateCategories(db, "StarCraft2", "http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg", "http://cdn3.dualshockers.com/wp-content/uploads/2010/08/starcraft_II_logo.png");
+                   CreateCategories(db, "UnrealTournament", "https://de45xmedrsdbp.cloudfront.net/UnrealTournament/malcolmFlak04-1024x576-1024x576-581966620.png", "https://s-media-cache-ak0.pinimg.com/originals/2d/2d/1c/2d2d1c56c8a856cb23dfb70fd111e34a.png");
 
                     // Then create the standard users and roles
                     CreateUsersAndRoles(serviceScope).Wait();

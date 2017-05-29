@@ -31,37 +31,42 @@
 
 @foreach (var e in Model)
 {
+<div class ="container-fluid" id="buttons">
+    <a href="@("#" + e.name + "scroll")" class="btn btn-primary" role="button">@e.name</a>
+</div>
+}
 
-         <div id="@(e.name + 'scroll')"><a href="@(e.name + 'scroll')"></a></div>
-                <div class="col col-md-8" id="row1" style="background-image: url(https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg)"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBros"><id="SuperSmashBros"> <b> <img src ="https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg" id="LoL"></b> </a>     
-                        <h4> Lastest Post: </h4>
-                        @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, 1) )) 
+<div class="container-fluid">
+    <div class="row row-eq-height">
+        <div class="row equal" id="equal">  
+
+        @foreach (var e in Model)
+        {
+
+                <div id="@(e.name + "scroll")"><a href="@(e.name + "scroll")"></a></div>
+                <div class="col col-md-8" id="row1" style="background-image: url(@e.logoURL)"><a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@e.id"> <b> <img src ="@e.imageURL" id="LoL"></b> </a>     
+                    <h4> Lastest Post: </h4>
+                    @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, 1) )) 
                 </div> 
-            <div class="col-6 col-md-4" id="row2"> 
-                <div class ="conatiner">
-                    <div class="container-fluid">
-                        <div class="row equal" id="equal">  
-                            <dt id="Subforum"> 
-                                <div class="row equal" id="equal"> 
-                                <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosGeneral" id="SuperSmashBrosGeneral">General Discussion</a></div>
-                                <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosNews" id="SuperSmashBrosNews">News</a></div>
-                                <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosMedia" id="SuperSmashBrosMedia">Media</a></div>
-                                <div class="col col-md-8" id="row"><a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosLTP" id="SuperSmashBrosLTP">Looking to play</a></div> 
-                                <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Forum" asp-action="SuperSmashBrosSupport" id="SuperSmashBrosSupport">Support</a></div>  
-                                </div>
-                            </dt>       
+                <div class="col-6 col-md-4" id="row2"> 
+                    <div class ="conatiner">
+                         <div class="container-fluid">
+                            <div class="row equal" id="equal">  
+                                <dt id="Subforum"> 
+                                    <div class="row equal" id="equal"> 
+                                        @foreach (var c in e.children)
+                                            {
+                                              <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@c.id">@c.name</a></div>
+                                            }
+                                    </div>
+                                </dt>       
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-             <div class="col-6 col-md-4" id="row">
-                @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(1, e.id, true) )) @* Missing onClick functionality*@
-             </div>
-                @(await Component.InvokeAsync<ViewComponents.CategoryViewComponent>(new Gameblasts.Models.CategoryModels.CategoryFormModel(e.name, -1)))
+            }      
 
-}      
-
-@* Scroll buttons for quick navigation *@
+@* Scroll buttons for quick navigation 
 <div class ="container-fluid" id="buttons">
 <a href="#CsGoScroll"class="btn btn-primary" role="button">CsGo</a>
 <a href="#LeaugeOfLegendsScroll"class="btn btn-primary" role="button">LeaugeOfLegends</a>
@@ -72,9 +77,9 @@
 <a href="#StarCraftIIScroll"class="btn btn-primary" role="button">StarCraftII</a>
 <a href="#UnrealTournamentScroll"class="btn btn-primary" role="button">UnrealTournament</a>
 <a href="#QuakeChampionsScroll"class="btn btn-primary" role="button">QuakeChampions</a>
+</div>
 
-@*The rows for each main category *@
-      </div>
+@*The rows for each main category 
     <div class="container-fluid">
         <div class="row row-eq-height">
             <div class="row equal" id="equal">  
@@ -280,3 +285,4 @@
                     </div>
                 </div>
             </div>
+*@

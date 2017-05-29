@@ -22,15 +22,11 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public IActionResult Forum()
         {
-            var catList = db.Categories.Where(s => s.parent == null).ToList();
+            var catList = db.Categories.Where(s => s.parent == null).Include("children").ToList();
             return View(catList);
         }
 
-<<<<<<< 1daee231d288137c37d26704bfb3dcc93d3e5417
-=======
-        
         [Authorize(Roles = "admin")]
->>>>>>> Added view for adding categories
         [HttpPost]
         public IActionResult CreateCategory(CategoryFormModel model)
         {
@@ -78,9 +74,10 @@ namespace Gameblasts.Controllers
             return View(model);
         }
 
-        public IActionResult OpenCategory(string name)
+        public IActionResult OpenCategory(int id)
         {
-            return ViewComponent("Category", new Gameblasts.Models.CategoryModels.CategoryFormModel(name, -1));
+            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").First();
+            return View("SubCatForum", Category);
         }
     }
 }
