@@ -29,12 +29,12 @@
 
 <h1 id="games"> Games </h1>
 
+<div class ="container-fluid" id="buttons">
 @foreach (var e in Model)
 {
-<div class ="container-fluid" id="buttons">
     <a href="@("#" + e.name + "scroll")" class="btn btn-primary" role="button">@e.name</a>
-</div>
 }
+</div>
 
 <div class="container-fluid">
     <div class="row row-eq-height">
