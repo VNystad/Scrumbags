@@ -1,20 +1,16 @@
-<<<<<<< HEAD
 using Gameblasts.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static Gameblasts.Controllers.ManageController;
 using Microsoft.Extensions.DependencyInjection;
-=======
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
->>>>>>> SB-60 Added controller SideNav, view for adminpage and a currently unused vievcomponent for the adminpage
 
 namespace Gameblasts.Controllers
 {
     public class SideNavController : Controller
     {
-<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
 
         public SideNavController(UserManager<ApplicationUser> um) 
@@ -49,20 +45,16 @@ namespace Gameblasts.Controllers
 /*        [HttpPost]
         [ValidateAntiForgeryToken] */
 
-=======
->>>>>>> SB-60 Added controller SideNav, view for adminpage and a currently unused vievcomponent for the adminpage
         [Authorize(Roles="Admin")]
         public IActionResult Adminpage()
         {
             return View();
         }
-<<<<<<< HEAD
 
         //Burde vært bool check, men får ike dette til per nå.
         public async void AddUserToRole(string email, string rolename)
         {
-            //var userManager = serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByNameAsync(email);
             if(user == null)
             {
                 return;
@@ -92,7 +84,5 @@ namespace Gameblasts.Controllers
             return idResult.Succeeded;
         }
 */
-=======
->>>>>>> SB-60 Added controller SideNav, view for adminpage and a currently unused vievcomponent for the adminpage
     }
 }
