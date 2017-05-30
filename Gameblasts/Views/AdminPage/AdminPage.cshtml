@@ -1,4 +1,5 @@
 <h1>Hello Admin</h1>
+<<<<<<< HEAD
 @*
          @{
 List<SelectListItem> listItems = new List<SelectListItem>();
@@ -62,39 +63,41 @@ listItems.Add(new SelectListItem
 
 @Html.DropDownList("Role", listItems, new { @class = "form-control" })
     </div>
+=======
+>>>>>>> SB-60 Fixed AdminPage. Affected files: AdminPage Controller, Model and View. It now works and it also removes all other roles of the user before adding the role to the user. There is still more things that could be better such as removing current roles in one statement instead of one if-statement for each role and feedback to the view.
 @model Gameblasts.Models.AdminPageViewModels.AdminPageChangeRoleViewModel
 @{
     ViewData["Title"] = "Change role of user";
 }
 
 <h2>@ViewData["Title"]</h2>
-
-
-<form asp-controller="AdminPageController" asp-action="AddUserToRole" method="post" class="form-horizontal">
+<form asp-controller="AdminPage" asp-action="AddUserToRole" method="post" class="form-horizontal">
     <br>
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email"></span>
-            <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Role" class="col-md-2 control-label"> Role: (Member, Moderator, Admin)</label>
         <div class="col-md-10">
             <input asp-for="Role" class="form-control" />
-            <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->
         </div>
     </div>
         <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-Info">Edit</button>
+            <button type="submit" class="btn btn-Info">Give role</button>
         </div>
     </div>
+<<<<<<< HEAD
 </form>
 
 @* uncomment to use script, remember to change to correct script
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }*@
+=======
+</form>
+>>>>>>> SB-60 Fixed AdminPage. Affected files: AdminPage Controller, Model and View. It now works and it also removes all other roles of the user before adding the role to the user. There is still more things that could be better such as removing current roles in one statement instead of one if-statement for each role and feedback to the view.
