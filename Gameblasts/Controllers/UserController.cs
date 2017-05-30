@@ -77,8 +77,9 @@ namespace Gameblasts.Controllers
             user.About = m.About;
 
             db.SaveChanges();
-
-            return RedirectToAction(m.Username, "Profile");
+            return Redirect(user.UserName);
+            //return View("Profile", model);
+            //return RedirectToAction(m.Username, "Profile");
         }
 
         [HttpGet]

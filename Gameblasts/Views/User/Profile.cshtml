@@ -5,7 +5,7 @@
 <div class="Profile">
     @if (User.Identity.Name == Model.Username)
     {   
-        <a asp-controller="User" asp-action="EditProfile">Edit Profile</a>
+        <a asp-route="EditProfile">Edit Profile</a>
         <br>
     }
     else
