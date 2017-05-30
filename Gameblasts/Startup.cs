@@ -250,6 +250,12 @@ namespace Gameblasts
                 );
 
                 routes.MapRoute(
+                    "PrivMsg",
+                    "NewMsg/{id?}",
+                    new { controller = "User", action = "NewMessage"}
+                );
+
+                routes.MapRoute(
                     "UserProfile",
                     "User/{id}",
                     new { controller = "User", action = "Profile"}
