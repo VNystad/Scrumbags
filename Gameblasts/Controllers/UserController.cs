@@ -85,20 +85,22 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public async Task<IActionResult> NewMessage(string id)
         {
+            if(id == null)
+            {
+                var model1 = new MessageViewModel();
+                model1.Subject = "";
+                model1.Msg = "";
+                model1.Date = DateTime.Now;
+
+                return View("NewMessage", model1);
+            }
+            
             var temp = await _userManager.FindByNameAsync(id);
             if (temp == null) return Content("User doesnt excist");
             
-            string receiver = id;
             var model = new MessageViewModel();
-            if (receiver == null)
-                model.Receiver = "";
-            else
-                model.Receiver = receiver;
-
-            model.Subject = "";
-            model.Msg = "";
-            model.Date = DateTime.Now;
-
+            model.Receiver = id;
+            model.Sender = temp.UserName;
             return View("NewMessage", model);
         }
 
