@@ -237,14 +237,28 @@ namespace Gameblasts
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    "ProfilePage",
+                    "Profile/{id}",
+                    new { controller = "Profile", action = "Profile"}
+                );
+
+                routes.MapRoute(
+                    "Inbox",
+                    "Profile/{action}",
+                    new { controller = "Profile", action = "Inbox"}
+                );
+
+                routes.MapRoute(
+                    "EditProfile",
+                    "Profile/{action}",
+                    new { controller = "Profile", action = "EditProfile"}
+                );
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapRoute(
-                "ProfilePage",
-                "Profile/{id}",
-                new { controller = "Profile", action = "Profile" , }
-                );
+                /**/
             });
         }
     }
