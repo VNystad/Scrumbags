@@ -5,12 +5,12 @@
 <div class="Profile">
     @if (User.Identity.Name == Model.Username)
     {   
-        <a asp-controller="Profile" asp-action="EditProfile">Edit Profile</a>
+        <a asp-controller="User" asp-action="EditProfile">Edit Profile</a>
         <br>
     }
     else
     {
-        <a id="privMsg" asp-controller="Profile" asp-action="NewMessage" asp-route-id="@Model.Username"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
+        <a id="privMsg" asp-controller="User" asp-action="NewMessage" asp-route-id="@Model.Username"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
         <br>
     }
 

@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gameblasts.Controllers
 {
-    public class ProfileController : Controller
+    public class UserController : Controller
     {
         private ApplicationDbContext db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public ProfileController(ApplicationDbContext applicationdbcontext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UserController(ApplicationDbContext applicationdbcontext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             db = applicationdbcontext;
             _userManager = userManager;
