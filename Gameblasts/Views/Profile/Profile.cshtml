@@ -3,18 +3,19 @@
 @model Gameblasts.Models.ProfileViewModels.ProfileViewModel
 
 <div class="Profile">
-    <!-- EDIT PROFILE LINK NEEDS FIX! ONLY SHOW IF STATEMENT IS TRUE -->
     @if (User.Identity.Name == Model.Username)
     {   
-        <a asp-controller="Profile" asp-action="EditProfile" 
-        asp-route-id="@User.Identity.Name">Edit Profile</a>
+        <a asp-controller="Profile" asp-action="EditProfile">Edit Profile</a>
+        <br>
+    }
+    else
+    {
+        <a id="privMsg" asp-controller="Profile" asp-action="NewMessage" asp-route-id="@Model.Username"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
         <br>
     }
 
     <div class="col-md-3" id="profileImg">
-        @* Her må det kobles til en controller og action for å sende privmld *@
-        <a id="privMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
-        <br>
+        
         <img src="@Model.ImgAdress" 
         alt="Image" id="imgpath" style="width:200px;height:240px;">
         <br>

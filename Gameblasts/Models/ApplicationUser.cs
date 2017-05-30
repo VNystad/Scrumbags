@@ -35,6 +35,7 @@ namespace Gameblasts.Models
             this.PostCount = 0;
             this.Age = 0;
             this.RegisterDate = DateTime.Now.Date;
+            this.UnreadMsg = false;
         }
 
         [Required]
@@ -47,6 +48,8 @@ namespace Gameblasts.Models
         public string SocialMediaNames { get; set; }
         public int Age { get; set; }
         public int PostCount { get; set; }
+        public int MsgSent { get; set; }
+        public bool UnreadMsg { get; set; }
         [Required]
         public DateTime RegisterDate { get; set; }
         public virtual ICollection<Post> Posts { get; set; }

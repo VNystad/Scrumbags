@@ -1,5 +1,4 @@
 @using Microsoft.AspNetCore.Identity
-@using Gameblasts.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -10,6 +9,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Profile" asp-action="Profile" asp-route-id="@UserManager.GetUserName(User)">@UserManager.GetUserName(User)</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Profile" asp-action="Inbox">Inbox</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>

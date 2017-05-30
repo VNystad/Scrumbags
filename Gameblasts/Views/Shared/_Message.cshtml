@@ -1,0 +1,22 @@
+@model Gameblasts.Models.Post
+
+<div id="messageContainer">
+    <div id="header">
+        @Model.Subject, From: </b> <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User"> @Model.User </a> <b> Sent: </b>@Model.Date
+    </div>
+    <a asp-controller="Profile" asp-action="DeleteMsg" asp-route-id="@Model.Id">delete</a>
+    <div id="message">
+        @Model.Msg
+    </div>
+</div>
+
+        @* Creates and displays individual rows for each post in a grid system. 
+        <div class="col col-md-8" id="row">
+            <b> @Model.Subject, From: </b> <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User"> @p.User </a> <b> Sent: </b>@p.Date
+            <div class="row"> 
+
+            </div> 
+            <div class="row"> 
+                @Model.Msg
+            </div> 
+        </div>*@

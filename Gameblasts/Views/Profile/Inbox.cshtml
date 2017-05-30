@@ -1,0 +1,15 @@
+@model IEnumerable<Gameblasts.Models.Message>
+
+@{
+    ViewData["Title"] = "Inbox";
+}
+
+<h2>@ViewData["Title"]</h2> 
+
+<a asp-controller="Profile" asp-action="NewMessage" asp-route-id="Fill" class="btn btn-info" role="button">Send a new msg</a>
+
+<div class="form-group">
+ 
+   @(await Component.InvokeAsync<ViewComponents.Message>())
+    
+</div>

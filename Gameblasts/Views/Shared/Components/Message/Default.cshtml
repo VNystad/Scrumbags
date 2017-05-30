@@ -1,0 +1,11 @@
+@model IEnumerable<Gameblasts.Models.Post>
+
+ <div class="container-fluid">
+    <div class="row equal" id="equal">
+        
+    @foreach(var m in Model.Reverse())
+    {
+        Html.RenderPartial("_Message", m);
+    }
+    </div>
+</div>

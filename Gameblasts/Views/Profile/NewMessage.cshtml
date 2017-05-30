@@ -1,3 +1,5 @@
+@model Gameblasts.Models.MessageViewModels.MessageViewModel
+
 @{
     ViewData["Title"] = "New Msg";
 }
@@ -5,7 +7,14 @@
 <h2>@ViewData["Title"]</h2>
 
 
-<form asp-controller="Profile" asp-action="Msg" method="post" class="form-horizontal">
+<form asp-controller="Profile" asp-action="NewMessage" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="Receiver" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Receiver" value="@Model.Receiver" class="form-control" />
+            <!--<span asp-validation-for="ImgAdress" class="text-danger"></span>-->
+        </div>
+    </div>
     <br>
     <div class="form-group">
         <label asp-for="Subject" class="col-md-2 control-label"></label>
@@ -21,4 +30,10 @@
             <!--<span asp-validation-for="Password" class="text-danger"></span>-->
         </div>
     </div>
+
+    <div class="form-group">
+            <div class="col-md-offset-2 cold-md-10">
+                <input type="submit" value="Send">
+            </div>
+        </div>
 </form>

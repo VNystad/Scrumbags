@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Gameblasts.Data;
 using Gameblasts.Models;
+using Gameblasts.Models.MessageViewModels;
 using Gameblasts.Models.ProfileViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -43,15 +45,14 @@ namespace Gameblasts.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditProfile(string id)
+        public async Task<IActionResult> EditProfile()
         {
-            if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
-            var user = await _userManager.FindByNameAsync(id);
+            var user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
 
             EditProfileViewModel model = new EditProfileViewModel();
 
-            model.Username = id;
+            model.Username = user.UserName;
             model.ImgAdress = user.ImgAdress;
             model.SocialMediaNames = user.SocialMediaNames;
             model.Age = user.Age;
@@ -78,6 +79,54 @@ namespace Gameblasts.Controllers
             db.SaveChanges();
 
             return RedirectToAction(m.Username, "Profile");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NewMessage(string id)
+        {
+            var temp = await _userManager.FindByNameAsync(id);
+            if (temp == null) return Content("User doesnt excist");
+            
+            string receiver = id;
+            var model = new MessageViewModel();
+            if (receiver == null)
+                model.Receiver = "";
+            else
+                model.Receiver = receiver;
+
+            model.Subject = "";
+            model.Msg = "";
+            model.Date = DateTime.Now;
+
+            return View("NewMessage", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NewMessage(MessageViewModel model)
+        {
+            model.Sender = HttpContext.User.Identity.Name;
+            ApplicationUser user = await _userManager.FindByNameAsync(model.Receiver);
+            
+            Message msg = new Message(
+                model.Subject, model.Msg,
+                model.Sender, user);
+            
+            db.Add(msg);
+            ApplicationUser sender = await _userManager.FindByNameAsync(model.Sender);
+            sender.MsgSent++;
+
+            user.UnreadMsg = true;
+
+            db.SaveChanges();
+            
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Inbox()
+        {
+
+            
+            return View();
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
