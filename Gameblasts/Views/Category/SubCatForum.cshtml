@@ -47,9 +47,11 @@
 
 
 <br><br><br><br>
+@if(User.IsInRole("Admin"))
+{
    @using (Html.BeginForm("AddCategory", "Category", "CategoryFormModel"))
     {
         @Html.Hidden("parentID", @Model.id)
         <button type="submit" class="btn btn-default">Add subcategory</button>
     }
-
+}
