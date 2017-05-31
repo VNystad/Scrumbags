@@ -24,6 +24,7 @@ function showDiv(ID) {
                 <b> Created by: </b><a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">@p.User </a>
                 <br><b> at: </b> @p.Date
                 <br><br>
+                <br><b> in: </b> @p.SubCategory
                 <p> @p.Body</p>
                 <input type="button" name="hiddenReplies" value="Show Replies" onclick="showDiv('@("hiddenReplies" + p.Id)')"/>
                 <input type="button" name="hiddenDiv" value="Add Reply" onclick="showDiv('@("hiddenDiv" + p.Id)')"/>

@@ -15,13 +15,14 @@ namespace Gameblasts.Models
     {
 
         public Post(){}
-        public Post(ApplicationUser user, string title, string body, int subcategory = 0)
+        public Post(ApplicationUser user, string title, string body, int subcategory, int parentPost = 0)
         {
             this.Title = title;
             this.User = user;
             this.Body = body;
             this.Date = DateTime.Now;
             this.SubCategory = subcategory;
+            this.parentPost = parentPost;
             this.replies = new List<Post>();
         }
 
@@ -41,8 +42,10 @@ namespace Gameblasts.Models
         [Required]
         public string Body{get; set;}
 
+        [Required]
         public int SubCategory{get; set;}
 
+        public int parentPost{get; set;}
         public List<Post> replies{get; set;}
     }
 }

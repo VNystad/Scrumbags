@@ -71,8 +71,9 @@ namespace Gameblasts.Controllers
             var parentCat = await db.Categories.Where(c => c.id == model.SubCategory).Include("children").FirstAsync();
             var user =  await UserManager.GetUserAsync(HttpContext.User);
             var thread = new CategoryModel(model.Title, db.Categories.Find(model.SubCategory));
-            Post OP = new Post(user, model.Title, model.Body, model.Id);
             db.Categories.Add(thread);
+            db.SaveChanges();
+            Post OP = new Post(user, model.Title, model.Body, thread.id);
             thread.threads.Add(OP);
             db.Posts.Add(OP);
             parentCat.children.Add(thread);

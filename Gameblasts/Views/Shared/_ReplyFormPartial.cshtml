@@ -15,7 +15,8 @@
                 <input asp-for="Title">
             </div>
              <div class="col-md-2" id="blank">   
-                <input asp-for="SubCategory" type="hidden" value=@Model.Id>
+                <input asp-for="SubCategory" type="hidden" value=@Model.SubCategory>
+                <input asp-for="parentPost" type="hidden" value=@Model.Id>
             </div>
             <div class="row"></div>
             <div class="row">

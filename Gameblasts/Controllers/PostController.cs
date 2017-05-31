@@ -48,15 +48,15 @@ namespace Gameblasts.Controllers
         public async Task<IActionResult> AddReply(Post model)
         {
             var user = await GetCurrentUserAsync();
-            Post newpost = new Post(user, model.Title, model.Body);
-            var parent = await ApplicationDbContext.Posts.Where( s => s.Id == model.SubCategory).Include("replies").FirstAsync();
+            Post newpost = new Post(user, model.Title, model.Body, model.SubCategory);
+            var parent = await ApplicationDbContext.Posts.Where( s => s.Id == model.parentPost).Include("replies").FirstAsync();
             parent.replies.Add(newpost);
             ApplicationDbContext.Posts.Add(newpost);
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
-            var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).Include("children").Include("threads").ToList();
-            return View("../Category/Forum", catList);
+            var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").First();
+            return View("../Category/Thread", thread);
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
