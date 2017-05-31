@@ -3,7 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using Gameblasts.Models.CategoryModels;
 
 namespace Gameblasts.Models
-{
+{   
+    /** Post class:
+    *   Parameter: user(ApplicationUser, ownerofpost), title(string, body(string), subcategory(string)
+    *   Properties: Id(int, Primarykey), Title(string), User(ApplicationUser)
+    *               Date(Time when post was created), Body(string, Content of post), 
+    *               SubCategory(string, the category the post was created in).
+    */
     public class Post
     {
 

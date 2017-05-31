@@ -9,19 +9,18 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Gameblasts.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
+    /** ApplicationUser class:
+    *   Parameter:  UserName(string), Email(string)
+    *   Properties: ImgAdress(string, url to the profile image), MemberTitle(string, ranking system in forum),
+    *               Location(string, user location), Gender(string), SocialMediaNames(string), 
+    *               Age(int, user age), PostCount(int, count of posts made by user), 
+    *               MsgSent(int, count of msgs sent by user, not working), 
+    *               UnreadMsg(bool, true if user got an unread msg),
+    *               RegisterDate(Date), Posts(Post, List of posts the user has made),
+    *               Messages(Message, List of messages the user had made, not working).
+    */
     public class ApplicationUser : IdentityUser
     {
-        /*public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
-                UserManager<ApplicationUser> manager, string authenticationType)
-        {
-            // Note the authenticationType must match the one defined in 
-            // CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            // Add custom user claims here
-            return userIdentity;
-        }*/
-
         public ApplicationUser(){}
         public ApplicationUser(string UserName, string Email)
         {

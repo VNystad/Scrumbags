@@ -22,6 +22,7 @@ namespace Gameblasts.Controllers
             _signInManager = signInManager;
         }
 
+        ///Profile returns the userprofile of id(username), returns with viewmodel
         public async Task<IActionResult> Profile(string id)
         {
             if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
@@ -44,6 +45,7 @@ namespace Gameblasts.Controllers
             return View("Profile", model);
         }
 
+        ///Returns a model to a view to edit userprofile
         [HttpGet]
         public async Task<IActionResult> EditProfile()
         {
@@ -63,6 +65,7 @@ namespace Gameblasts.Controllers
             return View(model);
         }
 
+        ///Updates the userprofile, takes in a viewmodel with variables to update. Returns to userprofile.
         [HttpPost]
         public async Task<IActionResult> EditProfile(EditProfileViewModel m)
         {
@@ -78,10 +81,9 @@ namespace Gameblasts.Controllers
 
             db.SaveChanges();
             return Redirect(user.UserName);
-            //return View("Profile", model);
-            //return RedirectToAction(m.Username, "Profile");
         }
 
+        ///Parameter: username of the receiver, returns view for newmessage with viewmodel including the username. (Messages not working!)
         [HttpGet]
         public async Task<IActionResult> NewMessage(string id)
         {
@@ -104,6 +106,7 @@ namespace Gameblasts.Controllers
             return View("NewMessage", model);
         }
 
+        ///Parameter: viewmodel for the message, returns to homepage. (Messages not working!)
         [HttpPost]
         public async Task<IActionResult> NewMessage(MessageViewModel model)
         {
@@ -125,18 +128,12 @@ namespace Gameblasts.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// Returns view of inbox. (Doesnt work properly, need to get messages from db.)
         public async Task<IActionResult> Inbox()
         {
 
             
             return View();
         }
-
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return _userManager.GetUserAsync(HttpContext.User);
-        }
-
-        
     }
 }
