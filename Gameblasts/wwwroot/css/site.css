@@ -1,7 +1,7 @@
 body {
     padding-top: 170px;
     padding-bottom: 20px;
-    background-image: url("http://i.imgur.com/N71e6M0.png");
+    background-image: url("/images/Background.png");
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -18,8 +18,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+    border-radius: 10px;
 }
-
+#textarea2 {
+    max-width: 1000px;
+    border-radius: 10px;
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -106,10 +110,10 @@ textarea {
 #Home
 {
     position: absolute;
-    top: -10px;
+    top: 40px;
     left: 20px;
     z-index: 1;
-    height: 150px;
+    max-height: 60px;
     max-width: 150px;
 
 }
@@ -117,30 +121,30 @@ textarea {
 #Forums
 {
     position: absolute;
-    top: -10px;
+    top: 40px;
     left: 100px;
     z-index: 1;
-    height: 150px;
+    max-height: 60px;
     max-width: 150px;
 }
  
  #News
  {
     position: absolute;
-    top: -10px;
+    top: 40px;
     left: 220px;
     z-index: 1;
-    height: 150px;
+    max-height: 60px;
     max-width: 150px;
  }
 
 #Events
 {
     position: absolute;
-    top: -10px;
+    top: 40px;
     left: 300px; 
     z-index: 1;
-    height: 150px;
+    max-height: 60px;
     max-width: 150px;
 }
 
@@ -175,6 +179,14 @@ textarea {
     outline-color: white;
     border-color: white;
     background-color: white;
+}
+
+#submitreply {
+     outline-color: white;
+    border-color: white;
+    background-color: white;
+    max-width: 100px;
+
 }
 
 /* Adjustments for the size of images used in the forums */
@@ -241,4 +253,26 @@ textarea {
 
 #white {
     color: white;
+}
+
+.col-md-8{
+  border-radius: 10px;
+  max-width: 1000px !important;
+  
+}
+
+.col-md-4{
+  border-radius: 10px;
+  max-width: 1000px !important;
+ 
+}
+
+.col-md-6{
+  border-radius: 10px;
+max-width: 1000px !important;
+}
+
+
+#created{
+    font-size: x-small;
 }

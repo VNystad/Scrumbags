@@ -3,32 +3,25 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
-@{
-    ViewData["Title"] = "Contact";
-}
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-
-
     <p> @Model.SubCategory</p>
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1> Submit a Thread!</h1>
+    <h1 id="white" style="padding-left: 300px"> Create a new Thread</h1>
     <form asp-controller="Category" asp-action="CreateThread" class="form-horizontal" role="form">
-        <div class="form-group" style="background-color: #808080">
+        <div class="form-group">
             <br>
-            <label asp-for="Title" class="col-md-2 control-label"></label>
-            <div class="col-md-2">
-                <input asp-for="Title">
+            <label id="white" asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col col-md-8">
+                <input id="textarea2" asp-for="Title" style="width:600px">
             </div>
-            <label asp-for="SubCategory" class="col-md-2 control-label"></label>
-             <div class="col-md-2">   
                 <input asp-for="SubCategory" type="hidden" value=@Model.SubCategory>
+                 <br>
+                 <br>
+            <label id="white" asp-for="Body" class="col-md-2 control-label"></label>
+            <div class="col col-md-8">
+                <textarea id="textarea2" asp-for="Body"style="width:600px; height: 200px" rows="5"></textarea>
             </div>
-            <label asp-for="Body" class="col-md-2 control-label"></label>
-            <div class="col-md-2">
-                <textarea asp-for="Body" rows="5"></textarea>
-            </div>
+
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 cold-md-10">

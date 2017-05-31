@@ -13,30 +13,39 @@ function showDiv(ID) {
 }
 </script>
 
+
+
+
 @if (@Model.parent != null)
 {
-    <h1> @Model.parent.name </h1>
+    <h1 id="white"> @Model.parent.name </h1>
 }
-<h2> @Model.name</h2>
+<h2 id="white"> @Model.name</h2>
 
+<div>
+<a asp-area=""button type="button" class="btn btn-primary" asp-controller="Category" asp-action="AddThread" asp-route-id="@Model.id">Create a new thread</a>
+</div>
+<br>
+</br>
+<div class="row">
+ <div class="col-sm-4" style="background-color: white">Title</div>
+ <div class="col-sm-4" style="background-color: white">Author</div>
+ <div class="col-sm-4" style="background-color: white">Created</div>
+</div>
+<div>
 @if (@Model.children.Count != 0)
 {
-    <div class="col-6 col-md-4" id="row2"> 
-                    <div class ="conatiner">
-                         <div class="container-fluid">
-                            <div class="row equal" id="equal">  
-                                <dt id="Subforum"> 
-                                    <div class="row equal" id="equal"> 
-                                        @foreach (var c in @Model.children)
-                                            {
-                                              <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenThread" asp-route-id="@c.id">@c.name</a></div>
-                                            }
-                                    </div>
-                                </dt>       
-                            </div>
-                        </div>
-                    </div>
-                </div>
+     
+    <div class="col col-lg-4" id="row2"> 
+        <div class ="conatiner">
+            @for (var c = @Model.children.Count() - 1; c >= 0; c--)
+                {
+                       <div class="col-sm-4" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenThread" asp-route-id="@Model.children[c].id">@Model.children[c].name</a></div>
+                          <div class="col-sm-4" style="background-color: white">.col-sm-4</div>
+ <div class="col-sm-4" style="background-color: white">.col-sm-4</div>                  }
+                      
+                }
+        </div>
+     </div>
 }
-
-<a asp-area="" asp-controller="Category" asp-action="AddThread" asp-route-id="@Model.id">Add thread</a>
+</div>
