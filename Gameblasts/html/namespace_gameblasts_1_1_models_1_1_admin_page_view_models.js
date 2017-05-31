@@ -1,0 +1,4 @@
+var namespace_gameblasts_1_1_models_1_1_admin_page_view_models =
+[
+    [ "AdminPageChangeRoleViewModel", "class_gameblasts_1_1_models_1_1_admin_page_view_models_1_1_admin_page_change_role_view_model.html", "class_gameblasts_1_1_models_1_1_admin_page_view_models_1_1_admin_page_change_role_view_model" ]
+];

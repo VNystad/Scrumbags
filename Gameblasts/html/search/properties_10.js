@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['unreadmsg',['UnreadMsg',['../class_gameblasts_1_1_models_1_1_application_user.html#a613e0549a7ee31168aa0f4c234160fe9',1,'Gameblasts::Models::ApplicationUser']]],
+  ['user',['User',['../class_gameblasts_1_1_models_1_1_chat_message.html#a0d04c9514359dc29d0ce37326d650cc2',1,'Gameblasts.Models.ChatMessage.User()'],['../class_gameblasts_1_1_models_1_1_post.html#ade222f29e71962c2569875071caa8d7d',1,'Gameblasts.Models.Post.User()']]],
+  ['username',['UserName',['../class_gameblasts_1_1_models_1_1_account_view_models_1_1_register_view_model.html#a0ac3a4623bc1d653421b82118532f534',1,'Gameblasts.Models.AccountViewModels.RegisterViewModel.UserName()'],['../class_gameblasts_1_1_models_1_1_account_view_models_1_1_login_view_model.html#a918939e410c80fb7129ae4036ddb849a',1,'Gameblasts.Models.AccountViewModels.LoginViewModel.Username()'],['../class_gameblasts_1_1_models_1_1_profile_view_models_1_1_edit_profile_view_model.html#a43e1a6eea655de30cc6cd2a9e78c972c',1,'Gameblasts.Models.ProfileViewModels.EditProfileViewModel.Username()'],['../class_gameblasts_1_1_models_1_1_profile_view_models_1_1_profile_view_model.html#ab944a3d323a5ae9dbe55a03f69180a37',1,'Gameblasts.Models.ProfileViewModels.ProfileViewModel.Username()']]]
+];
