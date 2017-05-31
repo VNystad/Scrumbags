@@ -4,11 +4,11 @@
     ViewData["Title"] = "Inbox";
 }
 
-<h2>@ViewData["Title"]</h2> 
+<h2  style="color:white">@ViewData["Title"]</h2> 
 
 <a asp-route="PrivMsg" class="btn btn-info" role="button">Send a new msg</a>
 
-<div class="form-group">
+<div class="form-group"  style="color:white">
  
    @(await Component.InvokeAsync<ViewComponents.Message>())
     
