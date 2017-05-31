@@ -44,6 +44,21 @@ namespace Gameblasts.Controllers
             return View("../Category/Forum", catList);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddReply(Post model)
+        {
+            var user = await GetCurrentUserAsync();
+            Post newpost = new Post(user, model.Title, model.Body);
+            var parent = await ApplicationDbContext.Posts.Where( s => s.Id == model.SubCategory).Include("replies").FirstAsync();
+            parent.replies.Add(newpost);
+            ApplicationDbContext.Posts.Add(newpost);
+            user.PostCount++;
+            ApplicationDbContext.SaveChanges();
+            
+            var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).Include("children").Include("threads").ToList();
+            return View("../Category/Forum", catList);
+        }
+
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
             return UserManager.GetUserAsync(HttpContext.User);

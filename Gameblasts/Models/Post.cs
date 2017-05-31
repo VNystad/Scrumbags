@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Gameblasts.Models.CategoryModels;
 
@@ -14,13 +15,14 @@ namespace Gameblasts.Models
     {
 
         public Post(){}
-        public Post(ApplicationUser user, string title, string body, int subcategory)
+        public Post(ApplicationUser user, string title, string body, int subcategory = 0)
         {
             this.Title = title;
             this.User = user;
             this.Body = body;
             this.Date = DateTime.Now;
             this.SubCategory = subcategory;
+            this.replies = new List<Post>();
         }
 
         [Required]
@@ -39,7 +41,8 @@ namespace Gameblasts.Models
         [Required]
         public string Body{get; set;}
 
-        [Required]
         public int SubCategory{get; set;}
+
+        public List<Post> replies{get; set;}
     }
 }

@@ -208,9 +208,9 @@ namespace Gameblasts
 
                     // Add regular data here
                    
-                   CreateCategories(db, "SuperSmash", "https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg", "https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg");
                    CreateCategories(db, "CsGO", "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F571714210_1280x720.jpg&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Counter-Strike_Global_Offensive.svg/2000px-Counter-Strike_Global_Offensive.svg.png");
                    CreateCategories(db, "Dota2", "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/dota_2_official_9.jpg", "http://i.imgur.com/soaxrw9.png");
+                   CreateCategories(db, "SuperSmash", "https://c1.staticflickr.com/8/7585/16384472053_7af64c250a_b.jpg", "https://s-media-cache-ak0.pinimg.com/originals/ae/81/0e/ae810e01a95d5962a314c4f49f9c1145.jpg");
                    CreateCategories(db, "Hearthstone", "https://i.ytimg.com/vi/CjLvnY_uPbI/maxresdefault.jpg", "http://www.kassquatch.com/wp-content/uploads/2014/05/Hearthstone_Logo.png?w=240");
                    CreateCategories(db, "LoL", "https://c1.staticflickr.com/8/7569/16316063786_0bf585b54b_b.jpg", "https://upload.wikimedia.org/wikipedia/commons/d/d3/LoL_New_Logo.png");
                    CreateCategories(db, "Overwatch", "https://bnetcmsus-a.akamaihd.net/cms/blog_header/v3/V3GMDVG8LC5U1472588787764.jpg", "https://upload.wikimedia.org/wikipedia/commons/1/10/Overwatch_text_logo.svg");

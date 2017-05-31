@@ -170,6 +170,13 @@ textarea {
     background-color: #f1f1f1;
 }
 
+#blank
+{
+    outline-color: white;
+    border-color: white;
+    background-color: white;
+}
+
 /* Adjustments for the size of images used in the forums */
 
 #CsGo {

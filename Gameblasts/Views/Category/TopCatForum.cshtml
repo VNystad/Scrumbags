@@ -1,17 +1,6 @@
 @model Gameblasts.Models.CategoryModels.CategoryModel
-@using Gameblasts.Models
 <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css"/>
 
-<script>
-function showDiv(ID) {
-    var x = document.getElementById(ID);
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-}
-</script>
 
 @if (@Model.parent != null)
 {
@@ -29,7 +18,7 @@ function showDiv(ID) {
                                     <div class="row equal" id="equal"> 
                                         @foreach (var c in @Model.children)
                                             {
-                                              <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenThread" asp-route-id="@c.id">@c.name</a></div>
+                                              <div class="col col-md-8" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@c.id">@c.name</a></div>
                                             }
                                     </div>
                                 </dt>       
@@ -38,5 +27,19 @@ function showDiv(ID) {
                     </div>
                 </div>
 }
+<div class="row"></div>
 
-<a asp-area="" asp-controller="Category" asp-action="AddThread" asp-route-id="@Model.id">Add thread</a>
+@if (Model.threads.Count != 0)
+{
+    @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(10, @Model.id) ))
+}
+
+<br><br><br><br>
+@if(User.IsInRole("Admin"))
+{
+   @using (Html.BeginForm("AddCategory", "Category", "CategoryFormModel"))
+    {
+        @Html.Hidden("parentID", @Model.id)
+        <button type="submit" class="btn btn-default">Add subcategory</button>
+    }
+}

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Gameblasts.Data;
 using Gameblasts.Models;
 using Gameblasts.Models.CategoryModels;
 using Gameblasts.Models.PostViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +16,14 @@ namespace Gameblasts.Controllers
     {
         private ApplicationDbContext db;
 
-        public CategoryController(ApplicationDbContext db)
+        private UserManager<ApplicationUser> UserManager { get; set; }
+        private readonly SignInManager<ApplicationUser> SignInManager;
+
+        public CategoryController(ApplicationDbContext db, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.db = db;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
         }
         
         [HttpGet]
@@ -52,6 +59,28 @@ namespace Gameblasts.Controllers
             return View(model);
         }
 
+        
+        public IActionResult AddThread(int id)
+        {
+            var model = new Post(null, null, null, id);
+            return View(model);
+        }
+
+        public async Task<IActionResult> CreateThread(Post model)
+        {
+            var parentCat = await db.Categories.Where(c => c.id == model.SubCategory).Include("children").FirstAsync();
+            var user =  await UserManager.GetUserAsync(HttpContext.User);
+            var thread = new CategoryModel(model.Title, db.Categories.Find(model.SubCategory));
+            Post OP = new Post(user, model.Title, model.Body, model.Id);
+            db.Categories.Add(thread);
+            thread.threads.Add(OP);
+            db.Posts.Add(OP);
+            parentCat.children.Add(thread);
+            db.SaveChanges();
+
+           return View("thread", thread);
+        }
+
         [HttpPost]
         public IActionResult AddSubCategoryDemo(CategoryFormModel model)
         {
@@ -78,6 +107,17 @@ namespace Gameblasts.Controllers
         {
             var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").First();
             return View("SubCatForum", Category);
+        }
+        public IActionResult OpenTopCategory(int id)
+        {
+            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").First();
+            return View("TopCatForum", Category);
+        }
+
+        public IActionResult OpenThread(int id)
+        {
+            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").Include("parent").First();
+            return View("Thread", Category);
         }
     }
 }

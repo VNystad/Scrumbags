@@ -1,0 +1,23 @@
+@model Gameblasts.Models.CategoryModels.CategoryModel
+<link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css"/>
+
+
+
+<h1> @Model.parent.name </h1>
+<h2> @Model.name</h2>
+
+@if (Model.threads.Count != 0)
+{
+    @(await Component.InvokeAsync<ViewComponents.Post>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(10, @Model.id) ))
+}
+
+<br><br>
+@using (Html.BeginForm("ForumPost", "Category"))
+    {
+        @Html.Hidden("id", @Model.id)
+        @Html.Hidden("name", @Model.name)
+        @Html.Hidden("parent", @Model.parent)
+        @Html.Hidden("children", @Model.children)
+        @Html.Hidden("threads", @Model.threads)
+        <button type="submit" class="btn btn-default">Create a new post</button>
+    }
