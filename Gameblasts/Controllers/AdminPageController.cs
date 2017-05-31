@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static Gameblasts.Controllers.ManageController;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Gameblasts.Models.AdminPageViewModels;
+
 namespace Gameblasts.Controllers
 {
     public class AdminPageController : Controller

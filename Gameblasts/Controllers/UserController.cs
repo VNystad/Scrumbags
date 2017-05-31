@@ -133,8 +133,6 @@ namespace Gameblasts.Controllers
         /// Returns view of inbox. (Doesnt work properly, need to get messages from db.)
         public async Task<IActionResult> Inbox()
         {
-
-            
             return View();
         }
     }

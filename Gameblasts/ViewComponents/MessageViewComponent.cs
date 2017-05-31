@@ -29,7 +29,7 @@ namespace ViewComponents
                             .Where(m => (m.Receiver.Equals(user.UserName))).ToList();
             if(msgs == null ||msgs.LongCount() == 0)*/
                 return Content(string.Empty);
-            return View(msgs);
+            //return View(msgs);
         }
         
     }
