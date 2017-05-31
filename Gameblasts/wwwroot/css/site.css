@@ -255,6 +255,10 @@ textarea {
     color: white;
 }
 
+#hmpge {
+    color: white;
+    font: 16px Arial;
+}
 .col-md-8{
   border-radius: 10px;
   max-width: 1000px !important;
