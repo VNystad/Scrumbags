@@ -8,6 +8,7 @@ namespace Gameblasts.Models.ProfileViewModels
         public string ImgAdress { get; set;}
         public string About { get; set; }
         public string MemberTitle { get; set; }
+        public string Role { get; set; }
         public string Location { get; set; }
         public string Gender { get; set; }
         public string SocialMediaNames { get; set; }

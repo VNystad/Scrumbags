@@ -31,6 +31,8 @@ namespace Gameblasts.Controllers
 
             ProfileViewModel model = new ProfileViewModel();
 
+            var userroles = _userManager.GetRolesAsync(user);
+            model.Role = userroles.Result[0];
             model.Username = user.UserName;
             model.ImgAdress = user.ImgAdress;
             model.PostCount = user.PostCount;
