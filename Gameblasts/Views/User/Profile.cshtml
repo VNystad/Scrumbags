@@ -3,17 +3,19 @@
 @model Gameblasts.Models.ProfileViewModels.ProfileViewModel
 
 <div class="Profile">
-    @if (User.Identity.Name == Model.Username)
-    {   
-        <a asp-route="EditProfile">Edit Profile</a>
-        <br>
-    }
-    else
+    @if (SignInManager.IsSignedIn(User))
     {
-        <a id="privMsg" asp-route="PrivMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
-        <br>
+        @if (User.Identity.Name == Model.Username)
+        {   
+            <a asp-route="EditProfile">Edit Profile</a>
+            <br>
+        }
+        else
+        {
+            <a id="privMsg" asp-route="PrivMsg"><span class="glyphicon glyphicon-envelope"></span> PrivMsg</a>
+            <br>
+        }
     }
-
     <div class="col-md-3" id="profileImg">
         
         <img src="@Model.ImgAdress" 
