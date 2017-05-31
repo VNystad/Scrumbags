@@ -12,15 +12,14 @@ function showDiv(ID) {
 </script>
 
  <div class="container-fluid">
+     
         
     @foreach(var p in Model.Reverse())
     {
 
         @* Creates and displays individual rows for each post in a grid system. *@
-        <div class="col col-md-8" id="row">
-            <b> Title: </b> 
-                <a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@p.SubCategory">@p.Title</a>
-            <div class="row"> </div> 
+        <div class="col-lg-8" id="row">
+                
                 <b> Created by: </b><a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">@p.User </a>
                 <br><b> at: </b> @p.Date
                 <br><br>

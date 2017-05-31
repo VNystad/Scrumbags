@@ -40,7 +40,9 @@ namespace Gameblasts.Controllers
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
+            
             var catList = ApplicationDbContext.Categories.Where(s => s.parent == null).Include("children").Include("threads").ToList();
+            ModelState.Clear();
             return View("../Category/Forum", catList);
         }
 
@@ -56,7 +58,9 @@ namespace Gameblasts.Controllers
             ApplicationDbContext.SaveChanges();
             
             var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").First();
+            ModelState.Clear();
             return View("../Category/Thread", thread);
+            
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()

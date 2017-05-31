@@ -11,20 +11,20 @@ function showDiv(ID) {
 }
 </script>
 
+<div class ="container">
+    <div class ="jumbotron">
  <div class="container-fluid">
         
     @foreach(var p in Model.Reverse())
     {
 
         @* Creates and displays individual rows for each post in a grid system. *@
-        <div class="col col-md-8" id="row">
-            <b> Title: </b> 
-                <a asp-area="" asp-controller="Category" asp-action="OpenCategory" asp-route-id="@p.SubCategory">@p.Title</a>
-            <div class="row"> </div> 
-                <b> Created by: </b><a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">@p.User </a>
-                <br><b> at: </b> @p.Date
-                <br><br>
-                <p> @p.Body</p>
+        <div class="col-lg-8" id="row">
+              <b><h2>  @p.Title </h2></b>
+              <p id="created"> Created by:  <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">@p.User </a> </p>
+            <p> @p.Body</p>
+                <br><b id="created"> at:  @p.Date </b>
+                <br><br> 
                 <input type="button" name="hiddenReplies" value="Toggle Replies" onclick="showDiv('@("hiddenReplies" + p.Id)')"/>
                 <input type="button" name="hiddenDiv" value="Add Reply" onclick="showDiv('@("hiddenDiv" + p.Id)')"/>
                 <div class="row" id="@("hiddenDiv" + p.Id)" style="display:none;"> 
@@ -37,4 +37,6 @@ function showDiv(ID) {
         </div>
     }
         
+</div>
+<div>
 </div>
