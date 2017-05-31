@@ -34,7 +34,7 @@ namespace ViewComponents
             }
 
             /*This takes "count" of posts from database */
-            var subCat = await db.Categories.Where(s => s.id == model.parentID).Include("threads").FirstAsync();
+            var subCat = await db.Categories.Where(s => s.id == model.parentID).Include("threads").Include("threads.User").FirstAsync();
             return View(subCat.threads.Take(model.count).ToList());
             
         }

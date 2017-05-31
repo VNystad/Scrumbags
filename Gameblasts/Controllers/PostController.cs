@@ -55,7 +55,7 @@ namespace Gameblasts.Controllers
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
             
-            var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").First();
+            var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").Include("threads.User").First();
             return View("../Category/Thread", thread);
         }
 

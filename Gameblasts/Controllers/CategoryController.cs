@@ -79,7 +79,8 @@ namespace Gameblasts.Controllers
             parentCat.children.Add(thread);
             db.SaveChanges();
 
-           return View("thread", thread);
+            thread = db.Categories.Where(s => s.id == thread.id).Include("threads").Include("parent").Include("threads.User").First();
+            return View("thread", thread);
         }
 
         [HttpPost]
@@ -106,7 +107,7 @@ namespace Gameblasts.Controllers
 
         public IActionResult OpenCategory(int id)
         {
-            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").First();
+            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").Include("children.threads.User").First();
             return View("SubCatForum", Category);
         }
         public IActionResult OpenTopCategory(int id)
@@ -117,8 +118,8 @@ namespace Gameblasts.Controllers
 
         public IActionResult OpenThread(int id)
         {
-            var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").Include("parent").First();
-            return View("Thread", Category);
+            var Category = db.Categories.Where(e => e.id == id).Include("parent").Include("threads").Include("threads.User").First();
+            return View("thread", Category);
         }
     }
 }

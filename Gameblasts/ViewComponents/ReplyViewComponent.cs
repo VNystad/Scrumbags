@@ -21,7 +21,7 @@ namespace ViewComponents
         {
             
             /*This takes "count" of posts from database */
-            var subCat = await db.Posts.Where(s => s.Id == model.parentID).Include("replies").FirstAsync();
+            var subCat = await db.Posts.Where(s => s.Id == model.parentID).Include("replies").Include("User").Include("replies.User").FirstAsync();
             return View(subCat.replies.Take(model.count).ToList());
             
         }
