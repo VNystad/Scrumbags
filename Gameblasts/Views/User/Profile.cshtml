@@ -21,12 +21,16 @@
         <img src="@Model.ImgAdress" 
         alt="Image" id="imgpath" style="width:200px;height:240px;">
         <br>
-        Image not showing? Press button below or edit imgpath.
-        <button type="button" onclick="fixImgPath(@Model.ImgAdress)">fixImgPath</button>
         <h4>PostCount:</h4> @Model.PostCount
         <br>
     </div>
     <div class="col-md-3" id="userInfo">
+        @*@if(SignInManager.IsSignedIn(UserManager.getElementById(@Model.Username)))
+        {
+            <style>
+                h3 {color:greenyellow;}
+            </style>
+        }*@
         <h3>@Model.Username</h3>
         <br>
         <h4>Role: </h4> @Model.Role
@@ -46,13 +50,5 @@
         <br>
     </div>
 </div>
-
-<script>
-    function fixImgPath(path) 
-    {
-        var img = document.getElementById("imgpath");
-        img.src = path;
-    }
-</script>
 
 <link rel="stylesheet" href="~/css/Profile.css" />

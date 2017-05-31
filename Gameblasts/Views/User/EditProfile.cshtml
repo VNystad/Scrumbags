@@ -4,8 +4,7 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-
-
+<div id="white">
 <form asp-controller="User" asp-action="EditProfile" method="post" class="form-horizontal">
     <br>
     <div class="form-group">
@@ -57,7 +56,7 @@
         </div>
     </div>
 </form>
-
+</div>
 @* uncomment to use script, remember to change to correct script
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
