@@ -5,73 +5,8 @@ This view is to be used by administrators to change users roles.
 In order to do this this view collects two strings to be typed in by the user: Email of the user to be changed, and the Role it should be assigned.
 ***@
 
-<<<<<<< HEAD
-<h1>Hello Admin</h1>
-<<<<<<< HEAD
-@*
-         @{
-List<SelectListItem> listItems = new List<SelectListItem>();
-listItems.Add(new SelectListItem
-  {
-      Text = "User",
-      Value = "User",
-      Selected = true
-  });
-listItems.Add(new SelectListItem
- {
-     Text = "Moderator",
-     Value = "Moderator"
- });
-listItems.Add(new SelectListItem
- {
-     Text = "Admin",
-     Value = "Admin"
- });
-        }
-
-@model Gameblasts.Models.SideNavViewModels.AdminPageChangeRoleViewModel
-@{
-    ViewData["Title"] = "Change role of user";
-}
-
-<h2>@ViewData["Title"]</h2>
-
-
-<form asp-controller="SideNavController" asp-action="AddUserToRole" method="post" class="form-horizontal">
-    <br>
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
-            <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Role" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Role" class="form-control" />
-            <!--<span asp-validation-for="ConfirmPassword" class="text-danger"></span>-->
-        </div>
-    </div>
-        <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-Info">Edit</button>
-        </div>
-    </div>
-</form>
-
-@* uncomment to use script, remember to change to correct script
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}*@
-<h2>Change of permissions</h2>
-<p>Email-address</p>
-
-<p>Permission group</p>
-
-@Html.DropDownList("Role", listItems, new { @class = "form-control" })
-    </div>
 <h1 id="white">Hello Admin</h1>
+
 @model Gameblasts.Models.AdminPageViewModels.AdminPageChangeRoleViewModel
 @{
     ViewData["Title"] = "Change role of user";
