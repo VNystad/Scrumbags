@@ -25,13 +25,13 @@ function showDiv(ID) {
                 <br><b> at: </b> @p.Date
                 <br><br>
                 <p> @p.Body</p>
-                <input type="button" name="hiddenReplies" value="Show Replies" onclick="showDiv('@("hiddenReplies" + p.Id)')"/>
+                <input type="button" name="hiddenReplies" value="Toggle Replies" onclick="showDiv('@("hiddenReplies" + p.Id)')"/>
                 <input type="button" name="hiddenDiv" value="Add Reply" onclick="showDiv('@("hiddenDiv" + p.Id)')"/>
                 <div class="row" id="@("hiddenDiv" + p.Id)" style="display:none;"> 
                     @{ Html.RenderPartialAsync("_ReplyFormPartial", p); }
             </div> 
         </div>
-        <div id="@("hiddenReplies" + p.Id)" style="display:none;">
+        <div id="@("hiddenReplies" + p.Id)">
             <br>
             @(await Component.InvokeAsync<ViewComponents.Reply>(new Gameblasts.Models.CategoryModels.PostComponentFormModel(10, @p.Id) ))
         </div>
