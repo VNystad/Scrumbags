@@ -60,6 +60,22 @@ namespace Gameblasts.Controllers
             
             var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").Include("threads.User").First();
             return View("../Category/Thread", thread);
+        }
+
+              [HttpPost]
+        public async Task<IActionResult> EditPost(Post model)
+        {
+            var user = await GetCurrentUserAsync();
+            var post = await ApplicationDbContext.Posts.Where(s => s.Id == model.parentPost).FirstAsync();
+            if (user == post.User)
+            {
+                post.Body = model.Body;
+                ApplicationDbContext.SaveChanges();
+            }
+            ModelState.Clear();
+            
+            var thread = ApplicationDbContext.Categories.Where(s => s.id == post.SubCategory).Include("threads").Include("parent").Include("threads.User").First();
+            return View("../Category/Thread", thread);
             
         }
 

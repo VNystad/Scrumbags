@@ -26,8 +26,15 @@ function showDiv(ID) {
                 <p> @p.Body</p>
                 <input type="button" name="hiddenReplies" value="Toggle Replies" onclick="showDiv('@("hiddenReplies" + p.Id)')"/>
                 <input type="button" name="hiddenDiv" value="Add Reply" onclick="showDiv('@("hiddenDiv" + p.Id)')"/>
-                <div class="row" id="@("hiddenDiv" + p.Id)" style="display:none;"> 
-                    @{ Html.RenderPartialAsync("_ReplyFormPartial", new Post(p.User, null, null, p.SubCategory, p.Id)); }
+                @if(User.Identity.Name == p.User.UserName)
+            {
+                <input type="button" name="hiddenDiv" value="Edit Post" onclick="showDiv('@("hiddenEdit" + p.Id)')"/>
+            }
+            <div class="row" id="@("hiddenDiv" + p.Id)" style="display:none;"> 
+                @{ Html.RenderPartialAsync("_ReplyFormPartial", new Post(p.User, null, null, p.SubCategory, p.Id)); }
+            </div> 
+            <div class="row" id="@("hiddenEdit" + p.Id)" style="display:none;"> 
+                @{ Html.RenderPartialAsync("_EditPostPartial", p); }
             </div> 
         </div>
         <div id="@("hiddenReplies" + p.Id)">
