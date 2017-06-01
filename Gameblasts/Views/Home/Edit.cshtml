@@ -10,7 +10,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1>Hello <a id="white" href="/Profile/Profile/@User.Identity.Name">@User.Identity.Name</a> and welcome to <br> <img src="/images/Gameblasts.png"style="width:700px;height:700ppx;position:relative;"></h1>
+    <h1>Hello <a id="white" href="/User/@User.Identity.Name">@User.Identity.Name</a> and welcome to <br> <img src="/images/Gameblasts.png"style="width:700px;height:700ppx;position:relative;"></h1>
 }
 else
 {
@@ -30,7 +30,7 @@ else
                 <div id="wrapper">
                     <div id="menu">
                         <!--Gi en velkommen melding til brukeren som er logget inn.-->
-                        <p1 class="welcome">Hello <a href="/Profile/Profile/@User.Identity.Name">@User.Identity.Name</a> !</p1>
+                        <p1 class="welcome">Hello <a href="/User/@User.Identity.Name">@User.Identity.Name</a> !</p1>
                         <div style="clear:both"></div>
                     </div>
                     <div id="chatbox">

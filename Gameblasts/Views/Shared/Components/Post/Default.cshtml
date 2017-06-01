@@ -21,7 +21,7 @@ function showDiv(ID) {
         @* Creates and displays individual rows for each post in a grid system. *@
         <div class="col-lg-8" id="row">
               <b><h2>  @p.Title </h2></b>
-              <p id="created"> Created by:  <a asp-area="" asp-controller="Profile" asp-action="" asp-route-id="@p.User">@p.User </a> </p>
+              <p id="created"> Created by:  <a asp-route="UserProfile" asp-route-id="@p.User">@p.User </a> </p>
             <p> @p.Body</p>
                 <br><b id="created"> at:  @p.Date </b>
                 <br><br> 
