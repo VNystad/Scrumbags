@@ -40,9 +40,9 @@ function showDiv(ID) {
         <div class ="conatiner">
             @for (var c = @Model.children.Count() - 1; c >= 0; c--)
                 {
-                       <div class="col-sm-4" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenThread" asp-route-id="@Model.children[c].id">@Model.children[c].name</a></div>
-                          <div class="col-sm-4" style="background-color: white">.col-sm-4</div>
- <div class="col-sm-4" style="background-color: white">.col-sm-4</div>                  }
+                    <div class="col-sm-4" id="row"> <a asp-area="" asp-controller="Category" asp-action="OpenThread" asp-route-id="@Model.children[c].id">@Model.children[c].name</a></div>
+                    <div class="col-sm-4" style="background-color: white"><a asp-route="UserProfile" asp-route-id="@Model.children[c].threads[0].User">@Model.children[c].threads[0].User</a> .col-sm-4</div>
+                    <div class="col-sm-4" style="background-color: white">.col-sm-4</div>                  }
                       
                 }
         </div>
