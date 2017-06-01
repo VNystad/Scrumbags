@@ -182,7 +182,6 @@ namespace Gameblasts
             db.Categories.Add(SubCat4);
             db.Categories.Add(SubCat5);
         }
-
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

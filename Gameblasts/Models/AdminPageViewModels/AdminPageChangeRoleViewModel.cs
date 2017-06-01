@@ -8,7 +8,7 @@ namespace Gameblasts.Models.AdminPageViewModels
     //which simply specifies that all variables are to be sent (email, new role).
     public class AdminPageChangeRoleViewModel
     {
-        public string Email { get; set; }
+        public string Name { get; set; }
         public string Role { get; set;}
     }
 }
