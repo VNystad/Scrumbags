@@ -39,13 +39,24 @@ namespace Gameblasts.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
+        public async Task<bool> CheckBanned()
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var rolelist = _userManager.GetRolesAsync(await _userManager.GetUserAsync(HttpContext.User));
+                if (rolelist.Result.Contains("Banned"))
+                    return true;
+            }
+            return false;
+        }
+
         //
         // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
@@ -61,7 +72,7 @@ namespace Gameblasts.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -152,9 +163,9 @@ namespace Gameblasts.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginAsync(string provider, string returnUrl = null)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Request a redirect to the external login provider.
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });

@@ -29,10 +29,21 @@ namespace Gameblasts.Controllers
             this.SignInManager = signInManager;
         }
 
+        public async Task<bool> CheckBanned()
+        {
+            if (SignInManager.IsSignedIn(User))
+            {
+                var rolelist = UserManager.GetRolesAsync(await UserManager.GetUserAsync(HttpContext.User));
+                if (rolelist.Result.Contains("Banned"))
+                    return true;
+            }
+            return false;
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPost(Post model)
         {   
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             Post newpost = new Post(user, model.Title, model.Body, model.SubCategory);
@@ -51,7 +62,7 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public async Task<IActionResult> AddReply(Post model)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             Post newpost = new Post(user, model.Title, model.Body, model.SubCategory);
@@ -69,7 +80,7 @@ namespace Gameblasts.Controllers
               [HttpPost]
         public async Task<IActionResult> EditPost(Post model)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             var post = await ApplicationDbContext.Posts.Where(s => s.Id == model.parentPost).FirstAsync();

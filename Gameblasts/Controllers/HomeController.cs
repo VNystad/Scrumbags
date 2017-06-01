@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using Gameblasts.Data;
 using Gameblasts.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -21,23 +22,34 @@ namespace Gameblasts.Controllers
             this.SignInManager = signInManager;
         }
 
-        [HttpGet]
-        public IActionResult Index(int count)
+        public async Task<bool> CheckBanned()
         {
-            if(User.IsInRole("Banned"))
+            if (SignInManager.IsSignedIn(User))
+            {
+                var rolelist = UserManager.GetRolesAsync(await UserManager.GetUserAsync(HttpContext.User));
+                if (rolelist.Result.Contains("Banned"))
+                    return true;
+            }
+            return false;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int count)
+        {
+            if (await CheckBanned())
                 return View("../Home/Banned");
-             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
+            // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
             if (ApplicationDbContext.ChatMessages.Count() < 20)
                 count = ApplicationDbContext.ChatMessages.Count();
             else
                 count = 20;
-            
+
             // Hvis databasen inneholder mer enn 250 chatbox meldinger, fjern 50 stykk av de eldste meldingene i databasen.
             if (ApplicationDbContext.ChatMessages.Count() > 250)
                 while (ApplicationDbContext.ChatMessages.Count() > 200)
-                ApplicationDbContext.ChatMessages.Remove(ApplicationDbContext.ChatMessages.First());
-                ApplicationDbContext.SaveChanges();
+                    ApplicationDbContext.ChatMessages.Remove(ApplicationDbContext.ChatMessages.First());
+            ApplicationDbContext.SaveChanges();
 
             // Vise alle meldingene som er i databasen når siden lastes.
             // TODO: Bare vise 20-30 meldinger om gangen.
@@ -48,9 +60,9 @@ namespace Gameblasts.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Index(string message, int count)
+        public async Task<IActionResult> Index(string message, int count)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
@@ -59,7 +71,7 @@ namespace Gameblasts.Controllers
             else
                 count = 20;
             // Sjekke om modellen er valid. 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Lage en ny melding, deretter finne den nåværende brukeren som er logget inn.
                 // Deretter legge inn meldingen som ble sendt inn i viewet.
@@ -77,21 +89,21 @@ namespace Gameblasts.Controllers
                 ApplicationDbContext.ChatMessages.Add(newMessage);
                 ApplicationDbContext.SaveChanges();
                 // Returner i descending order med hensyn på id. Sånn at de nyeste meldingene kommer på toppen av chatboxen.
-                return RedirectToAction("Index",ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
+                return RedirectToAction("Index", ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
             }
-            return RedirectToAction("Index",ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
+            return RedirectToAction("Index", ApplicationDbContext.ChatMessages.OrderByDescending(x => x.Id).Take(count).ToList());
         }
 
         [HttpGet]
         [Authorize]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit()
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Finner ut hvilken bruker som er logget inn nå
             // Sjekker om den har rollen Admin. 
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
-            if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
             {
                 // Hvis brukeren har rollen admin eller moderator, sende til edit siden. 
                 return View("Edit");
@@ -105,14 +117,14 @@ namespace Gameblasts.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(int? id, string message)
+        public async Task<IActionResult> Edit(int? id, string message)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Hvis id'en ikke finnes returner NotFound() funksjonen.
                 if (id == null)
@@ -136,19 +148,19 @@ namespace Gameblasts.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Hvis id'en ikke finnes returner NotFound() funksjonen.
                 if (id == null)
                     return NotFound();
-                
+
                 if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     // Finne meldingen i databasen som skal slettes. Deretter fjerne den fra databasen. 
@@ -161,23 +173,23 @@ namespace Gameblasts.Controllers
             return RedirectToAction("Index", ApplicationDbContext.ChatMessages.ToList());
         }
 
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             return View();
         }
 
-        public IActionResult Forum()
+        public async Task<IActionResult> Forum()
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             return View();
         }
 
-        public IActionResult RulesAndGuidelinesForum()
+        public async Task<IActionResult> RulesAndGuidelinesForum()
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             return View();
         }

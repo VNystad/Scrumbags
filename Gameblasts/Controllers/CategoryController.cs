@@ -25,50 +25,62 @@ namespace Gameblasts.Controllers
             this.UserManager = userManager;
             this.SignInManager = signInManager;
         }
-        
-        [HttpGet]
-        public IActionResult Forum()
+
+        public async Task<bool> CheckBanned()
         {
-            if(User.IsInRole("Banned"))
+            if (SignInManager.IsSignedIn(User))
+            {
+                var rolelist = UserManager.GetRolesAsync(await UserManager.GetUserAsync(HttpContext.User));
+                if (rolelist.Result.Contains("Banned"))
+                    return true;
+            }
+            return false;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Forum()
+        {
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var catList = db.Categories.Where(s => s.parent == null).Include("children").ToList();
             return View(catList);
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult CreateCategory(CategoryFormModel model)
+        public async Task<IActionResult> CreateCategory(CategoryFormModel model)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             CategoryModel newCat;
             if (db.Categories.Find(model.parentID) != null)
             {
-            var parentCatList = db.Categories.Where(s => s.id == model.parentID).Include("children").Distinct().ToList();
-            var parentCat = parentCatList.First();           
+                var parentCatList = db.Categories.Where(s => s.id == model.parentID).Include("children").Distinct().ToList();
+                var parentCat = parentCatList.First();
                 newCat = new CategoryModel(model.name, parentCat, model.imageURL);
                 parentCat.children.Add(newCat);
-            } else
+            }
+            else
                 newCat = new CategoryModel(model.name, null, model.imageURL);
 
             db.Categories.Add(newCat);
             db.SaveChanges();
-            return View("Forum", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
+            return View("Forum", db.Categories.Where(s => s.parent == null).Include("children").ToList());
         }
 
-        [Authorize(Roles="Admin")]
-        public IActionResult AddCategory(CategoryFormModel formModel)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddCategory(CategoryFormModel formModel)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var model = new CategoryModel(null, db.Categories.Find(formModel.parentID), null);
             return View(model);
         }
 
-        
-        public IActionResult AddThread(int id)
+
+        public async Task<IActionResult> AddThread(int id)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var model = new Post(null, null, null, id);
             return View(model);
@@ -76,7 +88,7 @@ namespace Gameblasts.Controllers
 
         public async Task<IActionResult> CreateThread(Post model)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var parentCat = await db.Categories.Where(c => c.id == model.SubCategory).Include("children").FirstAsync();
             var user =  await UserManager.GetUserAsync(HttpContext.User);
@@ -95,23 +107,23 @@ namespace Gameblasts.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSubCategoryDemo(CategoryFormModel model)
+        public async Task<IActionResult> AddSubCategoryDemo(CategoryFormModel model)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var parentCatList = db.Categories.Where(s => s.id == model.parentID).Include("children").Distinct().ToList();
-            var parentCat = parentCatList.First();            
+            var parentCat = parentCatList.First();
             var newCat = new CategoryModel(model.name, parentCat);
             parentCat.children.Add(newCat);
             db.Categories.Add(newCat);
             db.SaveChanges();
-            return View("ForumCategoryDemo", db.Categories.Where(s =>  s.parent == null).Include("children").ToList());
+            return View("ForumCategoryDemo", db.Categories.Where(s => s.parent == null).Include("children").ToList());
         }
 
         [HttpPost]
-        public IActionResult ForumPost(CategoryModel category)
+        public async Task<IActionResult> ForumPost(CategoryModel category)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             if (category == null)
                 return View("../Home/Forum");
@@ -120,24 +132,24 @@ namespace Gameblasts.Controllers
             return View(model);
         }
 
-        public IActionResult OpenCategory(int id)
+        public async Task<IActionResult> OpenCategory(int id)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").Include("children.threads.User").First();
             return View("SubCatForum", Category);
         }
-        public IActionResult OpenTopCategory(int id)
+        public async Task<IActionResult> OpenTopCategory(int id)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var Category = db.Categories.Where(e => e.id == id).Include("children").Include("threads").First();
             return View("TopCatForum", Category);
         }
 
-        public IActionResult OpenThread(int id)
+        public async Task<IActionResult> OpenThread(int id)
         {
-            if(User.IsInRole("Banned"))
+            if (await CheckBanned())
                 return View("../Home/Banned");
             var Category = db.Categories.Where(e => e.id == id).Include("parent").Include("threads").Include("threads.User").First();
             return View("thread", Category);
