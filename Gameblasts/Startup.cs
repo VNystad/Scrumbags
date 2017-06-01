@@ -115,7 +115,7 @@ namespace Gameblasts
             {
                 // Then add one admin user if it doesn't already exists.
                 var adminUser = new ApplicationUser( "admin@uia.no", "admin@uia.no" );
-                await userManager.CreateAsync(adminUser, "Password1.");
+                await userManager.CreateAsync(adminUser, "Password2.Admin");
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
 
