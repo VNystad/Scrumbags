@@ -11,6 +11,7 @@ namespace Gameblasts.Controllers
 {
     public class AdminPageController : Controller
     {
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         
 /**This is the controller of the AdminPage. Its task is to actually perform the action in the AdminPage.
@@ -18,9 +19,10 @@ namespace Gameblasts.Controllers
 *The way the AdminPageController works is that it receives the email-address and new role of the user whom should have a change of role.
 *Then the controller finds the id of the user based on its email-address, removes any roles it may have and then assigns it the new role sent fromt the View/ViewModel.
 */
-        public AdminPageController(UserManager<ApplicationUser> um) 
+        public AdminPageController(UserManager<ApplicationUser> um, SignInManager<ApplicationUser> im) 
         {
             _userManager = um;
+            _signInManager = im;
         }
         [Authorize(Roles="Admin")]
         public IActionResult AdminPage()
@@ -55,6 +57,7 @@ namespace Gameblasts.Controllers
                     await _userManager.RemoveFromRoleAsync(user, "Admin");
                 }
                 await _userManager.AddToRoleAsync(user, Info.Role);
+                await _signInManager.RefreshSignInAsync(user);
                 return View("AdminPage");
             }
         }
