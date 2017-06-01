@@ -56,6 +56,7 @@ namespace Gameblasts.Controllers
             ApplicationDbContext.Posts.Add(newpost);
             user.PostCount++;
             ApplicationDbContext.SaveChanges();
+            ModelState.Clear();
             
             var thread = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").Include("parent").Include("threads.User").First();
             return View("../Category/Thread", thread);

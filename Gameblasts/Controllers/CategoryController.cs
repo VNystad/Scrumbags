@@ -78,6 +78,7 @@ namespace Gameblasts.Controllers
             db.Posts.Add(OP);
             parentCat.children.Add(thread);
             db.SaveChanges();
+            ModelState.Clear();
 
             thread = db.Categories.Where(s => s.id == thread.id).Include("threads").Include("parent").Include("threads.User").First();
             return View("thread", thread);
