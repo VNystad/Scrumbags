@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/Chatbox.css" asp-append-version="true" />
 </head>
 
-<img src="http://i.imgur.com/9N9Eg2K.png"style="width:700px;height:700ppx;position:relative;">
 @if (SignInManager.IsSignedIn(User))
 {
     <h1>Hello <a id="white" href="/Profile/Profile/@User.Identity.Name">@User.Identity.Name</a> and welcome to <br> <img src="/images/Gameblasts.png"style="width:700px;height:700ppx;position:relative;"></h1>
