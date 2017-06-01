@@ -24,6 +24,8 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public IActionResult Index(int count)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
              // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
             if (ApplicationDbContext.ChatMessages.Count() < 20)
@@ -48,6 +50,8 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public IActionResult Index(string message, int count)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             // Hvis databasen har mer enn 20 elementer i chatbox melding tabellen,
             // Returner bare 20 av dem. Ellers returner alle som er i tabellen.
             if (ApplicationDbContext.ChatMessages.Count() < 20)
@@ -82,6 +86,8 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult Edit()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             // Finner ut hvilken bruker som er logget inn nå
             // Sjekker om den har rollen Admin. 
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
@@ -101,6 +107,8 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult Edit(int? id, string message)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
@@ -130,6 +138,8 @@ namespace Gameblasts.Controllers
         [Authorize]
         public IActionResult Delete(int? id)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             // Få tak i den nåværende brukeren, og gjøre sjekk som i Get kontrolleren.
             var user = UserManager.FindByNameAsync(User.Identity.Name).Result.ToString();
             // Sjekke om modelstaten er valid, hvis ikke returner tilbake til chatbox siden.
@@ -151,29 +161,24 @@ namespace Gameblasts.Controllers
             return RedirectToAction("Index", ApplicationDbContext.ChatMessages.ToList());
         }
 
-        public IActionResult Discord()
-        {
-            return View();
-        }
-
         public IActionResult Error()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             return View();
         }
 
         public IActionResult Forum()
         {
-            return View();
-        }
-        
-        [Authorize(Roles = "Admin")]
-        public IActionResult Adminpage()
-        {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             return View();
         }
 
         public IActionResult RulesAndGuidelinesForum()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             return View();
         }
     }

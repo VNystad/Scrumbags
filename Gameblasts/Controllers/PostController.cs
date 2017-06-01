@@ -32,6 +32,8 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(Post model)
         {   
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             Post newpost = new Post(user, model.Title, model.Body, model.SubCategory);
             var subCat = ApplicationDbContext.Categories.Where(s => s.id == model.SubCategory).Include("threads").ToList().First();
@@ -49,6 +51,8 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public async Task<IActionResult> AddReply(Post model)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             Post newpost = new Post(user, model.Title, model.Body, model.SubCategory);
             var parent = await ApplicationDbContext.Posts.Where( s => s.Id == model.parentPost).Include("replies").FirstAsync();
@@ -65,6 +69,8 @@ namespace Gameblasts.Controllers
               [HttpPost]
         public async Task<IActionResult> EditPost(Post model)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             var user = await GetCurrentUserAsync();
             var post = await ApplicationDbContext.Posts.Where(s => s.Id == model.parentPost).FirstAsync();
             if (user == post.User)

@@ -35,6 +35,7 @@ namespace Gameblasts.Models
             this.Age = 0;
             this.RegisterDate = DateTime.Now.Date;
             this.UnreadMsg = false;
+            this.ImgAdress = "/images/deafult-avatar.png";
         }
 
         [Required]

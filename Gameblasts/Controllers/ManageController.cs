@@ -42,6 +42,8 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -73,6 +75,8 @@ namespace Gameblasts.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             ManageMessageId? message = ManageMessageId.Error;
             var user = await GetCurrentUserAsync();
             if (user != null)
@@ -91,6 +95,8 @@ namespace Gameblasts.Controllers
         // GET: /Manage/AddPhoneNumber
         public IActionResult AddPhoneNumber()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             return View();
         }
 
@@ -100,6 +106,8 @@ namespace Gameblasts.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             if (!ModelState.IsValid)
             {
                 return View(model);

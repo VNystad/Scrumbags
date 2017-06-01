@@ -38,6 +38,10 @@ namespace Gameblasts.Controllers
             }
             else
             {
+                if(await _userManager.IsInRoleAsync(user, "Banned"))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "Banned");
+                }
                 if(await _userManager.IsInRoleAsync(user, "Member"))
                 {
                     await _userManager.RemoveFromRoleAsync(user, "Member");

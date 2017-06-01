@@ -25,6 +25,8 @@ namespace Gameblasts.Controllers
         ///Profile returns the userprofile of id(username), returns with viewmodel
         public async Task<IActionResult> Profile(string id)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             if(id == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
             ApplicationUser user = await _userManager.FindByNameAsync(id);
             if(user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
@@ -51,6 +53,8 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public async Task<IActionResult> EditProfile()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             var user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
 
@@ -71,6 +75,8 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(EditProfileViewModel m)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             var user = await _userManager.FindByNameAsync(m.Username);
             if (user == null) return Content("Something went horribly wrong! Report issue to Martin Bråten and blame him");
 
@@ -89,6 +95,8 @@ namespace Gameblasts.Controllers
         [HttpGet]
         public async Task<IActionResult> NewMessage(string id)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             if(id == null)
             {
                 var model1 = new MessageViewModel();
@@ -112,6 +120,8 @@ namespace Gameblasts.Controllers
         [HttpPost]
         public async Task<IActionResult> NewMessage(MessageViewModel model)
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             model.Sender = HttpContext.User.Identity.Name;
             ApplicationUser user = await _userManager.FindByNameAsync(model.Receiver);
             
@@ -133,6 +143,8 @@ namespace Gameblasts.Controllers
         /// Returns view of inbox. (Doesnt work properly, need to get messages from db.)
         public async Task<IActionResult> Inbox()
         {
+            if(User.IsInRole("Banned"))
+                return View("../Home/Banned");
             return View();
         }
     }
