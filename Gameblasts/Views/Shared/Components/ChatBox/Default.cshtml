@@ -1,4 +1,6 @@
-@model Gameblasts.Models.ChatMessage
+@model IEnumerable<Gameblasts.Models.ChatMessage>
+    
+@inject SignInManager<ApplicationUser> SignInManager
 <!--ChatBox skal bare vises hvis brukeren er logget inn.-->
 @if (SignInManager.IsSignedIn(User))
 {
